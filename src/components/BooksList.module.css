@@ -1,0 +1,12 @@
+.div {
+  display: block;
+  /* position: absolute; */
+  top: 40%px;
+  left: 20%;
+  right: 20%;
+  background-color: beige;
+}
+
+li {
+  list-style: none;
+}

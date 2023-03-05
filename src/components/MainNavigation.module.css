@@ -1,0 +1,91 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 80px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#list li {
+  list-style: none;
+  padding: 0 20px;
+  position: relative;
+}
+
+#list li a {
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  transition: 0.3s ease-in-out;
+}
+#list li a:hover {
+  color: #245167;
+}
+#list li a:hover::after {
+  content: "";
+  width: 30%;
+  height: 2px;
+  background: #245167;
+  position: absolute;
+  bottom: -4px;
+  left: 20px;
+}
+
+.active.active {
+  color: #245167;
+}
+
+.active.active::after {
+  content: "";
+  width: 30%;
+  height: 2px;
+  background: #245167;
+  position: absolute;
+  bottom: -4px;
+  left: 20px;
+}
+
+.mobile {
+  display: none;
+}
+.mobile i {
+  color: #fff;
+}
+
+@media screen and (max-width: 769px) {
+  #list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: fixed;
+    top: 47px;
+    right: -300px;
+    width: 300px;
+    height: 100vh;
+    background: #2a3239;
+    box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
+    padding: 40px 0 0 10px;
+  }
+  #list.active {
+    right: 0px;
+  }
+  #list li {
+    margin-bottom: 25px;
+  }
+  .mobile {
+    display: block;
+    margin-left: 98%;
+  }
+  .mobile i {
+    font-size: 24px;
+    cursor: pointer;
+  }
+}
