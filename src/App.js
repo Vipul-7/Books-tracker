@@ -6,7 +6,7 @@ import HomePage from "./pages/HomePage";
 import ReadingNowPage from "./pages/ReadingNow";
 import ToReadPage from "./pages/ToRead";
 import HaveReadPage from "./pages/HaveRead";
-import FavouritesPage from "./pages/Favourites";
+import FavoritesPage from "./pages/Favorites";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: "favorites",
-        element: <FavouritesPage />,
+        element: <FavoritesPage />,
       },
       {
         path: "explore-books",

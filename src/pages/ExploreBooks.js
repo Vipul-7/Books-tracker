@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router";
-import BooksList from "../components/BooksList";
+import BooksList from "../components/BooksListExplore";
 
 const ExploreBooksPage = () => {
   const data = useLoaderData();
@@ -8,8 +8,14 @@ const ExploreBooksPage = () => {
       {data.items.map((item) => (
         <li key={item.id}>
           <BooksList
+            id={item.id}
             title={item.volumeInfo.title}
+            authors={item.volumeInfo.authors}
+            categories={item.volumeInfo.categories}
             image={item.volumeInfo.imageLinks.thumbnail}
+            description={item.volumeInfo.description}
+            language={item.volumeInfo.language}
+            pages={item.volumeInfo.pageCount}
           />
         </li>
       ))}
