@@ -1,5 +1,20 @@
-const ErrorPage = () =>{
-    return <h1>Error Occured</h1>
-}
+import { useRouteError } from "react-router";
+import MainNavigation from "../components/MainNavigation";
+
+const ErrorPage = () => {
+  const error = useRouteError();
+  let message = "something went wrong";
+
+  if (error.status === 500) {
+    message = error.data.message;
+  }
+
+  return (
+    <>
+      <MainNavigation />
+      <h1 style={{ textAlign: "center" }}>{message}</h1>
+    </>
+  );
+};
 
 export default ErrorPage;

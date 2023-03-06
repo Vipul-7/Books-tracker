@@ -1,32 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BooksList from "../components/BooksListExplore";
 import SearchBook from "../components/UI/SearchBook";
 import classes from "./ExploreBooks.module.css";
-
-let intial = false;
+import { json } from "react-router";
 
 const ExploreBooksPage = () => {
   const [searchedValue, setSearchedVal] = useState("");
-  // const [resDatax, setResDatax] = useState({ items: [] });
-  let resDatax;
+  const [resData, setResData] = useState([]);
 
   const searchedValueChangeHandler = (searchedVal) => {
     setSearchedVal(searchedVal);
     console.log(searchedVal);
   };
-
-  // useEffect(() => {
-  //   const sendReqToApi = async () => {
-  //     if (searchedValue.trim() === "") {
-  //       return;
-  //     }
-  //     setTimeout(async () => {
-  //       // console.log(resData);
-  //       setResDatax(resData);
-  //     }, 1000);
-  //   };
-  //   sendReqToApi();
-  // }, [searchedValue]);
 
   const searchClickHandler = async () => {
     const searchKey = searchedValue;
@@ -34,12 +19,20 @@ const ExploreBooksPage = () => {
     const reqURL = `https://www.googleapis.com/books/v1/volumes?q=${searchKey}&key=${apiKey}`;
 
     const response = await fetch(reqURL);
-    // const resData = await response.json();
-    // setResDatax(await response.json());
-    resDatax = await response.json();
-    intial = true;
-    console.log(resDatax);
+
+    if (!response.ok) {
+      throw json({ message: "Could not fetch the data" }, { status: 500 });
+    }
+
+    const responseData = await response.json();
+    setResData(responseData.items);
   };
+  console.log(resData);
+  // const sliceEndingLength = Math.min(resData.length - 2, 15);
+
+  if (resData === undefined) {
+    throw json({ message: "array is undefined" }, { status: 500 });
+  }
 
   return (
     <>
@@ -53,22 +46,24 @@ const ExploreBooksPage = () => {
         </button>
       </section>
       <hr className={classes.hr} />
-      {console.log("hey")}
-      {intial &&
-        resDatax.items.map((item,idx) => (
-          <li key={item.id}>
-            <BooksList
-              id={item.id}
-              title={item.volumeInfo.title}
-              authors={item.volumeInfo.authors}
-              categories={item.volumeInfo.categories}
-              image={item.volumeInfo.imageLinks.thumbnail}
-              description={item.volumeInfo.description}
-              language={item.volumeInfo.language}
-              pages={item.volumeInfo.pageCount}
-            />
-          </li>
-        ))}
+      {Array.isArray(resData) &&
+        resData.map(
+          (item, index) =>
+            index < 7 && (
+              <li key={item.id}>
+                <BooksList
+                  id={item.id}
+                  title={item.volumeInfo.title}
+                  authors={item.volumeInfo.authors}
+                  categories={item.volumeInfo.categories}
+                  image={item.volumeInfo.imageLinks.thumbnail}
+                  description={item.volumeInfo.description}
+                  language={item.volumeInfo.language}
+                  pages={item.volumeInfo.pageCount}
+                />
+              </li>
+            )
+        )}
     </>
   );
 };

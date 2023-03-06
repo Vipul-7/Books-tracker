@@ -16,12 +16,12 @@ const SearchBook = (props) => {
           className={classes.input}
         />
       </div>
-      <div className={classes.btn}>
+      {/* <div className={classes.btn}>
         <button onClick={props.searchClickHandler} type="button">Search</button>
       </div>
       <div className={classes.btn}>
         <button>Cancel</button>
-      </div>
+      </div> */}
     </section>
   );
 };
