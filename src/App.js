@@ -7,11 +7,13 @@ import ReadingNowPage from "./pages/ReadingNow";
 import ToReadPage from "./pages/ToRead";
 import HaveReadPage from "./pages/HaveRead";
 import FavoritesPage from "./pages/Favorites";
+import ErrorPage from "./pages/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
       {

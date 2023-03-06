@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { favBooks: [] };
+const initialState = { favBooks: [ ] };
 
 const favoriteSlice = createSlice({
   name: "favorite-slice",
@@ -14,8 +14,8 @@ const favoriteSlice = createSlice({
         state.favBooks.push({
           id: newBook.id,
           image: newBook.image,
-          title: newBook.image,
-          author: newBook.author, //aray
+          title: newBook.title,
+          authors: newBook.authors, //aray
           categories: newBook.categories, //aray
           language: newBook.language,
           pages: newBook.pages,

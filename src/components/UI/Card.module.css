@@ -1,31 +1,37 @@
 .card-box {
   background-color: #98e6a1;
-  /* display: flex;
-  justify-content: space-between; */
-  display: inline-flex;
+  display: flex;
+  justify-content: space-between;
+  /* display: inline-flex; */
   width: 50%;
   margin-left: 26%;
   margin-right: 20%;
   margin-bottom: 0;
   height: 24.5vh;
+  position: relative;
 }
 
-.data{
-    margin-left: 10%;
-    /* display: inline-block; */
-    display: grid;
-    grid-template-columns: 100%;
+.data {
+  display: inline-block;
+
+  /* margin-left: 10%; */
+  position: absolute;
+  left: 25%;
+  right: 5%;
 }
 
-.title{
-    /* display: inline-block; */
-    font-size: 20px;
-    margin-left: 10%;
+.title {
+  display: block;
+  font-size: 20px;
+  margin-left: 10%;
 }
 
-.additional{
-    /* display: inline-flex; */
-    display: flex;
-    justify-content: space-between;
+.author {
+  display: block;
 }
 
+.additional {
+  /* display: inline-flex; */
+  display: flex;
+  justify-content: space-between;
+}

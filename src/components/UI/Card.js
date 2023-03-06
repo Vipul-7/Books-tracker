@@ -10,7 +10,7 @@ const Card = (props) => {
         <div className={classes.title}>
           <h2>{props.title}</h2>
         </div>
-        <div>
+        <div className={classes.author}>
           <h4>By {props.authors.map((author) => `${author}      `)}</h4>
         </div>
         <section className={classes.additional}>
