@@ -1,0 +1,21 @@
+.main{  
+    display: flex;
+    justify-content: block;
+}
+
+.input{
+    display: inline-block;
+    width: 400px;
+    height: 50px;
+    border-radius: 9px;
+    color: black;
+    font-size: 1.2rem;
+    background-color: rgb(164, 180, 180);
+}
+
+.btn{
+    display: inline-block;
+    margin-top: 2.5%;
+    margin-left: 2%;
+    border-radius: 15px;
+}

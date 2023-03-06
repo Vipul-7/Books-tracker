@@ -8,3 +8,7 @@
   display: block;
   background-color: azure;
 }
+
+li{
+  list-style: none;
+}

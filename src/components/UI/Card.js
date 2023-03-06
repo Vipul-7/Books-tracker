@@ -3,7 +3,7 @@ import classes from "./Card.module.css";
 const Card = (props) => {
   return (
     <div className={classes["card-box"]}>
-      <section>
+      <section className={classes.img}>
         <img src={props.image} alt={props.image_alt} />
       </section>
       <section className={classes.data}>

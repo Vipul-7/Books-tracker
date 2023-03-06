@@ -41,9 +41,12 @@ const BooksList = (props) => {
       />
       {showDesc && <p className={classes.description}>{props.description}</p>}
       <section className={classes.buttons}>
-        <button onClick={showDescHandler} type="button">
+        {!showDesc && <button onClick={showDescHandler} type="button">
           Show description
-        </button>
+        </button>}
+        {showDesc && <button onClick={showDescHandler} type="button">
+          Hide description
+        </button>}
         <button onClick={addToFavoriteHandler} type="button">Add to Favorite</button>
         <button>Have read</button>
         <button>To read</button>

@@ -1,5 +1,5 @@
 .card-box {
-  background-color: #98e6a1;
+  background-color: #606fef;
   display: flex;
   justify-content: space-between;
   /* display: inline-flex; */
@@ -9,6 +9,28 @@
   margin-bottom: 0;
   height: 24.5vh;
   position: relative;
+  border-radius: 20px;
+
+  animation: cardLeftToRight 1s ease-out;
+}
+
+@keyframes cardLeftToRight {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  80% {
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.img{
+  /* margin-left: 10px; */
+  /* height: 100%; */
 }
 
 .data {

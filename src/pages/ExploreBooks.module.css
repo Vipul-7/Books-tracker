@@ -1,0 +1,12 @@
+.searchBook{
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+    margin-top: 4rem;
+}
+
+.hr{
+    border-style :ridge;
+    border-color: #895454
+}

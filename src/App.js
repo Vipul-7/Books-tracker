@@ -1,7 +1,8 @@
 import { RouterProvider } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "./pages/Root";
-import ExploreBooksPage, { loader as booksLoader } from "./pages/ExploreBooks";
+// import ExploreBooksPage, { loader as booksLoader } from "./pages/ExploreBooks";
+import ExploreBooksPage from "./pages/ExploreBooks";
 import HomePage from "./pages/HomePage";
 import ReadingNowPage from "./pages/ReadingNow";
 import ToReadPage from "./pages/ToRead";
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
       {
         path: "explore-books",
         element: <ExploreBooksPage />,
-        loader: booksLoader,
+        // loader: booksLoader,
       },
     ],
   },
