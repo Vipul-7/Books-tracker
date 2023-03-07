@@ -57,3 +57,13 @@
   display: flex;
   justify-content: space-between;
 }
+.buttons{
+  display: block;
+  text-align: center;
+  margin-bottom: 13px;
+}
+
+.description{
+  display: block;
+  background-color: azure;
+}

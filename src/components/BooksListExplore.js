@@ -1,12 +1,17 @@
 import Card from "./UI/Card";
 import classes from "./BooksListExplore.module.css";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { favActions } from "../store/favorite-slice";
 
 const BooksList = (props) => {
   const dispatch = useDispatch();
   const [showDesc, setShowDesc] = useState(false);
+  const favoriteBooks = useSelector((state) => state.favorite.favBooks);
+
+  const isBookExistInFavorite = favoriteBooks.find(
+    (item) => item.id == props.id
+  );
 
   const showDescHandler = () => {
     setShowDesc(!showDesc);
@@ -27,6 +32,10 @@ const BooksList = (props) => {
     );
   };
 
+  const removeFromFavoriteHandler = () => {
+    dispatch(favActions.removeFromFavorite(props.id));
+  };
+
   return (
     <div>
       <Card
@@ -39,15 +48,17 @@ const BooksList = (props) => {
         language={props.language}
         pages={props.pages}
       />
-      {showDesc && <p className={classes.description}>{props.description}</p>}
       <section className={classes.buttons}>
-        {!showDesc && <button onClick={showDescHandler} type="button">
-          Show description
-        </button>}
-        {showDesc && <button onClick={showDescHandler} type="button">
-          Hide description
-        </button>}
-        <button onClick={addToFavoriteHandler} type="button">Add to Favorite</button>
+        {!isBookExistInFavorite && (
+          <button onClick={addToFavoriteHandler} type="button">
+            Add to Favorite
+          </button>
+        )}
+        {isBookExistInFavorite && (
+          <button onClick={removeFromFavoriteHandler} type="button">
+            Remove From Favorite
+          </button>
+        )}
         <button>Have read</button>
         <button>To read</button>
       </section>

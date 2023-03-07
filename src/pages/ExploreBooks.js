@@ -28,7 +28,7 @@ const ExploreBooksPage = () => {
     setResData(responseData.items);
   };
   console.log(resData);
-  // const sliceEndingLength = Math.min(resData.length - 2, 15);
+  const sliceEndingLength = Math.min(resData.length - 1, 15);
 
   if (resData === undefined) {
     throw json({ message: "array is undefined" }, { status: 500 });
