@@ -1,12 +1,10 @@
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import Card from "../components/UI/Card";
 import classes from "./FavoriteBookLists.module.css";
 import { favActions } from "../store/favorite-slice";
 
 const FavoriteBooksList = (props) => {
   const dispatch = useDispatch();
-  const [showDesc, setShowDesc] = useState(false);
 
   const removeFromFavoriteHandler = () => {
     dispatch(favActions.removeFromFavorite(props.id));

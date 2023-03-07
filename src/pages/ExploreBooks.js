@@ -15,8 +15,9 @@ const ExploreBooksPage = () => {
 
   const searchClickHandler = async () => {
     const searchKey = searchedValue;
-    const apiKey = "AIzaSyDDyeVHpYrQpNHJk17HlUgwcqpmgbxb0QE";
+    const apiKey = process.env.REACT_APP_API_KEY;
     const reqURL = `https://www.googleapis.com/books/v1/volumes?q=${searchKey}&key=${apiKey}`;
+    console.log(apiKey);
 
     const response = await fetch(reqURL);
 
@@ -28,7 +29,7 @@ const ExploreBooksPage = () => {
     setResData(responseData.items);
   };
   console.log(resData);
-  const sliceEndingLength = Math.min(resData.length - 1, 15);
+  // const sliceEndingLength = Math.min(resData.length - 1, 15);
 
   if (resData === undefined) {
     throw json({ message: "array is undefined" }, { status: 500 });
@@ -41,7 +42,11 @@ const ExploreBooksPage = () => {
           needStateData={searchedValueChangeHandler}
           searchButtonClickHandler={searchClickHandler}
         />
-        <button onClick={searchClickHandler} type="button">
+        <button
+          onClick={searchClickHandler}
+          type="button"
+          style={{ cursor: "pointer" }}
+        >
           Search
         </button>
       </section>

@@ -8,7 +8,7 @@ const favoriteSlice = createSlice({
   reducers: {
     addToFavorite(state, action) {
       const newBook = action.payload;
-      const isExist = state.favBooks.find((item) => item.id == newBook.id);
+      const isExist = state.favBooks.find((item) => item.id === newBook.id);
 
       if (!isExist) {
         state.favBooks.push({

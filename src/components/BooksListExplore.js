@@ -1,21 +1,15 @@
 import Card from "./UI/Card";
 import classes from "./BooksListExplore.module.css";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { favActions } from "../store/favorite-slice";
 
 const BooksList = (props) => {
   const dispatch = useDispatch();
-  const [showDesc, setShowDesc] = useState(false);
   const favoriteBooks = useSelector((state) => state.favorite.favBooks);
 
   const isBookExistInFavorite = favoriteBooks.find(
-    (item) => item.id == props.id
+    (item) => item.id === props.id
   );
-
-  const showDescHandler = () => {
-    setShowDesc(!showDesc);
-  };
 
   const addToFavoriteHandler = () => {
     dispatch(
