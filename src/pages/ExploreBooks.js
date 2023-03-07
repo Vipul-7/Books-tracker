@@ -17,8 +17,7 @@ const ExploreBooksPage = () => {
     const searchKey = searchedValue;
     const apiKey = process.env.REACT_APP_API_KEY;
     const reqURL = `https://www.googleapis.com/books/v1/volumes?q=${searchKey}&key=${apiKey}`;
-    console.log(apiKey);
-
+    
     const response = await fetch(reqURL);
 
     if (!response.ok) {
