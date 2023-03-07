@@ -21,6 +21,15 @@ const favoriteSlice = createSlice({
           pages: newBook.pages,
           description: newBook.description,
         });
+        localStorage.setItem(newBook.id, {
+          image: newBook.image,
+          title: newBook.title,
+          authors: newBook.authors, //aray
+          categories: newBook.categories, //aray
+          language: newBook.language,
+          pages: newBook.pages,
+          description: newBook.description,
+        });
       }
     },
     removeFromFavorite(state, action) {

@@ -38,7 +38,7 @@ nav {
   left: 20px;
 }
 
-.active.active {
+#list a.active{
   color: #245167;
 }
 
