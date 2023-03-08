@@ -8,15 +8,21 @@ const CurrentRead = (props) => {
           <img src={props.image} alt={props.image_alt} />
         </section>
         <section className={classes.texts}>
-          <div>
+          <div className={classes.title}>
             <h1>{props.title}</h1>
           </div>
-          <div>
+          <div className={classes.author}>
             <h4> By {props.authors.map((author) => `${author}      `)}</h4>
           </div>
-          <div>
-            <h5>{props.categories.map((cate) => `${cate}`)}</h5>
-            <h5>{props.Totalpages}</h5>
+          <div className={classes.extra}>
+            <section className={classes.cate}>
+              <h5>
+                Categorie(s) - {props.categories.map((cate) => `${cate}`)}
+              </h5>
+            </section>
+            <section className={classes.tp}>
+              <h5>Total Pages - {props.Totalpages}</h5>
+            </section>
           </div>
         </section>
       </section>
