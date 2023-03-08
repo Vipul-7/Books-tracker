@@ -17,7 +17,7 @@ const ExploreBooksPage = () => {
     const searchKey = searchedValue;
     const apiKey = process.env.REACT_APP_API_KEY;
     const reqURL = `https://www.googleapis.com/books/v1/volumes?q=${searchKey}&key=${apiKey}`;
-    
+
     const response = await fetch(reqURL);
 
     if (!response.ok) {
@@ -27,12 +27,6 @@ const ExploreBooksPage = () => {
     const responseData = await response.json();
     setResData(responseData.items);
   };
-  console.log(resData);
-  // const sliceEndingLength = Math.min(resData.length - 1, 15);
-
-  if (resData === undefined) {
-    throw json({ message: "array is undefined" }, { status: 500 });
-  }
 
   return (
     <>
@@ -50,39 +44,23 @@ const ExploreBooksPage = () => {
         </button>
       </section>
       <hr className={classes.hr} />
-      {Array.isArray(resData) &&
-        resData.map(
-          (item, index) =>
-            index < 7 && (
-              <li key={item.id}>
-                <BooksList
-                  id={item.id}
-                  title={item.volumeInfo.title}
-                  authors={item.volumeInfo.authors}
-                  categories={item.volumeInfo.categories}
-                  image={item.volumeInfo.imageLinks.thumbnail}
-                  description={item.volumeInfo.description}
-                  language={item.volumeInfo.language}
-                  pages={item.volumeInfo.pageCount}
-                />
-              </li>
-            )
-        )}
+      {resData.length > 0 &&
+        resData.slice(0, Math.min(resData.length - 3, 10)).map((item) => (
+          <li key={item.id}>
+            <BooksList
+              id={item.id}
+              title={item.volumeInfo.title}
+              authors={item.volumeInfo.authors}
+              categories={item.volumeInfo.categories}
+              image={item.volumeInfo.imageLinks.thumbnail}
+              description={item.volumeInfo.description}
+              language={item.volumeInfo.language}
+              pages={item.volumeInfo.pageCount}
+            />
+          </li>
+        ))}
     </>
   );
 };
 
 export default ExploreBooksPage;
-
-// export const loader = async () => {
-//   const searchKey = "circus";
-//   const apiKey = "AIzaSyDDyeVHpYrQpNHJk17HlUgwcqpmgbxb0QE";
-//   const reqURL = `https://www.googleapis.com/books/v1/volumes?q=${searchKey}&key=${apiKey}`;
-
-//   const response = await fetch(reqURL);
-//   const resData = await response.json();
-
-//   console.log(resData);
-
-//   return resData;
-// };

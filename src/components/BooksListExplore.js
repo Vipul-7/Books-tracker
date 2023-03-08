@@ -2,6 +2,7 @@ import Card from "./UI/Card";
 import classes from "./BooksListExplore.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { favActions } from "../store/favorite-slice";
+import { CurrentReadActions } from "../store/current-read-slice";
 
 const BooksList = (props) => {
   const dispatch = useDispatch();
@@ -30,6 +31,19 @@ const BooksList = (props) => {
     dispatch(favActions.removeFromFavorite(props.id));
   };
 
+  const addToCurrentReadHandler = () => {
+    dispatch(
+      CurrentReadActions.addToCurrentRead({
+        id: props.id,
+        title: props.title,
+        authors: props.authors,
+        categories: props.categories,
+        image: props.image,
+        Totalpages: props.pages,
+      })
+    );
+  };
+
   return (
     <div>
       <Card
@@ -53,7 +67,9 @@ const BooksList = (props) => {
             Remove From Favorite
           </button>
         )}
-        <button>Have read</button>
+        <button onClick={addToCurrentReadHandler} type="button">
+          Reading Now
+        </button>
         <button>To read</button>
       </section>
     </div>
