@@ -12,7 +12,7 @@ const CurrentRead = (props) => {
             <h1>{props.title}</h1>
           </div>
           <div className={classes.author}>
-            <h4> By {props.authors.map((author) => `${author}      `)}</h4>
+            <h4> <span>Written By </span>{props.authors.map((author) => `${author}      `)}</h4>
           </div>
           <div className={classes.extra}>
             <section className={classes.cate}>
