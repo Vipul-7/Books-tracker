@@ -28,9 +28,11 @@
   }
 }
 
-.img{
-  /* margin-left: 10px; */
-  /* height: 100%; */
+.img img{
+  width: 140px;
+  height: 190px;
+  margin-left: 11px;
+  margin-top: 2px;
 }
 
 .data {

@@ -10,7 +10,6 @@ const ExploreBooksPage = () => {
 
   const searchedValueChangeHandler = (searchedVal) => {
     setSearchedVal(searchedVal);
-    console.log(searchedVal);
   };
 
   const searchClickHandler = async () => {
@@ -25,8 +24,11 @@ const ExploreBooksPage = () => {
     }
 
     const responseData = await response.json();
+
     setResData(responseData.items);
+    console.log(responseData);
   };
+  console.log(resData);
 
   return (
     <>
@@ -45,14 +47,18 @@ const ExploreBooksPage = () => {
       </section>
       <hr className={classes.hr} />
       {resData.length > 0 &&
-        resData.slice(0, Math.min(resData.length - 3, 10)).map((item) => (
+        resData.slice(0, Math.min(resData.length-3 , 12)).map((item) => (
           <li key={item.id}>
             <BooksList
               id={item.id}
               title={item.volumeInfo.title}
               authors={item.volumeInfo.authors}
               categories={item.volumeInfo.categories}
-              image={item.volumeInfo.imageLinks.thumbnail}
+              image={
+                item.volumeInfo.imageLinks == null
+                  ? "https://cdn.vectorstock.com/i/preview-1x/82/99/no-image-available-like-missing-picture-vector-43938299.jpg"
+                  : item.volumeInfo.imageLinks.thumbnail
+              }
               description={item.volumeInfo.description}
               language={item.volumeInfo.language}
               pages={item.volumeInfo.pageCount}
