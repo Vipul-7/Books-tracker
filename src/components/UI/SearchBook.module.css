@@ -13,6 +13,10 @@
     background-color: rgb(164, 180, 180);
 }
 
+.input:focus{
+    border: 2px solid rgb(9, 9, 91);
+}
+
 .btn{
     display: inline-block;
     margin-top: 2.5%;

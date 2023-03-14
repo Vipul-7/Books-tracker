@@ -7,12 +7,20 @@ import { json } from "react-router";
 const ExploreBooksPage = () => {
   const [searchedValue, setSearchedVal] = useState("");
   const [resData, setResData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isEmptyClick, setIsEmptyClick] = useState(false);
 
   const searchedValueChangeHandler = (searchedVal) => {
     setSearchedVal(searchedVal);
   };
 
   const searchClickHandler = async () => {
+    if (searchedValue.length === 0) {
+      setIsEmptyClick(true);
+      return;
+    }
+    setIsEmptyClick(false);
+    setIsLoading(true);
     const searchKey = searchedValue;
     const apiKey = process.env.REACT_APP_API_KEY;
     const reqURL = `https://www.googleapis.com/books/v1/volumes?q=${searchKey}&key=${apiKey}`;
@@ -26,6 +34,7 @@ const ExploreBooksPage = () => {
     const responseData = await response.json();
 
     setResData(responseData.items);
+    setIsLoading(false);
     console.log(responseData);
   };
   console.log(resData);
@@ -45,23 +54,62 @@ const ExploreBooksPage = () => {
           Search
         </button>
       </section>
+      {isEmptyClick && (
+        <p
+          style={{
+            textAlign: "center",
+            fontSize: "20px",
+            marginTop: "0px",
+            color: "red",
+          }}
+        >
+          Enter Valid book name
+        </p>
+      )}
       <hr className={classes.hr} />
+
+      {isLoading && (
+        <p style={{ textAlign: "center", fontSize: "30px" }}>
+          Fetching data...
+        </p>
+      )}
+
       {resData.length > 0 &&
-        resData.slice(0, Math.min(resData.length-3 , 12)).map((item) => (
+        resData.slice(0, resData.length).map((item) => (
           <li key={item.id}>
             <BooksList
               id={item.id}
               title={item.volumeInfo.title}
-              authors={item.volumeInfo.authors}
-              categories={item.volumeInfo.categories}
+              authors={
+                item.volumeInfo.authors == null
+                  ? ["None"]
+                  : item.volumeInfo.authors
+              }
+              categories={
+                item.volumeInfo.categories == null
+                  ? ["Not provided"]
+                  : item.volumeInfo.categories
+              }
               image={
                 item.volumeInfo.imageLinks == null
                   ? "https://cdn.vectorstock.com/i/preview-1x/82/99/no-image-available-like-missing-picture-vector-43938299.jpg"
                   : item.volumeInfo.imageLinks.thumbnail
               }
-              description={item.volumeInfo.description}
-              language={item.volumeInfo.language}
-              pages={item.volumeInfo.pageCount}
+              description={
+                item.volumeInfo.description == null
+                  ? "Not provided"
+                  : item.volumeInfo.description
+              }
+              language={
+                item.volumeInfo.language == null
+                  ? "Not provided"
+                  : item.volumeInfo.language
+              }
+              pages={
+                item.volumeInfo.pageCount == null
+                  ? "Not provided"
+                  : item.volumeInfo.pageCount
+              }
             />
           </li>
         ))}
