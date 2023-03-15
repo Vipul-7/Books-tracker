@@ -35,9 +35,7 @@ const ExploreBooksPage = () => {
 
     setResData(responseData.items);
     setIsLoading(false);
-    console.log(responseData);
   };
-  console.log(resData);
 
   return (
     <>

@@ -18,7 +18,10 @@ const Card = (props) => {
             <h2>{props.title}</h2>
           </div>
           <div className={classes.author}>
-            <h4>By {props.authors.map((author) => `${author}      `)}</h4>
+            <h4>
+              <span style={{ fontSize: "20px" }}>By</span>{" "}
+              {props.authors.map((author) => `${author}      `)}
+            </h4>
           </div>
           <section className={classes.additional}>
             <div>{props.categories.map((cate) => `${cate}`)}</div>
