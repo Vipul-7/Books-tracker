@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const ToReadSlice = createSlice({
+const haveReadSlice = createSlice({
   name: "To-Read",
   initialState: {
     completedBooks: [],
@@ -33,3 +33,6 @@ const ToReadSlice = createSlice({
     );
   },
 });
+
+export const haveReadActions = haveReadSlice.actions;
+export default haveReadSlice;

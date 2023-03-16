@@ -29,3 +29,6 @@ const ToReadSlice = createSlice({
     state.ToReadBooks = state.ToReadBooks.filter((item) => item.id !== id);
   },
 });
+
+export const ToReadActions = ToReadSlice.actions;
+export default ToReadSlice;
