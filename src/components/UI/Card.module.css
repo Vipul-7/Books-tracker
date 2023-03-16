@@ -75,6 +75,22 @@
   margin-bottom: 13px;
 }
 
+.buttons button {
+  letter-spacing: 1.5px;
+  padding: 5px 20px;
+  border: 2px solid transparent;
+  margin-left: 10px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+  font-weight: bold;
+}
+
+.buttons button:hover {
+  scale: calc(1.09);
+  background-color: rgb(153, 153, 211);
+}
+
 .description {
   border-radius: 8px;
   padding: 10px 20px;
