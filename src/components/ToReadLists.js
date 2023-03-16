@@ -26,10 +26,10 @@ const ToReadLists = (props) => {
 
       <section className={classes.buttons}>
         <button onClick={removeFromToReadHandler} type="button">
-          Remove From Favorite
+          Remove from To Read
         </button>
+        <button>Add to Reading Now</button>
         <button>Have read</button>
-        <button>To read</button>
       </section>
     </div>
   );

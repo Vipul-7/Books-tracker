@@ -26,10 +26,8 @@ const HaveReadLists = (props) => {
 
       <section className={classes.buttons}>
         <button onClick={removeFromCompletedHandler} type="button">
-          Remove From Favorite
+          Remove From Completed
         </button>
-        <button>Have read</button>
-        <button>To read</button>
       </section>
     </div>
   );

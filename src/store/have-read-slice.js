@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const haveReadSlice = createSlice({
-  name: "To-Read",
+  name: "Have-Read",
   initialState: {
     completedBooks: [],
   },

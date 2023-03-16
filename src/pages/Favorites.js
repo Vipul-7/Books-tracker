@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 const FavoritesPage = () => {
   const favBooks = useSelector((state) => state.favorite.favBooks);
-  return (
+  return (  
     <>
       {favBooks.map((favb) => (
         <li key={favb.id}>

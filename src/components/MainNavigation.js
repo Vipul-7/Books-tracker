@@ -1,10 +1,17 @@
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 import { useState } from "react";
-// import bookLogo from "../assests/Book-logo.png";
+import { LoginActions } from "../store/login-slice";
 
 const MainNavigation = () => {
+  const dispatch = useDispatch();
   const [isClicked, setIsClicked] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const showLoginModalHandler = () => {
+    dispatch(LoginActions.changeShowLoginModal());
+  };
 
   const responsiveHandler = () => {
     setIsClicked(!isClicked);
@@ -12,7 +19,6 @@ const MainNavigation = () => {
   return (
     <header>
       <nav>
-        
         <ul
           id={classes.list}
           className={isClicked ? classes["active"] : classes["#list"]}
@@ -68,6 +74,11 @@ const MainNavigation = () => {
               Favorites
             </NavLink>
           </li>
+          <div className={classes.login}>
+            <NavLink>
+              <button onClick={showLoginModalHandler}>Login</button>
+            </NavLink>
+          </div>
         </ul>
         <div className={classes.mobile} onClick={responsiveHandler}>
           <i

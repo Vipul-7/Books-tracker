@@ -24,9 +24,9 @@ const Card = (props) => {
             </h4>
           </div>
           <section className={classes.additional}>
-            <div>{props.categories.map((cate) => `${cate}`)}</div>
-            <div>{props.language}</div>
-            <div>{props.pages}</div>
+            <div>Categorie(s) - {props.categories.map((cate) => `${cate}`)}</div>
+            <div>language - {props.language}</div>
+            <div>Pages - {props.pages}</div>
           </section>
         </section>
       </div>
