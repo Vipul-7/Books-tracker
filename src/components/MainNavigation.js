@@ -7,7 +7,6 @@ import { LoginActions } from "../store/login-slice";
 const MainNavigation = () => {
   const dispatch = useDispatch();
   const [isClicked, setIsClicked] = useState(false);
-  const [showModal, setShowModal] = useState(false);
 
   const showLoginModalHandler = () => {
     dispatch(LoginActions.changeShowLoginModal());
