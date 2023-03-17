@@ -17,6 +17,10 @@ const MainNavigation = () => {
     dispatch(LoginActions.changeShowLoginModal());
   };
 
+  const signoutHandler = async () => {
+    await auth.signOut();
+  };
+
   const responsiveHandler = () => {
     setIsClicked(!isClicked);
   };
@@ -87,7 +91,7 @@ const MainNavigation = () => {
           )}
           {user && (
             <div className={classes["login-photo"]}>
-              <button>
+              <button onClick={signoutHandler}>
                 <img src={user.photoURL} alt={user.displayName} />
               </button>
             </div>
