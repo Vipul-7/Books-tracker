@@ -126,3 +126,19 @@ nav .logo {
   color: black;
   border: 1.5px solid transparent ;
 }
+
+.login-photo{
+  margin-left: 3%;
+}
+
+.login-photo button{
+  background-color: transparent;
+  border:none
+}
+
+.login-photo img{
+  max-height: 40px;
+  margin-left: 3%;
+  border-radius: 30px;
+  margin-top: -4px;
+}

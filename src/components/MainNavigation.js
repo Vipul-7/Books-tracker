@@ -4,7 +4,12 @@ import classes from "./MainNavigation.module.css";
 import { useState } from "react";
 import { LoginActions } from "../store/login-slice";
 
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase";
+
 const MainNavigation = () => {
+  const [user, loading] = useAuthState(auth);
+
   const dispatch = useDispatch();
   const [isClicked, setIsClicked] = useState(false);
 
@@ -73,11 +78,20 @@ const MainNavigation = () => {
               Favorites
             </NavLink>
           </li>
-          <div className={classes.login}>
-            <NavLink>
-              <button onClick={showLoginModalHandler}>Login</button>
-            </NavLink>
-          </div>
+          {!user && (
+            <div className={classes.login}>
+              <NavLink>
+                <button onClick={showLoginModalHandler}>Login</button>
+              </NavLink>
+            </div>
+          )}
+          {user && (
+            <div className={classes["login-photo"]}>
+              <button>
+                <img src={user.photoURL} alt={user.displayName} />
+              </button>
+            </div>
+          )}
         </ul>
         <div className={classes.mobile} onClick={responsiveHandler}>
           <i

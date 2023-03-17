@@ -1,15 +1,18 @@
 import { useDispatch } from "react-redux";
-import { signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import Modal from "./Layout/Modal";
 import { LoginActions } from "../store/login-slice";
 import classes from "./Login.module.css";
-import { auth, provider } from "../../firebase";
+import { auth, provider } from "../firebase";
 
 const Login = () => {
   const dispatch = useDispatch();
 
-  const signInHandler = () => {
-    signInWithPopup(auth,provider)
+  const signInHandler = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      console.log(result);
+    } catch (error) {}
   };
 
   const closeModalHandler = () => {
