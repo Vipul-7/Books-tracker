@@ -10,16 +10,15 @@
 }
 
 .Info {
-  display: inline-block; 
+  display: inline-block;
   position: relative;
   /* background-color: red; */
   width: 100%;
-  height:76%;
+  height: 76%;
   border-bottom: 2px solid;
   /* padding-bottom: 20px; */
   color: rgb(21, 52, 52);
   font-size: 34px;
-  
 }
 
 .image_sec {
@@ -49,7 +48,7 @@
   /* background-color: rebeccapurple; */
 }
 
-.title{
+.title {
   display: block;
   text-shadow: 0px 2px 4px;
   /* background-color: red; */
@@ -57,7 +56,7 @@
   padding: 0;
 }
 
-.title h1{
+.title h1 {
   margin-top: 2%;
   margin-bottom: 6%;
 }
@@ -68,7 +67,6 @@
   /* background-color: red; */
   border-bottom: 2px dotted;
 }
-
 
 .extra {
   display: flex;
@@ -89,6 +87,77 @@
   padding-right: 9%;
 }
 
-.tp{
+.tp {
   /* padding-right: 20px; */
+}
+
+/*progress data*/
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comp-pages {
+  display: inline-block;
+  /* background-color: red; */
+  padding: 10px 40px;
+  position: relative;
+  font-weight: bold;
+  border: 2px solid black;
+  font-size: 21px;
+  letter-spacing: 1.5px;
+
+  box-shadow: 2px 2px 15px rgb(99, 21, 21);
+}
+
+.comp-pages input {
+  height: 1.5rem;
+  width: 45px;
+  overflow: hidden;
+  background-color: transparent;
+  border: 1.3px solid black;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.comp-pages input:focus {
+  background-color: #fff;
+  color: indianred;
+  font-size: 17px;
+}
+
+/* for hidding the input[type=='number'] up-down arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.progressBar {
+  display: inline;
+  width: 100%;
+}
+
+/* implicit progss bar css */
+.wrapper {
+  margin-top: 1.5%;
+  margin-bottom: 1%;
+}
+
+.container {
+  background-color: pink;
+}
+
+.barCompleted {
+  background-color: lightblue;
+  width: 80%;
+}
+
+.label {
+  font-size: 20px;
+  color: green;
 }

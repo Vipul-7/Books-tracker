@@ -23,10 +23,11 @@ const ToReadSlice = createSlice({
         });
       }
     },
-  },
-  removeFromToRead(state, action) {
-    const id = action.payload;
-    state.ToReadBooks = state.ToReadBooks.filter((item) => item.id !== id);
+
+    removeFromToRead(state, action) {
+      const id = action.payload;
+      state.ToReadBooks = state.ToReadBooks.filter((item) => item.id !== id);
+    },
   },
 });
 

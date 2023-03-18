@@ -133,7 +133,8 @@ nav .logo {
 
 .login-photo button{
   background-color: transparent;
-  border:none
+  border:none;
+  cursor: pointer;
 }
 
 .login-photo img{

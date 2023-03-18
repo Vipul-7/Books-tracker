@@ -1,6 +1,25 @@
+import ProgressBar from "@ramonak/react-progress-bar";
+import { useRef, useState } from "react";
 import classes from "./Current-read.module.css";
 
 const CurrentRead = (props) => {
+  const [completedProgressBar, setCompletedProgressBar] = useState(0);
+  const readPagesInput = useRef();
+
+  const addToProgessBarHandler = () => {
+    const inputValue = readPagesInput.current.value;
+
+    if (inputValue > props.Totalpages) {
+      setCompletedProgressBar(100);
+    } else if (inputValue < props.Totalpages) {
+      setCompletedProgressBar(0);
+    } else {
+      setCompletedProgressBar(
+        Math.floor((inputValue * 100) / props.Totalpages)
+      );
+    }
+  };
+
   return (
     <div className={classes["book-card"]}>
       <section className={classes.Info}>
@@ -12,7 +31,11 @@ const CurrentRead = (props) => {
             <h1>{props.title}</h1>
           </div>
           <div className={classes.author}>
-            <h4> <span>Written By </span>{props.authors.map((author) => `${author}      `)}</h4>
+            <h4>
+              {" "}
+              <span>Written By </span>
+              {props.authors.map((author) => `${author}      `)}
+            </h4>
           </div>
           <div className={classes.extra}>
             <section className={classes.cate}>
@@ -27,8 +50,23 @@ const CurrentRead = (props) => {
         </section>
       </section>
       <section className={classes.progress}>
-        <section className={classes["progress-bar"]}></section>
-        <section className={classes["comp-pages"]}></section>
+        <section className={classes.progressBar}>
+          <ProgressBar
+            completed={completedProgressBar}
+            className={classes.wrapper}
+          />
+        </section>
+        <section className={classes["comp-pages"]}>
+          Read{" "}
+          {
+            <input
+              type="number"
+              ref={readPagesInput}
+              onBlur={addToProgessBarHandler}
+            />
+          }{" "}
+          pages
+        </section>
       </section>
     </div>
   );

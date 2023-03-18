@@ -25,12 +25,13 @@ const haveReadSlice = createSlice({
         });
       }
     },
-  },
-  removeFromCompleted(state, action) {
-    const id = action.payload;
-    state.completedBooks = state.completedBooks.filter(
-      (item) => item.id !== id
-    );
+
+    removeFromCompleted(state, action) {
+      const id = action.payload;
+      state.completedBooks = state.completedBooks.filter(
+        (item) => item.id !== id
+      );
+    },
   },
 });
 
