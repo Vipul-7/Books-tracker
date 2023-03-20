@@ -6,6 +6,10 @@ const ToReadSlice = createSlice({
     ToReadBooks: [],
   },
   reducers: {
+    replaceToReadBooks(state, action) {
+      // this function is useful when we request to the cloud
+      state.ToReadBooks = action.payload;
+    },
     addToToRead(state, action) {
       const newBook = action.payload;
       const isExist = state.ToReadBooks.find((item) => item.id === newBook.id);

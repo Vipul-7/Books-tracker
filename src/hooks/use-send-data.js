@@ -3,7 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 
 const useSendData = () => {
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   const userUniqueId = user.uid;
 
@@ -12,7 +12,7 @@ const useSendData = () => {
     const userDoc = await getDoc(userRef);
 
     // i did for specific field because array wasn't taking parameters value
-    if (fieldName === "Favorite") {
+    if (fieldName === "favorite") {
       if (userDoc.exists()) {
         await updateDoc(userRef, {
           favorite: arrayUnion(data),
@@ -20,7 +20,7 @@ const useSendData = () => {
       } else {
         await setDoc(userRef, { favorite: [data] });
       }
-    } else if (fieldName === "Current-read") {
+    } else if (fieldName === "current-read") {
       if (userDoc.exists()) {
         await updateDoc(userRef, {
           currentRead: arrayUnion(data),
@@ -28,7 +28,7 @@ const useSendData = () => {
       } else {
         await setDoc(userRef, { currentRead: [data] });
       }
-    } else if (fieldName === "To-read") {
+    } else if (fieldName === "to-read") {
       if (userDoc.exists()) {
         await updateDoc(userRef, {
           toRead: arrayUnion(data),
@@ -36,7 +36,7 @@ const useSendData = () => {
       } else {
         await setDoc(userRef, { toRead: [data] });
       }
-    } else if (fieldName === "have-Read") {
+    } else if (fieldName === "have-read") {
       if (userDoc.exists()) {
         await updateDoc(userRef, {
           haveRead: arrayUnion(data),

@@ -6,6 +6,10 @@ const haveReadSlice = createSlice({
     completedBooks: [],
   },
   reducers: {
+    replaceCompletedBooks(state, action) {
+      // this function is useful when we request to the cloud
+      state.completedBooks = action.payload;
+    },
     addToCompleted(state, action) {
       const newBook = action.payload;
       const isExist = state.completedBooks.find(

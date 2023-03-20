@@ -38,7 +38,7 @@ const BooksList = (props) => {
   const addToFavoriteHandler = async () => {
     dispatch(favActions.addToFavorite(bookData));
 
-    sendFavoriteData("Favorite", bookData);
+    sendFavoriteData("favorite", bookData);
   };
 
   const removeFromFavoriteHandler = () => {
@@ -48,13 +48,13 @@ const BooksList = (props) => {
   const addToToReadHandler = () => {
     dispatch(ToReadActions.addToToRead(bookData));
 
-    sendToReadData("To-read", bookData);
+    sendToReadData("to-read", bookData);
   };
 
   const addToCompletedHandler = () => {
     dispatch(haveReadActions.addToCompleted(bookData));
 
-    sendHaveReadData("have-Read", bookData);
+    sendHaveReadData("have-read", bookData);
   };
 
   const addToCurrentReadHandler = () => {
@@ -68,7 +68,7 @@ const BooksList = (props) => {
     };
     dispatch(CurrentReadActions.addToCurrentRead(currentReadBookData));
 
-    sendCurrentReadData("Current-read", currentReadBookData);
+    sendCurrentReadData("current-read", currentReadBookData);
   };
 
   return (

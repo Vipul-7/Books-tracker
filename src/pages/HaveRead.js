@@ -1,7 +1,26 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import HaveReadLists from "../components/HaveReadLists";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase";
+
+import useRetrieveData from "../hooks/use-retrieve-data";
+import { LoginActions } from "../store/login-slice";
 
 const HaveReadPage = () => {
+  const dispatch = useDispatch();
+  const [user] = useAuthState(auth);
+  const { retrieveData: retrieveHaveReadData } = useRetrieveData();
+
+  // if not logged in then show login modal
+  if (!user) {
+    dispatch(LoginActions.changeShowLoginModal());
+  }
+
+  useEffect(() => {
+    retrieveHaveReadData("have-read");
+  }, []);
+
   const completedBooks = useSelector((state) => state.haveRead.completedBooks);
   return (
     <>

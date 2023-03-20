@@ -6,6 +6,9 @@ const favoriteSlice = createSlice({
   name: "favorite-slice",
   initialState,
   reducers: {
+    replaceFavoriteBooks(state, action) {
+      state.favBooks = action.payload;
+    },
     addToFavorite(state, action) {
       const newBook = action.payload;
       const isExist = state.favBooks.find((item) => item.id === newBook.id);
