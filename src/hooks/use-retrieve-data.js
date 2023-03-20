@@ -19,7 +19,7 @@ const useRetrieveData = () => {
     if (fieldName === "favorite") {
       if (userDoc.exists()) {
         const userData = userDoc.data();
-        const requestedData = userData.favorite;
+        const requestedData = userData.favorite || [];
 
         dispatch(favActions.replaceFavoriteBooks(requestedData));
       } else {
@@ -28,7 +28,7 @@ const useRetrieveData = () => {
     } else if (fieldName === "current-read") {
       if (userDoc.exists()) {
         const userData = userDoc.data();
-        const requestedData = userData.currentRead;
+        const requestedData = userData.currentRead || [];
 
         dispatch(CurrentReadActions.replaceCurrentReadBooks(requestedData));
       } else {
@@ -37,7 +37,7 @@ const useRetrieveData = () => {
     } else if (fieldName === "to-read") {
       if (userDoc.exists()) {
         const userData = userDoc.data();
-        const requestedData = userData.toRead;
+        const requestedData = userData.toRead || [];
 
         dispatch(ToReadActions.replaceToReadBooks(requestedData));
       } else {
@@ -46,7 +46,7 @@ const useRetrieveData = () => {
     } else if (fieldName === "have-read") {
       if (userDoc.exists()) {
         const userData = userDoc.data();
-        const requestedData = userData.haveRead;
+        const requestedData = userData.haveRead || [];
 
         dispatch(haveReadActions.replaceCompletedBooks(requestedData));
       } else {
