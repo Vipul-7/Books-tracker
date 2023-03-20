@@ -7,10 +7,14 @@ import { haveReadActions } from "../store/have-read-slice";
 import { ToReadActions } from "../store/to-read-slice";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import { auth, db } from "../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { auth } from "../firebase";
+import useSendData from "../hooks/use-send-data";
 
 const BooksList = (props) => {
+  const { sendData: sendFavoriteData } = useSendData();
+  const { sendData: sendToReadData } = useSendData();
+  const { sendData: sendCurrentReadData } = useSendData();
+  const { sendData: sendHaveReadData } = useSendData();
   const [user, loading] = useAuthState(auth);
 
   const dispatch = useDispatch();
@@ -34,14 +38,7 @@ const BooksList = (props) => {
   const addToFavoriteHandler = async () => {
     dispatch(favActions.addToFavorite(bookData));
 
-    const docRef = await addDoc(
-      collection(db, user.email),
-      bookData,
-      collection(db, "My name"),
-      bookData
-    );
-
-    console.log(docRef.id);
+    sendFavoriteData("Favorite", bookData);
   };
 
   const removeFromFavoriteHandler = () => {
@@ -50,23 +47,28 @@ const BooksList = (props) => {
 
   const addToToReadHandler = () => {
     dispatch(ToReadActions.addToToRead(bookData));
+
+    sendToReadData("To-read", bookData);
   };
 
   const addToCompletedHandler = () => {
     dispatch(haveReadActions.addToCompleted(bookData));
+
+    sendHaveReadData("have-Read", bookData);
   };
 
   const addToCurrentReadHandler = () => {
-    dispatch(
-      CurrentReadActions.addToCurrentRead({
-        id: props.id,
-        title: props.title,
-        authors: props.authors,
-        categories: props.categories,
-        image: props.image,
-        Totalpages: props.pages,
-      })
-    );
+    const currentReadBookData = {
+      id: props.id,
+      title: props.title,
+      authors: props.authors,
+      categories: props.categories,
+      image: props.image,
+      Totalpages: props.pages,
+    };
+    dispatch(CurrentReadActions.addToCurrentRead(currentReadBookData));
+
+    sendCurrentReadData("Current-read", currentReadBookData);
   };
 
   return (
