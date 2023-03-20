@@ -3,12 +3,12 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC6ogKsC2Gc-fzX2zt2z1x_rMn3BI7ST2M",
-  authDomain: "book-tracker-cfeeb.firebaseapp.com",
-  projectId: "book-tracker-cfeeb",
-  storageBucket: "book-tracker-cfeeb.appspot.com",
-  messagingSenderId: "580041989544",
-  appId: "1:580041989544:web:704da41c869e9f7b6bd19d",
+  apiKey: "AIzaSyDOtUUvw3phs05R2YJYVE9nVDJauBxPipM",
+  authDomain: "book-tracker--api.firebaseapp.com",
+  projectId: "book-tracker--api",
+  storageBucket: "book-tracker--api.appspot.com",
+  messagingSenderId: "443989530920",
+  appId: "1:443989530920:web:b944828a509271fc0e981d",
 };
 
 const app = initializeApp(firebaseConfig);

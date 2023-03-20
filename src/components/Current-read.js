@@ -8,10 +8,11 @@ const CurrentRead = (props) => {
 
   const addToProgessBarHandler = () => {
     const inputValue = readPagesInput.current.value;
+    console.log(inputValue);
 
     if (inputValue > props.Totalpages) {
       setCompletedProgressBar(100);
-    } else if (inputValue < props.Totalpages) {
+    } else if (inputValue < 0) {
       setCompletedProgressBar(0);
     } else {
       setCompletedProgressBar(
@@ -19,7 +20,6 @@ const CurrentRead = (props) => {
       );
     }
   };
-
   return (
     <div className={classes["book-card"]}>
       <section className={classes.Info}>

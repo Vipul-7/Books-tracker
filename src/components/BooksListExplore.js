@@ -5,28 +5,43 @@ import { favActions } from "../store/favorite-slice";
 import { CurrentReadActions } from "../store/current-read-slice";
 import { haveReadActions } from "../store/have-read-slice";
 import { ToReadActions } from "../store/to-read-slice";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+import { auth, db } from "../firebase";
+import { collection, addDoc } from "firebase/firestore";
 
 const BooksList = (props) => {
+  const [user, loading] = useAuthState(auth);
+
   const dispatch = useDispatch();
   const favoriteBooks = useSelector((state) => state.favorite.favBooks);
+
+  const bookData = {
+    id: props.id,
+    title: props.title,
+    authors: props.authors,
+    categories: props.categories,
+    image: props.image,
+    description: props.description,
+    language: props.language,
+    pages: props.pages,
+  };
 
   const isBookExistInFavorite = favoriteBooks.find(
     (item) => item.id === props.id
   );
 
-  const addToFavoriteHandler = () => {
-    dispatch(
-      favActions.addToFavorite({
-        id: props.id,
-        title: props.title,
-        authors: props.authors,
-        categories: props.categories,
-        image: props.image,
-        description: props.description,
-        language: props.language,
-        pages: props.pages,
-      })
+  const addToFavoriteHandler = async () => {
+    dispatch(favActions.addToFavorite(bookData));
+
+    const docRef = await addDoc(
+      collection(db, user.email),
+      bookData,
+      collection(db, "My name"),
+      bookData
     );
+
+    console.log(docRef.id);
   };
 
   const removeFromFavoriteHandler = () => {
@@ -34,33 +49,11 @@ const BooksList = (props) => {
   };
 
   const addToToReadHandler = () => {
-    dispatch(
-      ToReadActions.addToToRead({
-        id: props.id,
-        title: props.title,
-        authors: props.authors,
-        categories: props.categories,
-        image: props.image,
-        description: props.description,
-        language: props.language,
-        pages: props.pages,
-      })
-    );
+    dispatch(ToReadActions.addToToRead(bookData));
   };
 
   const addToCompletedHandler = () => {
-    dispatch(
-      haveReadActions.addToCompleted({
-        id: props.id,
-        title: props.title,
-        authors: props.authors,
-        categories: props.categories,
-        image: props.image,
-        description: props.description,
-        language: props.language,
-        pages: props.pages,
-      })
-    );
+    dispatch(haveReadActions.addToCompleted(bookData));
   };
 
   const addToCurrentReadHandler = () => {
