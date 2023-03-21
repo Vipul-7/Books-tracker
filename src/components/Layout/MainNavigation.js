@@ -2,13 +2,13 @@ import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 import { useState } from "react";
-import { LoginActions } from "../store/login-slice";
+import { LoginActions } from "../../store/login-slice";
 
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 
 const MainNavigation = () => {
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   const dispatch = useDispatch();
   const [isClicked, setIsClicked] = useState(false);
@@ -17,8 +17,8 @@ const MainNavigation = () => {
     dispatch(LoginActions.changeShowLoginModal());
   };
 
-  const signoutHandler = async () => {
-    await auth.signOut();
+  const showMyProfileHandler = () => {
+    dispatch(LoginActions.showProfileModal());
   };
 
   const responsiveHandler = () => {
@@ -91,7 +91,7 @@ const MainNavigation = () => {
           )}
           {user && (
             <div className={classes["login-photo"]}>
-              <button onClick={signoutHandler}>
+              <button onClick={showMyProfileHandler}>
                 <img src={user.photoURL} alt={user.displayName} />
               </button>
             </div>

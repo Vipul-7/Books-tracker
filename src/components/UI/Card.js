@@ -19,12 +19,19 @@ const Card = (props) => {
           </div>
           <div className={classes.author}>
             <h4>
-              <span style={{ fontSize: "20px" }}>By</span>{" "}
-              {props.authors.map((author) => `${author}      `)}
+              <span style={{ fontSize: "24px" }}>By</span>{" "}
+              {props.authors.map((author, index) =>
+                index !== props.authors.length - 1 ? `${author}, ` : `${author}`
+              )}
             </h4>
           </div>
           <section className={classes.additional}>
-            <div>Categorie(s) - {props.categories.map((cate) => `${cate}`)}</div>
+            <div>
+              Categorie(s) -{" "}
+              {props.categories.map((cate, index) =>
+                index !== props.categories.length - 1 ? `${cate}, ` : `${cate}`
+              )}
+            </div>
             <div>language - {props.language}</div>
             <div>Pages - {props.pages}</div>
           </section>

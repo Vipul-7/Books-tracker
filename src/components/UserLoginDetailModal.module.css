@@ -1,0 +1,59 @@
+.title {
+  text-align: center;
+  font-size: 2.2rem;
+  border-bottom: 1px solid black;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.details img {
+  border-radius: 100px;
+  max-width: 100px;
+}
+
+.details h2{
+    color: #573120;
+}
+
+.details span{
+    color: rgb(173, 105, 15);
+}
+
+.actions {
+  text-align: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.actions button {
+  font: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #8a2b06;
+  padding: 0.5rem 2rem;
+  border-radius: 25px;
+  margin-left: 1rem;
+}
+
+.actions button:hover,
+.actions button:active {
+  /* background-color: #5a1a01; */
+  background-color: rgb(85, 85, 102);
+  border-color: rgb(45, 44, 56);
+  color: white;
+}
+
+.actions .button--alt {
+  color: rgb(45, 44, 56);
+}
+
+.actions .button {
+  background-color: rgb(45, 44, 56);
+  color: white;
+}

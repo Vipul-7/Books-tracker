@@ -2,18 +2,17 @@ import { useDispatch } from "react-redux";
 import { signInWithPopup } from "firebase/auth";
 import Modal from "./Layout/Modal";
 import { LoginActions } from "../store/login-slice";
-import classes from "./Login.module.css";
+import classes from "./LoginModal.module.css";
 import { auth, provider } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-const Login = () => {
+const LoginModal = () => {
   const [user] = useAuthState(auth);
   const dispatch = useDispatch();
 
   const signInHandler = async () => {
     try {
       await signInWithPopup(auth, provider);
-      // console.log(result);
     } catch (error) {
       window.alert(error.message);
     }
@@ -35,15 +34,12 @@ const Login = () => {
         <button onClick={signInHandler}>Sign-In with Google</button>
       </div>
       <div className={classes.actions}>
-        <button className={classes["button--alt"]} onClick={closeModalHandler}>
+        <button className={classes['button--alt']} onClick={closeModalHandler}>
           Close
         </button>
-        {/* <button className={classes.button} onClick={closeModalHandler}>
-          Close
-        </button> */}
       </div>
     </Modal>
   );
 };
 
-export default Login;
+export default LoginModal;
