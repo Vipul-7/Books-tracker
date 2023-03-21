@@ -5,10 +5,25 @@ import { favActions } from "../store/favorite-slice";
 import { updateDoc, doc, getDoc, arrayRemove } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import useSendData from "../hooks/use-send-data";
 
 const FavoriteBooksList = (props) => {
+  const { sendData: sendDataToToRead } = useSendData();
+  const { sendData: sendDataToHaveRead } = useSendData();
+
   const [user] = useAuthState(auth);
   const dispatch = useDispatch();
+
+  const bookData = {
+    id: props.id,
+    title: props.title,
+    authors: props.authors,
+    categories: props.categories,
+    image: props.image,
+    description: props.description,
+    language: props.language,
+    pages: props.pages,
+  };
 
   const removeFromFavoriteHandler = async () => {
     dispatch(favActions.removeFromFavorite(props.id));
@@ -22,6 +37,14 @@ const FavoriteBooksList = (props) => {
     await updateDoc(userRef, {
       favorite: arrayRemove(data.favorite[index]),
     });
+  };
+
+  const addToToReadHandler = () => {
+    sendDataToToRead("to-read", bookData);
+  };
+
+  const addToHaveReadHandler = () => {
+    sendDataToHaveRead("have-read", bookData);
   };
 
   return (
@@ -42,8 +65,8 @@ const FavoriteBooksList = (props) => {
         <button onClick={removeFromFavoriteHandler} type="button">
           Remove From Favorite
         </button>
-        <button>Have read</button>
-        <button>To read</button>
+        <button onClick={addToToReadHandler}>To read</button>
+        <button onClick={addToHaveReadHandler}>Have read</button>
       </section>
     </div>
   );

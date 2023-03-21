@@ -5,8 +5,23 @@ import { ToReadActions } from "../store/to-read-slice";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import { arrayRemove, doc, getDoc, updateDoc } from "firebase/firestore";
+import useSendData from "../hooks/use-send-data";
 
 const ToReadLists = (props) => {
+  const { sendData: sendDataToReadingNow } = useSendData();
+  const { sendData: sendDataToHaveRead } = useSendData();
+
+  const bookData = {
+    id: props.id,
+    title: props.title,
+    authors: props.authors,
+    categories: props.categories,
+    image: props.image,
+    description: props.description,
+    language: props.language,
+    pages: props.pages,
+  };
+
   const [user] = useAuthState(auth);
   const dispatch = useDispatch();
 
@@ -22,6 +37,14 @@ const ToReadLists = (props) => {
     await updateDoc(userRef, {
       toRead: arrayRemove(data.toRead[index]),
     });
+  };
+
+  const addToReadingNowHandler = () => {
+    sendDataToReadingNow("current-read", bookData);
+  };
+
+  const addToHaveReadHandler = () => {
+    sendDataToHaveRead("have-read", bookData);
   };
 
   return (
@@ -42,8 +65,8 @@ const ToReadLists = (props) => {
         <button onClick={removeFromToReadHandler} type="button">
           Remove from To Read
         </button>
-        <button>Add to Reading Now</button>
-        <button>Have read</button>
+        <button onClick={addToReadingNowHandler}>Reading Now</button>
+        <button onClick={addToHaveReadHandler}>Have read</button>
       </section>
     </div>
   );
