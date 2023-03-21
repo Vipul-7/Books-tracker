@@ -1,13 +1,7 @@
 import Card from "./UI/Card";
 import classes from "./BooksListExplore.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { favActions } from "../store/favorite-slice";
-import { CurrentReadActions } from "../store/current-read-slice";
-import { haveReadActions } from "../store/have-read-slice";
-import { ToReadActions } from "../store/to-read-slice";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useSelector } from "react-redux";
 
-import { auth } from "../firebase";
 import useSendData from "../hooks/use-send-data";
 
 const BooksList = (props) => {
@@ -15,9 +9,7 @@ const BooksList = (props) => {
   const { sendData: sendToReadData } = useSendData();
   const { sendData: sendCurrentReadData } = useSendData();
   const { sendData: sendHaveReadData } = useSendData();
-  const [user, loading] = useAuthState(auth);
 
-  const dispatch = useDispatch();
   const favoriteBooks = useSelector((state) => state.favorite.favBooks);
 
   const bookData = {
@@ -36,24 +28,16 @@ const BooksList = (props) => {
   );
 
   const addToFavoriteHandler = async () => {
-    dispatch(favActions.addToFavorite(bookData));
-
     sendFavoriteData("favorite", bookData);
   };
 
-  const removeFromFavoriteHandler = () => {
-    dispatch(favActions.removeFromFavorite(props.id));
-  };
+  const removeFromFavoriteHandler = () => {};
 
   const addToToReadHandler = () => {
-    dispatch(ToReadActions.addToToRead(bookData));
-
     sendToReadData("to-read", bookData);
   };
 
   const addToCompletedHandler = () => {
-    dispatch(haveReadActions.addToCompleted(bookData));
-
     sendHaveReadData("have-read", bookData);
   };
 
@@ -66,8 +50,6 @@ const BooksList = (props) => {
       image: props.image,
       Totalpages: props.pages,
     };
-    dispatch(CurrentReadActions.addToCurrentRead(currentReadBookData));
-
     sendCurrentReadData("current-read", currentReadBookData);
   };
 

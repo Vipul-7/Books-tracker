@@ -9,7 +9,8 @@ import { LoginActions } from "../store/login-slice";
 const ReadingNowPage = () => {
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
-  const { retrieveData: retrieveCurrentReadData } = useRetrieveData();
+  const { retrieveData: retrieveCurrentReadData, isLoading } =
+    useRetrieveData();
 
   if (!user) {
     dispatch(LoginActions.changeShowLoginModal());
@@ -24,6 +25,8 @@ const ReadingNowPage = () => {
   return (
     <>
       <div>
+        {isLoading && <h1 style={{ textAlign: "center" }}>Loading...</h1>}
+
         {CurrentReadBooks.map((book) => (
           <li key={book.id}>
             <CurrentRead

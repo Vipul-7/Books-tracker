@@ -10,7 +10,7 @@ import { LoginActions } from "../store/login-slice";
 const HaveReadPage = () => {
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
-  const { retrieveData: retrieveHaveReadData } = useRetrieveData();
+  const { retrieveData: retrieveHaveReadData, isLoading } = useRetrieveData();
 
   // if not logged in then show login modal
   if (!user) {
@@ -24,6 +24,7 @@ const HaveReadPage = () => {
   const completedBooks = useSelector((state) => state.haveRead.completedBooks);
   return (
     <>
+      {isLoading && <h1 style={{ textAlign: "center" }}>Loading...</h1>}
       {completedBooks.map((done) => (
         <li key={done.id}>
           <HaveReadLists

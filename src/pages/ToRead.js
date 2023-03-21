@@ -10,7 +10,7 @@ import { LoginActions } from "../store/login-slice";
 const ToReadPage = () => {
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
-  const { retrieveData: retrieveToReadData } = useRetrieveData();
+  const { retrieveData: retrieveToReadData, isLoading } = useRetrieveData();
 
   // if not logged in then show login modal
   if (!user) {
@@ -25,6 +25,8 @@ const ToReadPage = () => {
 
   return (
     <>
+      {isLoading && <h1 style={{ textAlign: "center" }}>Loading...</h1>}
+
       {ToReadBooks.map((book) => (
         <li key={book.id}>
           <ToReadLists

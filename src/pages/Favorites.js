@@ -9,7 +9,7 @@ import { LoginActions } from "../store/login-slice";
 const FavoritesPage = () => {
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
-  const { retrieveData: retrieveFavoriteData } = useRetrieveData();
+  const { retrieveData: retrieveFavoriteData, isLoading } = useRetrieveData();
 
   // if not logged in then show login modal
   if (!user) {
@@ -24,6 +24,8 @@ const FavoritesPage = () => {
 
   return (
     <>
+      {isLoading && <h1 style={{ textAlign: "center" }}>Loading...</h1>}
+
       {favBooks.map((favb) => (
         <li key={favb.id}>
           <FavoriteBooksList

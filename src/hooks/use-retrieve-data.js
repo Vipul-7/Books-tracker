@@ -1,4 +1,5 @@
 import { doc, getDoc } from "firebase/firestore";
+import { useCallback, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { auth, db } from "../firebase";
@@ -8,11 +9,14 @@ import { haveReadActions } from "../store/have-read-slice";
 import { ToReadActions } from "../store/to-read-slice";
 
 const useRetrieveData = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
-  let requestedData = [];
 
-  const retrieveData = async (fieldName) => {
+  const retrieveData = useCallback(async (fieldName) => {
+    setIsLoading(true);
+
     const userRef = doc(db, "users", user.uid);
     const userDoc = await getDoc(userRef);
 
@@ -53,11 +57,13 @@ const useRetrieveData = () => {
         console.log("Document not found");
       }
     }
-  };
+
+    setIsLoading(false);
+  }, []);
 
   return {
     retrieveData,
-    requestedData,
+    isLoading,
   };
 };
 

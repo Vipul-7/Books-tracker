@@ -7,13 +7,13 @@ import { auth, provider } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const Login = () => {
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const dispatch = useDispatch();
 
   const signInHandler = async () => {
     try {
-      const result = await signInWithPopup(auth, provider);
-      console.log(result);
+      await signInWithPopup(auth, provider);
+      // console.log(result);
     } catch (error) {
       window.alert(error.message);
     }
@@ -23,7 +23,7 @@ const Login = () => {
   if (user) {
     dispatch(LoginActions.changeShowLoginModal());
   }
-  
+
   const closeModalHandler = () => {
     dispatch(LoginActions.changeShowLoginModal());
   };

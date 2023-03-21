@@ -2,12 +2,26 @@ import { useDispatch } from "react-redux";
 import Card from "../components/UI/Card";
 import classes from "./FavoriteBookLists.module.css";
 import { ToReadActions } from "../store/to-read-slice";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db } from "../firebase";
+import { arrayRemove, doc, getDoc, updateDoc } from "firebase/firestore";
 
 const ToReadLists = (props) => {
+  const [user] = useAuthState(auth);
   const dispatch = useDispatch();
 
-  const removeFromToReadHandler = () => {
+  const removeFromToReadHandler = async () => {
     dispatch(ToReadActions.removeFromToRead(props.id));
+
+    const userRef = doc(db, "users", user.uid);
+    const userDoc = await getDoc(userRef);
+
+    const data = userDoc.data();
+    const index = data.toRead.findIndex((item) => item.id === props.id);
+
+    await updateDoc(userRef, {
+      toRead: arrayRemove(data.toRead[index]),
+    });
   };
 
   return (

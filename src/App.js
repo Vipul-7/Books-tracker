@@ -9,6 +9,13 @@ import ToReadPage from "./pages/ToRead";
 import HaveReadPage from "./pages/HaveRead";
 import FavoritesPage from "./pages/Favorites";
 import ErrorPage from "./pages/Error";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebase";
+import { useDispatch } from "react-redux";
+import { CurrentReadActions } from "./store/current-read-slice";
+import { ToReadActions } from "./store/to-read-slice";
+import { haveReadActions } from "./store/have-read-slice";
+import { favActions } from "./store/favorite-slice";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +50,17 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const [user] = useAuthState(auth);
+  const dispatch = useDispatch();
+
+  // when user logout 
+  if (!user) {
+    dispatch(CurrentReadActions.replaceCurrentReadBooks([]));
+    dispatch(ToReadActions.replaceToReadBooks([]));
+    dispatch(haveReadActions.replaceCompletedBooks([]));
+    dispatch(favActions.replaceFavoriteBooks([]));
+  }
+
   return <RouterProvider router={router} />;
 }
 
