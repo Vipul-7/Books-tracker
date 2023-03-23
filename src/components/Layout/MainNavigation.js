@@ -92,7 +92,7 @@ const MainNavigation = () => {
           {user && (
             <div className={classes["login-photo"]}>
               <button onClick={showMyProfileHandler}>
-                <img src={user.photoURL} alt={user.displayName} />
+                <img src={user.photoURL ? user.photoURL : ""} alt={user.displayName} />
               </button>
             </div>
           )}

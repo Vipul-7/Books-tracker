@@ -10,6 +10,7 @@ const UserLoginDetailModal = () => {
   const dispatch = useDispatch();
 
   const logoutHandler = async () => {
+    dispatch(LoginActions.showProfileModal());
     await auth.signOut();
   };
 

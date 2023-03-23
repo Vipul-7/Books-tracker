@@ -1,31 +1,30 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import HaveReadLists from "../components/HaveReadLists";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import classes from "./HaveRead.module.css";
 
 import useRetrieveData from "../hooks/use-retrieve-data";
-import { LoginActions } from "../store/login-slice";
+import NotLoggedIn from "../components/NotLoggedIn";
 
 const HaveReadPage = () => {
-  const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const { retrieveData: retrieveHaveReadData, isLoading } = useRetrieveData();
 
-  // if not logged in then show login modal
-  if (!user) {
-    dispatch(LoginActions.changeShowLoginModal());
-  }
-
   useEffect(() => {
-    retrieveHaveReadData("have-read");
+    if (user) {
+      retrieveHaveReadData("have-read");
+    }
   }, []);
 
   const completedBooks = useSelector((state) => state.haveRead.completedBooks);
   return (
     <>
       {isLoading && <h1 style={{ textAlign: "center" }}>Loading...</h1>}
+      {completedBooks.length === 0 && !isLoading && (
+        <p>You didn't have any completed books</p>
+      )}
       <div className={classes.cards}>
         {completedBooks.map((done) => (
           <li key={done.id}>
@@ -43,6 +42,7 @@ const HaveReadPage = () => {
           </li>
         ))}
       </div>
+      {!user && <NotLoggedIn pageName="Completed Books" />}
     </>
   );
 };

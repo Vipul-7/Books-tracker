@@ -1,24 +1,19 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import ToReadLists from "../components/ToReadLists";
-import { useDispatch } from "react-redux";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import useRetrieveData from "../hooks/use-retrieve-data";
-import { LoginActions } from "../store/login-slice";
+import NotLoggedIn from "../components/NotLoggedIn";
 
 const ToReadPage = () => {
-  const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const { retrieveData: retrieveToReadData, isLoading } = useRetrieveData();
 
-  // if not logged in then show login modal
-  if (!user) {
-    dispatch(LoginActions.changeShowLoginModal("to-read"));
-  }
-
   useEffect(() => {
-    retrieveToReadData("to-read");
+    if (user) {
+      retrieveToReadData("to-read");
+    }
   }, []);
 
   const ToReadBooks = useSelector((state) => state.toRead.ToReadBooks);
@@ -42,6 +37,7 @@ const ToReadPage = () => {
           />
         </li>
       ))}
+      {!user && <NotLoggedIn pageName="To-read Books data" />}
     </>
   );
 };

@@ -1,23 +1,19 @@
 import FavoriteBooksList from "../components/FavoritesBookLists";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import useRetrieveData from "../hooks/use-retrieve-data";
 import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
-import { LoginActions } from "../store/login-slice";
+import NotLoggedIn from "../components/NotLoggedIn";
 
 const FavoritesPage = () => {
-  const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const { retrieveData: retrieveFavoriteData, isLoading } = useRetrieveData();
 
-  // if not logged in then show login modal
-  if (!user) {
-    dispatch(LoginActions.changeShowLoginModal());
-  }
-
   useEffect(() => {
-    retrieveFavoriteData("favorite");
+    if (user) {
+      retrieveFavoriteData("favorite");
+    }
   }, []);
 
   const favBooks = useSelector((state) => state.favorite.favBooks);
@@ -41,6 +37,7 @@ const FavoritesPage = () => {
           />
         </li>
       ))}
+      {!user && <NotLoggedIn pageName="Favorite Books" />}
     </>
   );
 };

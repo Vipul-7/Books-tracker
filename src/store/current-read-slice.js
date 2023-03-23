@@ -22,6 +22,7 @@ const currentReadSlice = createSlice({
           authors: newBook.authors,
           categories: newBook.categories,
           Totalpages: newBook.Totalpages,
+          readPages : newBook.readPages
         });
       }
     },

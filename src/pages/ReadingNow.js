@@ -1,23 +1,20 @@
 import CurrentRead from "../components/Current-read";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import useRetrieveData from "../hooks/use-retrieve-data";
 import { useEffect } from "react";
-import { LoginActions } from "../store/login-slice";
+import NotLoggedIn from "../components/NotLoggedIn";
 
 const ReadingNowPage = () => {
-  const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const { retrieveData: retrieveCurrentReadData, isLoading } =
     useRetrieveData();
 
-  if (!user) {
-    dispatch(LoginActions.changeShowLoginModal());
-  }
-
   useEffect(() => {
-    retrieveCurrentReadData("current-read");
+    if (user) {
+      retrieveCurrentReadData("current-read");
+    }
   }, []);
 
   const CurrentReadBooks = useSelector((state) => state.Current.books);
@@ -37,9 +34,11 @@ const ReadingNowPage = () => {
               authors={book.authors}
               categories={book.categories}
               Totalpages={book.Totalpages}
+              readPages={book.readPages}
             />
           </li>
         ))}
+        {!user && <NotLoggedIn pageName="Cuurently Reading Books data" />}
       </div>
     </>
   );

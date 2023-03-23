@@ -1,24 +1,37 @@
 import ProgressBar from "@ramonak/react-progress-bar";
+import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
 import { useRef, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db } from "../firebase";
 import classes from "./Current-read.module.css";
 
 const CurrentRead = (props) => {
+  const [user] = useAuthState(auth);
   const [completedProgressBar, setCompletedProgressBar] = useState(0);
   const readPagesInput = useRef();
 
-  const addToProgessBarHandler = () => {
+  const addToProgessBarHandler = async () => {
     const inputValue = readPagesInput.current.value;
-    console.log(inputValue);
 
-    if (inputValue > props.Totalpages) {
+    if (props.readPages > props.Totalpages) {
       setCompletedProgressBar(100);
-    } else if (inputValue < 0) {
+    } else if (props.readPages < 0) {
       setCompletedProgressBar(0);
     } else {
       setCompletedProgressBar(
-        Math.floor((inputValue * 100) / props.Totalpages)
+        Math.floor((props.readPages * 100) / props.Totalpages)
       );
     }
+
+    // const userRef = doc(db, "users", user.uid);
+    // const userDoc = await getDoc(userRef);
+
+    // const data = userDoc.data();
+    // const index = data.currentRead.findIndex((item) => item.id === props.id);
+
+    // await updateDoc(userRef, {
+    //   currentRead: arrayUnion({...currentRead[index]}),
+    // });
   };
   return (
     <div className={classes["book-card"]}>
@@ -56,16 +69,36 @@ const CurrentRead = (props) => {
             className={classes.wrapper}
           />
         </section>
-        <section className={classes["comp-pages"]}>
-          Read{" "}
-          {
-            <input
-              type="number"
-              ref={readPagesInput}
-              onBlur={addToProgessBarHandler}
-            />
-          }{" "}
-          pages
+        <section className={classes.changes}>
+          <section className={classes["comp-pages"]}>
+            Read{" "}
+            {
+              <input
+                type="number"
+                ref={readPagesInput}
+                // value={props.readPages === 0 ? readPagesInput : props.readPages}
+                onBlur={addToProgessBarHandler}
+              />
+            }{" "}
+            pages
+          </section>
+          <section className={classes.remove}>
+            <button>
+              <span>
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                >
+                  <title>trash</title>
+                  <path d="M6 2l2-2h4l2 2h4v2h-16v-2h4zM3 6h14l-1 14h-12l-1-14zM8 8v10h1v-10h-1zM11 8v10h1v-10h-1z"></path>
+                </svg>
+              </span>
+              Remove
+            </button>
+          </section>
         </section>
       </section>
     </div>
