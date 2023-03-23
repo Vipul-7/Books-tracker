@@ -1,11 +1,20 @@
 import ProgressBar from "@ramonak/react-progress-bar";
-import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  arrayRemove,
+  arrayUnion,
+  doc,
+  getDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { useRef, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useDispatch } from "react-redux";
 import { auth, db } from "../firebase";
+import { CurrentReadActions } from "../store/current-read-slice";
 import classes from "./Current-read.module.css";
 
 const CurrentRead = (props) => {
+  const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const [completedProgressBar, setCompletedProgressBar] = useState(0);
   const readPagesInput = useRef();
@@ -33,6 +42,21 @@ const CurrentRead = (props) => {
     //   currentRead: arrayUnion({...currentRead[index]}),
     // });
   };
+
+  const removeFromCurrentReadHandler = async () => {
+    dispatch(CurrentReadActions.removeFromCurrentRead(props.id));
+
+    const userRef = doc(db, "users", user.uid);
+    const userDoc = await getDoc(userRef);
+
+    const data = userDoc.data();
+    const index = data.currentRead.findIndex((item) => item.id === props.id);
+
+    await updateDoc(userRef, {
+      currentRead: arrayRemove(data.currentRead[index]),
+    });
+  };
+
   return (
     <div className={classes["book-card"]}>
       <section className={classes.Info}>
@@ -83,7 +107,7 @@ const CurrentRead = (props) => {
             pages
           </section>
           <section className={classes.remove}>
-            <button>
+            <button onClick={removeFromCurrentReadHandler}>
               <span>
                 <svg
                   version="1.1"
