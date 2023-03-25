@@ -33,7 +33,7 @@ const ReadingNowPage = () => {
               image_alt={book.title}
               authors={book.authors}
               categories={book.categories}
-              Totalpages={book.Totalpages}
+              pages={book.pages}
               readPages={book.readPages}
             />
           </li>

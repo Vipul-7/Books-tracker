@@ -21,7 +21,7 @@ const currentReadSlice = createSlice({
           title: newBook.title,
           authors: newBook.authors,
           categories: newBook.categories,
-          Totalpages: newBook.Totalpages,
+          pages: newBook.pages,
           readPages : newBook.readPages
         });
       }

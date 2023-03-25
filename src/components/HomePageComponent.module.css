@@ -1,0 +1,8 @@
+.text {
+  text-align: center;
+  color: #645e5e;
+}
+
+.text a {
+  color: inherit;
+}

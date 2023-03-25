@@ -6,7 +6,7 @@ import {
   getDoc,
   updateDoc,
 } from "firebase/firestore";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { auth, db } from "../firebase";
@@ -16,31 +16,44 @@ import classes from "./Current-read.module.css";
 const CurrentRead = (props) => {
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
-  const [completedProgressBar, setCompletedProgressBar] = useState(0);
   const readPagesInput = useRef();
 
+  // send data to the firstore and update the porogress bar
   const addToProgessBarHandler = async () => {
     const inputValue = readPagesInput.current.value;
+    const inputValuePercentage = Math.floor((inputValue * 100) / props.pages);
 
-    if (props.readPages > props.Totalpages) {
-      setCompletedProgressBar(100);
-    } else if (props.readPages < 0) {
-      setCompletedProgressBar(0);
+    let readPages = props.readPages;
+    if (inputValue > props.pages) {
+      readPages = 100;
+    } else if (inputValue < 0) {
+      readPages = 0;
     } else {
-      setCompletedProgressBar(
-        Math.floor((props.readPages * 100) / props.Totalpages)
-      );
+      readPages = inputValuePercentage;
     }
 
-    // const userRef = doc(db, "users", user.uid);
-    // const userDoc = await getDoc(userRef);
+    dispatch(CurrentReadActions.removeFromCurrentRead(props.id)); // remove the old data from the redux store
 
-    // const data = userDoc.data();
-    // const index = data.currentRead.findIndex((item) => item.id === props.id);
+    dispatch(
+      CurrentReadActions.addToCurrentRead({
+        ...props,
+        readPages: readPages,
+      }) // update the redux store
+    );
 
-    // await updateDoc(userRef, {
-    //   currentRead: arrayUnion({...currentRead[index]}),
-    // });
+    const userRef = doc(db, "users", user.uid);
+    const userDoc = await getDoc(userRef);
+
+    const data = userDoc.data();
+    const index = data.currentRead.findIndex((item) => item.id === props.id);
+
+    await updateDoc(userRef, {
+      currentRead: arrayRemove(data.currentRead[index]), // remove the old data
+    });
+
+    await updateDoc(userRef, {
+      currentRead: arrayUnion({ ...props, readPages: readPages }), // add the new data
+    });
   };
 
   const removeFromCurrentReadHandler = async () => {
@@ -81,7 +94,7 @@ const CurrentRead = (props) => {
               </h5>
             </section>
             <section className={classes.tp}>
-              <h5>Total Pages - {props.Totalpages}</h5>
+              <h5>Total Pages - {props.pages}</h5>
             </section>
           </div>
         </section>
@@ -89,7 +102,7 @@ const CurrentRead = (props) => {
       <section className={classes.progress}>
         <section className={classes.progressBar}>
           <ProgressBar
-            completed={completedProgressBar}
+            completed={props.readPages}
             className={classes.wrapper}
           />
         </section>
@@ -100,7 +113,6 @@ const CurrentRead = (props) => {
               <input
                 type="number"
                 ref={readPagesInput}
-                // value={props.readPages === 0 ? readPagesInput : props.readPages}
                 onBlur={addToProgessBarHandler}
               />
             }{" "}
@@ -124,6 +136,9 @@ const CurrentRead = (props) => {
             </button>
           </section>
         </section>
+        <p className={classes["instruction-text"]}>
+          <i>*type the pages that you read in above input</i>
+        </p>
       </section>
     </div>
   );

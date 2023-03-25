@@ -40,7 +40,7 @@ const ToReadLists = (props) => {
   };
 
   const addToReadingNowHandler = () => {
-    sendDataToReadingNow("current-read", bookData);
+    sendDataToReadingNow("current-read", {...bookData, readPages: 0});
   };
 
   const addToHaveReadHandler = () => {

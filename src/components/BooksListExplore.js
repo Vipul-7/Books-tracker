@@ -48,7 +48,7 @@ const BooksList = (props) => {
       authors: props.authors,
       categories: props.categories,
       image: props.image,
-      Totalpages: props.pages,
+      pages: props.pages,
       readPages: 0,
     };
     sendCurrentReadData("current-read", currentReadBookData);
