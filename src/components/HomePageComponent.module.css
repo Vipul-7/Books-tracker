@@ -1,8 +1,10 @@
 .text {
+  margin-top: 100px;
+  line-height: 1.6;
   text-align: center;
   color: #645e5e;
 }
 
 .text a {
-  color: inherit;
+  color: #766e6e;
 }
