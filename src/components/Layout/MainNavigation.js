@@ -31,7 +31,7 @@ const MainNavigation = () => {
           id={classes.list}
           className={isClicked ? classes["active"] : classes["#list"]}
         >
-          <img src="images\logo.png" alt="logo" className={classes.logo} />
+          <img src="images\images.png" alt="logo" className={classes.logo} />
           <li>
             <NavLink
               to="explore-books"
