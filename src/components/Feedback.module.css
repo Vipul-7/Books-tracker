@@ -1,0 +1,47 @@
+.icon {
+  padding: 0.7rem;
+  background-color: rgb(161, 141, 116);
+  position: fixed;
+  border-radius: 50%;
+  bottom: 3%;
+  right: 2.7%;
+  cursor: pointer;
+  border: none;
+}
+
+.icon svg {
+  fill: #281e1e;
+}
+
+.close {
+  position: absolute;
+  top: 1%;
+  right: 2%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.close svg {
+  fill: #7a5e5e;
+}
+
+.close:hover svg{
+  fill: rgb(184, 132, 132);
+}
+
+.title {
+  margin-top: 4px;
+  text-align: center;
+  font-size: 1.7rem;
+  border-bottom: 1px solid black;
+}
+
+.form {
+  background-color: #dedede;
+}
+
+h3 {
+  text-align: center;
+}

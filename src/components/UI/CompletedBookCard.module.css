@@ -18,11 +18,19 @@
   color: #232323;
 }
 
-.remove-button{
+.remove-button {
   align-self: flex-end;
   position: absolute;
   top: 1%;
-  right: 1.7%;
+  right: 2%;
+  fill: #8d8787;
+  cursor: pointer;
+}
+
+.remove-button > button {
+  border: transparent;
+  background-color: rgb(223, 216, 216);
+  border-radius: 10px;
 }
 
 .img-section {

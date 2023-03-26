@@ -3,6 +3,7 @@ import { Outlet } from "react-router";
 import LoginModal from "../components/LoginModal";
 import MainNavigation from "../components/Layout/MainNavigation";
 import UserLoginDetailModal from "../components/UserLoginDetailModal";
+import Feedback from "../components/Feedback";
 
 const RootLayout = () => {
   const isShowLoginModal = useSelector((state) => state.login.isShowLogin);
@@ -14,6 +15,7 @@ const RootLayout = () => {
       {showProfile && <UserLoginDetailModal />}
       <MainNavigation />
       <Outlet />
+      <Feedback />
       {/* <Footer/> */}
     </>
   );
