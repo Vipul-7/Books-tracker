@@ -30,11 +30,11 @@ const LoginModal = () => {
   return (
     <Modal>
       <h1 className={classes.title}>Sign-In Page</h1>
-      <div>
+      <div className={classes["provider-button"]}>
         <button onClick={signInHandler}>Sign-In with Google</button>
       </div>
       <div className={classes.actions}>
-        <button className={classes['button--alt']} onClick={closeModalHandler}>
+        <button className={classes["button--alt"]} onClick={closeModalHandler}>
           Close
         </button>
       </div>

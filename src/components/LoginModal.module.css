@@ -12,6 +12,7 @@
 }
 
 .actions button {
+  margin-top: 20px;
   font: inherit;
   cursor: pointer;
   background-color: transparent;
@@ -36,4 +37,21 @@
 .actions .button {
   background-color: #8a2b06;
   color: white;
+}
+
+.provider-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.provider-button button{
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  border: 1px solid #8a2b06;
+  padding: 0.5rem 2rem;
+  margin-left: 1rem;
 }
