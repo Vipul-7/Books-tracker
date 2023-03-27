@@ -5,9 +5,8 @@ import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 const useSendData = () => {
   const [user] = useAuthState(auth);
 
-  const userUniqueId = user.uid;
-
   const sendData = async (fieldName, data) => {
+    const userUniqueId = user.uid;
     const userRef = doc(db, "users", userUniqueId);
     const userDoc = await getDoc(userRef);
 

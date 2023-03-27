@@ -1,6 +1,6 @@
 import Card from "./UI/Card";
 import classes from "./BooksListExplore.module.css";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 import useSendData from "../hooks/use-send-data";
 
@@ -10,7 +10,7 @@ const BooksList = (props) => {
   const { sendData: sendCurrentReadData } = useSendData();
   const { sendData: sendHaveReadData } = useSendData();
 
-  const favoriteBooks = useSelector((state) => state.favorite.favBooks);
+  // const favoriteBooks = useSelector((state) => state.favorite.favBooks);
 
   const bookData = {
     id: props.id,
@@ -23,15 +23,15 @@ const BooksList = (props) => {
     pages: props.pages,
   };
 
-  const isBookExistInFavorite = favoriteBooks.find(
-    (item) => item.id === props.id
-  );
+  // const isBookExistInFavorite = favoriteBooks.find(
+  //   (item) => item.id === props.id
+  // );
 
   const addToFavoriteHandler = async () => {
     sendFavoriteData("favorite", bookData);
   };
 
-  const removeFromFavoriteHandler = () => {};
+  // const removeFromFavoriteHandler = () => {};
 
   const addToToReadHandler = () => {
     sendToReadData("to-read", bookData);
@@ -67,19 +67,14 @@ const BooksList = (props) => {
         pages={props.pages}
       />
       <section className={classes.buttons}>
-        {!isBookExistInFavorite && (
-          <button onClick={addToFavoriteHandler} type="button">
-            Add to Favorite
-          </button>
-        )}
-        {isBookExistInFavorite && (
-          <button onClick={removeFromFavoriteHandler} type="button">
+        <button onClick={addToFavoriteHandler}>Add to Favorite</button>
+
+        {/* {isBookExistInFavorite && (
+          <button onClick={removeFromFavoriteHandler} >
             Remove From Favorite
           </button>
-        )}
-        <button onClick={addToCurrentReadHandler} type="button">
-          Reading Now
-        </button>
+        )} */}
+        <button onClick={addToCurrentReadHandler}>Reading Now</button>
         <button onClick={addToToReadHandler}>To read</button>
         <button onClick={addToCompletedHandler}>Have read</button>
       </section>

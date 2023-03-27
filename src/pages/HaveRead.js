@@ -22,7 +22,7 @@ const HaveReadPage = () => {
   return (
     <>
       {isLoading && <h1 style={{ textAlign: "center" }}>Loading...</h1>}
-      {completedBooks.length === 0 && !isLoading && (
+      {completedBooks.length === 0 && !isLoading && user && (
         <p>You didn't have any completed books</p>
       )}
       <div className={classes.cards}>

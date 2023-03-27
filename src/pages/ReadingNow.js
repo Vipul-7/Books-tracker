@@ -38,7 +38,7 @@ const ReadingNowPage = () => {
             />
           </li>
         ))}
-        {!user && <NotLoggedIn pageName="Cuurently Reading Books data" />}
+        {!user && <NotLoggedIn pageName="Currently Reading Books" />}
       </div>
     </>
   );

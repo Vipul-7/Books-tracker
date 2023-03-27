@@ -37,7 +37,7 @@ const ToReadPage = () => {
           />
         </li>
       ))}
-      {!user && <NotLoggedIn pageName="To-read Books data" />}
+      {!user && <NotLoggedIn pageName="To-read Books" />}
     </>
   );
 };
