@@ -43,14 +43,8 @@ const ExploreBooksPage = () => {
         <SearchBook
           needStateData={searchedValueChangeHandler}
           searchButtonClickHandler={searchClickHandler}
+          searchClickHandler={searchClickHandler}
         />
-        <button
-          onClick={searchClickHandler}
-          type="button"
-          style={{ cursor: "pointer" }}
-        >
-          Search
-        </button>
       </section>
       {isEmptyClick && (
         <p
