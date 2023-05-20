@@ -4,6 +4,7 @@ import HaveReadLists from "../components/HaveReadLists";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import classes from "./HaveRead.module.css";
+import Loading from "../components/Icons/Loading";
 
 import useRetrieveData from "../hooks/use-retrieve-data";
 import NotLoggedIn from "../components/NotLoggedIn";
@@ -21,7 +22,7 @@ const HaveReadPage = () => {
   const completedBooks = useSelector((state) => state.haveRead.completedBooks);
   return (
     <>
-      {isLoading && <h1 style={{ textAlign: "center" }}>Loading...</h1>}
+      {isLoading && <Loading />}
       {completedBooks.length === 0 && !isLoading && user && (
         <p>You didn't have any completed books</p>
       )}

@@ -3,6 +3,7 @@ import BooksList from "../components/BooksListExplore";
 import SearchBook from "../components/UI/SearchBook";
 import classes from "./ExploreBooks.module.css";
 import { json } from "react-router";
+import Loading from "../components/Icons/Loading";
 
 const ExploreBooksPage = () => {
   const [searchedValue, setSearchedVal] = useState("");
@@ -60,11 +61,7 @@ const ExploreBooksPage = () => {
       )}
       <hr className={classes.hr} />
 
-      {isLoading && (
-        <p style={{ textAlign: "center", fontSize: "30px" }}>
-          Fetching data...
-        </p>
-      )}
+      {isLoading && <Loading />}
 
       {resData.length > 0 &&
         resData.slice(0, resData.length).map((item) => (

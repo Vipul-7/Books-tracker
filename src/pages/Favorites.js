@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import NotLoggedIn from "../components/NotLoggedIn";
+import Loading from "../components/Icons/Loading";
 
 const FavoritesPage = () => {
   const [user] = useAuthState(auth);
@@ -20,7 +21,7 @@ const FavoritesPage = () => {
 
   return (
     <>
-      {isLoading && <h1 style={{ textAlign: "center" }}>Loading...</h1>}
+      {isLoading && <Loading />}
 
       {favBooks.map((favb) => (
         <li key={favb.id}>

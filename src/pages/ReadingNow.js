@@ -5,6 +5,7 @@ import { auth } from "../firebase";
 import useRetrieveData from "../hooks/use-retrieve-data";
 import { useEffect } from "react";
 import NotLoggedIn from "../components/NotLoggedIn";
+import Loading from "../components/Icons/Loading";
 
 const ReadingNowPage = () => {
   const [user] = useAuthState(auth);
@@ -22,7 +23,7 @@ const ReadingNowPage = () => {
   return (
     <>
       <div>
-        {isLoading && <h1 style={{ textAlign: "center" }}>Loading...</h1>}
+        {isLoading && <Loading />}
 
         {CurrentReadBooks.map((book) => (
           <li key={book.id}>
