@@ -51,22 +51,31 @@
   left: 23%;
   right: 5%;
   bottom: 0;
-  color: #fff;
+  color: #f3f3f3;
 }
 
 .title {
   display: block;
   font-size: 16px;
   width: 100%;
+
+  border-bottom: 1px solid #b4a2a2;
 }
 
 .author {
   display: block;
+  border-bottom: 1px solid #b4a2a2;
 }
 
 .additional {
   display: flex;
   justify-content: space-between;
+}
+
+.additional div:not(:last-child){
+  font-size: small;
+  padding-right: 1rem;
+  border-right: 1px solid #b4a2a2;
 }
 
 .buttons {

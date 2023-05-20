@@ -6,6 +6,9 @@
 
 html {
   font-family: inter, sans-serif;
+  /* font-size: 66.5%; */
+
+  --icon-color : #aeabab;
 }
 
 body {

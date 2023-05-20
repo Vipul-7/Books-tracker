@@ -1,16 +1,16 @@
-header {
-  /* background-color: red; */
-}
-
 nav {
   display: inline;
 }
 
-nav .logo {
-  /* background-color: red; */
+.logo {
   margin-right: auto;
   max-width: 40px;
-  /* background-color: red; */
+}
+
+.logo svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--icon-color);
 }
 
 #list {
@@ -20,13 +20,22 @@ nav .logo {
   padding: 30px 60px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
   align-content: center;
-  /* background-color: green; */
 }
 
 #list li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   list-style: none;
   padding: 0 30px;
   position: relative;
+}
+
+#list li svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 7px;
+  fill: var(--icon-color);
 }
 
 #list li a {
@@ -45,9 +54,9 @@ nav .logo {
   height: 2px;
   background: #245167;
   position: absolute;
-  top: 25px;
+  top: 35px;
   bottom: 0px;
-  left: 30px;
+  left: 58px;
 }
 
 #list a.active {
@@ -60,8 +69,8 @@ nav .logo {
   height: 2px;
   background: #245167;
   position: absolute;
-  top: 25px;
-  left: 30px;
+  top: 35px;
+  left: 58px;
 }
 
 .mobile {
@@ -124,20 +133,20 @@ nav .logo {
 .login button:hover {
   background-color: #fff;
   color: black;
-  border: 1.5px solid transparent ;
+  border: 1.5px solid transparent;
 }
 
-.login-photo{
+.login-photo {
   margin-left: 3%;
 }
 
-.login-photo button{
+.login-photo button {
   background-color: transparent;
-  border:none;
+  border: none;
   cursor: pointer;
 }
 
-.login-photo img{
+.login-photo img {
   max-height: 40px;
   margin-left: 3%;
   border-radius: 30px;

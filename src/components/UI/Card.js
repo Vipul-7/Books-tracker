@@ -32,7 +32,7 @@ const Card = (props) => {
                 index !== props.categories.length - 1 ? `${cate}, ` : `${cate}`
               )}
             </div>
-            <div>language - {props.language}</div>
+            <div>Language - {props.language}</div>
             <div>Pages - {props.pages}</div>
           </section>
         </section>

@@ -1,11 +1,18 @@
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 import { useState } from "react";
 import { LoginActions } from "../../store/login-slice";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
+
+import ExploreIcon from "../Icons/ExploreIcon";
+import NowIcon from "../Icons/NowIcon";
+import ToReadIcon from "../Icons/ToReadIcon";
+import HaveReadIcon from "../Icons/HaveReadIcon";
+import FavoritesIcon from "../Icons/FavoritesIcon";
+import BookLogo from "../Icons/BookLogo";
 
 const MainNavigation = () => {
   const [user] = useAuthState(auth);
@@ -31,8 +38,11 @@ const MainNavigation = () => {
           id={classes.list}
           className={isClicked ? classes["active"] : classes["#list"]}
         >
-          <img src="images\images.png" alt="logo" className={classes.logo} />
+          <Link to="/" className={classes["logo"]}>
+            <BookLogo />
+          </Link>
           <li>
+            <ExploreIcon />
             <NavLink
               to="explore-books"
               className={({ isActive }) =>
@@ -43,6 +53,7 @@ const MainNavigation = () => {
             </NavLink>
           </li>
           <li>
+            <NowIcon />
             <NavLink
               to="reading-now"
               className={({ isActive }) =>
@@ -53,6 +64,7 @@ const MainNavigation = () => {
             </NavLink>
           </li>
           <li>
+            <ToReadIcon />
             <NavLink
               to="to-read"
               className={({ isActive }) =>
@@ -63,6 +75,7 @@ const MainNavigation = () => {
             </NavLink>
           </li>
           <li>
+            <HaveReadIcon />
             <NavLink
               to="have-read"
               className={({ isActive }) =>
@@ -73,6 +86,7 @@ const MainNavigation = () => {
             </NavLink>
           </li>
           <li>
+            <FavoritesIcon />
             <NavLink
               to="favorites"
               className={({ isActive }) =>
@@ -85,14 +99,17 @@ const MainNavigation = () => {
           {!user && (
             <div className={classes.login}>
               <NavLink>
-                <button onClick={showLoginModalHandler}>Login</button>
+                <button onClick={showLoginModalHandler}>Sign-In</button>
               </NavLink>
             </div>
           )}
           {user && (
             <div className={classes["login-photo"]}>
               <button onClick={showMyProfileHandler}>
-                <img src={user.photoURL ? user.photoURL : ""} alt={user.displayName} />
+                <img
+                  src={user.photoURL ? user.photoURL : ""}
+                  alt={user.displayName}
+                />
               </button>
             </div>
           )}

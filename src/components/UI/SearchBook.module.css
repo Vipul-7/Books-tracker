@@ -1,26 +1,36 @@
+.main {
+  display: flex;
+  align-items: center;
+}
+
 .main input {
   display: inline-block;
-  width: 400px;
+  width: 500px;
   height: 43px;
-  border-radius: 9px;
-  color: black;
+  border-radius: 90px;
+  color: rgb(22, 19, 19);
   font-size: 1.2rem;
+  font-weight: 700;
   background-color: rgb(174, 186, 186);
   padding: 8px;
 }
 
 .search-button {
-  margin-left: 5px;
-  border-radius: 4px;
-  color: rgb(157, 97, 14);
-  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  margin-left: -40px;
   border-radius: 10px;
-  font-weight: bold;
   padding: 5px;
 }
 
+.search-button svg {
+  width: 25px;
+  height: 25px;
+  fill: rgb(9, 9, 91);
+}
+
 .search-button:hover {
-  border: 2px solid rgb(206, 207, 194);
+  border: 1px solid rgb(206, 207, 194);
 }
 
 .main input:focus {

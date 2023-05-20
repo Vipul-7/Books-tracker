@@ -1,4 +1,5 @@
 import classes from "./SearchBook.module.css";
+import SearchIcon from "../Icons/SearchIcon";
 
 const SearchBook = (props) => {
   const searchedValChangeHandler = (event) => {
@@ -32,7 +33,7 @@ const SearchBook = (props) => {
         style={{ cursor: "pointer" }}
         className={classes["search-button"]}
       >
-        Search
+        <SearchIcon />
       </button>
     </section>
   );
