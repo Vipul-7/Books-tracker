@@ -39,19 +39,33 @@
   color: white;
 }
 
-.provider-button{
+.provider-button {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 1rem 0;
 }
 
-.provider-button button{
+.provider-button button {
   font-size: 1.2rem;
   font-weight: bold;
   letter-spacing: 1.5px;
   cursor: pointer;
   border: 1px solid #8a2b06;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1.8rem;
   margin-left: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.provider-button button:hover{
+  background-color: rgb(93, 91, 114);
+  border-color: rgb(45, 44, 56);
+  color: white;
+}
+
+.provider-button svg{
+  margin-right: .7rem;
 }

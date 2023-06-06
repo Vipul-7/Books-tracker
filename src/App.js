@@ -53,7 +53,7 @@ function App() {
   const [user] = useAuthState(auth);
   const dispatch = useDispatch();
 
-  // when user logout 
+  // when user logout clear all the data
   if (!user) {
     dispatch(CurrentReadActions.replaceCurrentReadBooks([]));
     dispatch(ToReadActions.replaceToReadBooks([]));

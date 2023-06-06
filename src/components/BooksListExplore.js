@@ -3,14 +3,19 @@ import classes from "./BooksListExplore.module.css";
 // import { useSelector } from "react-redux";
 
 import useSendData from "../hooks/use-send-data";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase";
+import { useDispatch } from "react-redux";
+import { LoginActions } from "../store/login-slice";
 
 const BooksList = (props) => {
+  const [user] = useAuthState(auth); // user, loading, error
+  const dispatch = useDispatch();
+
   const { sendData: sendFavoriteData } = useSendData();
   const { sendData: sendToReadData } = useSendData();
   const { sendData: sendCurrentReadData } = useSendData();
   const { sendData: sendHaveReadData } = useSendData();
-
-  // const favoriteBooks = useSelector((state) => state.favorite.favBooks);
 
   const bookData = {
     id: props.id,
@@ -23,25 +28,35 @@ const BooksList = (props) => {
     pages: props.pages,
   };
 
-  // const isBookExistInFavorite = favoriteBooks.find(
-  //   (item) => item.id === props.id
-  // );
-
   const addToFavoriteHandler = async () => {
+    if (!user) {
+      dispatch(LoginActions.changeShowLoginModal());
+      return;
+    }
     sendFavoriteData("favorite", bookData);
   };
 
-  // const removeFromFavoriteHandler = () => {};
-
   const addToToReadHandler = () => {
+    if (!user) {
+      dispatch(LoginActions.changeShowLoginModal());
+      return;
+    }
     sendToReadData("to-read", bookData);
   };
 
   const addToCompletedHandler = () => {
+    if (!user) {
+      dispatch(LoginActions.changeShowLoginModal());
+      return;
+    }
     sendHaveReadData("have-read", bookData);
   };
 
   const addToCurrentReadHandler = () => {
+    if (!user) {
+      dispatch(LoginActions.changeShowLoginModal());
+      return;
+    }
     const currentReadBookData = {
       id: props.id,
       title: props.title,
@@ -68,12 +83,6 @@ const BooksList = (props) => {
       />
       <section className={classes.buttons}>
         <button onClick={addToFavoriteHandler}>Add to Favorite</button>
-
-        {/* {isBookExistInFavorite && (
-          <button onClick={removeFromFavoriteHandler} >
-            Remove From Favorite
-          </button>
-        )} */}
         <button onClick={addToCurrentReadHandler}>Reading Now</button>
         <button onClick={addToToReadHandler}>To read</button>
         <button onClick={addToCompletedHandler}>Have read</button>

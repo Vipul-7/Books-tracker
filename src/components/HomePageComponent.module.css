@@ -3,8 +3,37 @@
   line-height: 1.6;
   text-align: center;
   color: #645e5e;
+  font-size: 17px;
+}
+
+.text h1 {
+  background-image: linear-gradient(
+    to right bottom,
+    var(--color-green-light),
+    var(--color-green-dark)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .text a {
-  color: #766e6e;
+  font-size: 19px;
+  background-image: linear-gradient(
+    to right bottom,
+    var(--color-blue-light),
+    var(--color-blue-dark)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  border-bottom: 1px solid var(--color-blue-dark);
+}
+
+.text a:hover {
+  background-image: linear-gradient(
+    to right bottom,
+    var(--color-blue-dark),
+    var(--color-blue-light)
+  );
 }

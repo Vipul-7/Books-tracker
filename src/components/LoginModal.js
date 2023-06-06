@@ -5,6 +5,7 @@ import { LoginActions } from "../store/login-slice";
 import classes from "./LoginModal.module.css";
 import { auth, provider } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import GoogleIcon from "./Icons/GoogleIcon";
 
 const LoginModal = () => {
   const [user] = useAuthState(auth);
@@ -29,9 +30,12 @@ const LoginModal = () => {
 
   return (
     <Modal>
-      <h1 className={classes.title}>Sign-In Page</h1>
+      <h1 className={classes.title}>Sign-In</h1>
       <div className={classes["provider-button"]}>
-        <button onClick={signInHandler}>Sign-In with Google</button>
+        <button onClick={signInHandler}>
+          <GoogleIcon />
+          <span>Sign-In with Google</span>
+        </button>
       </div>
       <div className={classes.actions}>
         <button className={classes["button--alt"]} onClick={closeModalHandler}>
