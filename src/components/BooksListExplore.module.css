@@ -7,10 +7,10 @@
 
 .buttons button {
   letter-spacing: 1.5px;
-  padding: 5px 20px;
+  padding: 0.5rem 2rem;
   border: 2px solid transparent;
-  margin-left: 10px;
-  border-radius: 7px;
+  margin-left: 1rem;
+  border-radius: 0.7rem;
   cursor: pointer;
   transition: all 0.5s ease-out;
   font-weight: bold;

@@ -33,6 +33,7 @@ const ExploreBooksPage = () => {
     }
 
     const responseData = await response.json();
+    console.log(responseData);
 
     setResData(responseData.items);
     setIsLoading(false);

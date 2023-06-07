@@ -1,7 +1,7 @@
 .icon {
   display: flex;
   align-items: center;
-  padding: 0.7rem;
+  padding: 1.2rem;
   background-color: rgb(161, 141, 116);
   position: fixed;
   border-radius: 50%;
@@ -12,8 +12,8 @@
 }
 
 .icon svg {
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2.6rem;
+  height: 2.6rem;
   fill: #281e1e;
 }
 
@@ -38,7 +38,7 @@
 .title {
   margin-top: 4px;
   text-align: center;
-  font-size: 1.7rem;
+  font-size: 2.7rem;
   border-bottom: 1px solid black;
 }
 
@@ -48,4 +48,5 @@
 
 h3 {
   text-align: center;
+  font-size: 1.9rem;
 }

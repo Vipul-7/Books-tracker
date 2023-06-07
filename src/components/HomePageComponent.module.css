@@ -1,9 +1,9 @@
 .text {
-  margin-top: 100px;
+  margin-top: 10rem;
   line-height: 1.6;
   text-align: center;
   color: #645e5e;
-  font-size: 17px;
+  font-size: 1.7rem;
 }
 
 .text h1 {
@@ -18,7 +18,7 @@
 }
 
 .text a {
-  font-size: 19px;
+  font-size: 1.9rem;
   background-image: linear-gradient(
     to right bottom,
     var(--color-blue-light),

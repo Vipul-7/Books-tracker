@@ -1,24 +1,22 @@
 .book-card {
   display: block;
-  margin-top: 25px;
+  margin-top: 2.5rem;
   background-color: rgb(156, 127, 93);
   margin-left: 18%;
   margin-right: 18%;
-  border-radius: 60px;
-  height: 29rem;
+  border-radius: 6rem;
+  height: 46rem;
   position: relative;
 }
 
 .Info {
   display: inline-block;
   position: relative;
-  /* background-color: red; */
   width: 100%;
   height: 76%;
   border-bottom: 2px solid;
-  /* padding-bottom: 20px; */
   color: rgb(21, 52, 52);
-  font-size: 34px;
+  font-size: 3.4rem;
 }
 
 .image_sec {
@@ -33,7 +31,7 @@
 
 .image_sec img {
   height: 40vh;
-  border-radius: 20px;
+  border-radius: 2rem;
   border: 2px solid rgb(30, 60, 16);
   width: 13.5rem;
   box-shadow: 0px 2px 2px;
@@ -45,13 +43,11 @@
   bottom: 4%;
   top: 6%;
   right: 1.9%;
-  /* background-color: rebeccapurple; */
 }
 
 .title {
   display: block;
   text-shadow: 0px 2px 4px;
-  /* background-color: red; */
   border-bottom: 2px dotted;
   padding: 0;
 }
@@ -63,9 +59,11 @@
 
 .author {
   display: block;
-  font-size: 1.2rem;
-  /* background-color: red; */
   border-bottom: 2px dotted;
+}
+
+.author h4 {
+  font-size: 1.7rem;
 }
 
 .extra {
@@ -74,21 +72,17 @@
   margin-top: 1%;
   /* background-color: red; */
   margin-bottom: 1%;
-  font-size: 20px;
+  font-size: 2rem;
   margin-left: 0;
-  height: 60px;
+  height: 6rem;
 }
 
 .cate {
   display: block;
   text-align: center;
-  margin-left: 20px;
+  margin-left: 2rem;
   border-right: 2px dotted;
   padding-right: 9%;
-}
-
-.tp {
-  /* padding-right: 20px; */
 }
 
 /*progress data*/
@@ -102,30 +96,30 @@
 .comp-pages {
   display: inline-block;
   /* background-color: red; */
-  padding: 10px 40px;
+  padding: 1rem 4rem;
   position: relative;
   font-weight: bold;
   border: 2px solid black;
-  font-size: 21px;
+  font-size: 2.1rem;
   letter-spacing: 1.5px;
 
-  box-shadow: 2px 2px 15px rgb(99, 21, 21);
+  box-shadow: 0.2rem 0.2rem 1.5rem rgb(99, 21, 21);
 }
 
 .comp-pages input {
   height: 1.5rem;
-  width: 45px;
+  width: 4.5rem;
   overflow: hidden;
   background-color: transparent;
   border: 1.3px solid black;
   font-weight: bold;
-  font-size: 17px;
+  font-size: 1.7rem;
 }
 
 .comp-pages input:focus {
   background-color: #fff;
   color: indianred;
-  font-size: 17px;
+  font-size: 1.7rem;
 }
 
 /* for hidding the input[type=='number'] up-down arrows */
@@ -158,7 +152,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .label {
-  font-size: 20px;
+  font-size: 2rem;
   color: green;
 }
 
@@ -172,25 +166,25 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .remove {
   /* background-color: red; */
-  padding: 5px 10px;
+  padding: 0.5rem 1rem;
 }
 
 .remove button {
   border: none;
-  padding: 5px 10px;
-  padding-left: 15px;
-  font-size: 15px;
+  padding: 0.5rem 1rem;
+  padding-left: 1.5rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: rgb(125, 112, 139);
   background-color: #deb6b6;
-  border-radius: 10px;
+  border-radius: 1rem;
   align-self: center;
   cursor: pointer;
 }
 
 .remove span {
-  margin-right: 4px;
-  margin-top: 2px;
+  margin-right: 0.4rem;
+  margin-top: 0.2rem;
 }
 
 .remove svg {
@@ -206,8 +200,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .instruction-text {
   color: #302f2f;
-  font-size: 13px;
+  font-size: 1.3rem;
   margin-top: -2px;
-  /* background-color: red; */
   margin-left: -30%;
 }
