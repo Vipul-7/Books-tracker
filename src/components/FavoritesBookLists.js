@@ -23,6 +23,8 @@ const FavoriteBooksList = (props) => {
     description: props.description,
     language: props.language,
     pages: props.pages,
+    textSnippet: props.textSnippet,
+    previewLink: props.previewLink,
   };
 
   const removeFromFavoriteHandler = async () => {
@@ -59,6 +61,8 @@ const FavoriteBooksList = (props) => {
         language={props.language}
         pages={props.pages}
         description={props.description}
+        textSnippet={props.textSnippet}
+        previewLink={props.previewLink}
       />
 
       <section className={classes.buttons}>

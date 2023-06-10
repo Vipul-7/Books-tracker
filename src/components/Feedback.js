@@ -26,7 +26,7 @@ const Feedback = () => {
           <section className={classes.form}>
             <FeedbackForm />
           </section>
-          <h3>
+          <h3 className={classes.improveWeb}>
             Improve this web application on{" "}
             <a href="https://github.com/Vipul-7/Books-tracker-using-google-book-api">
               Github

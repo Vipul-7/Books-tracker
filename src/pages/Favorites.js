@@ -35,6 +35,8 @@ const FavoritesPage = () => {
             language={favb.language}
             pages={favb.pages}
             description={favb.description}
+            textSnippet={favb.textSnippet}
+            previewLink={favb.previewLink}
           />
         </li>
       ))}

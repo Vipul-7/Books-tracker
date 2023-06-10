@@ -35,6 +35,8 @@ const ToReadPage = () => {
             language={book.language}
             pages={book.pages}
             description={book.description}
+            textSnippet={book.textSnippet}
+            previewLink={book.previewLink}
           />
         </li>
       ))}

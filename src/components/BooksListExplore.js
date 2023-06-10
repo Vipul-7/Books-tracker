@@ -26,6 +26,8 @@ const BooksList = (props) => {
     description: props.description,
     language: props.language,
     pages: props.pages,
+    textSnippet: props.textSnippet,
+    previewLink: props.previewLink,
   };
 
   const addToFavoriteHandler = async () => {
@@ -64,6 +66,8 @@ const BooksList = (props) => {
       categories: props.categories,
       image: props.image,
       pages: props.pages,
+      textSnippet: props.textSnippet,
+      previewLink: props.previewLink,
       readPages: 0,
     };
     sendCurrentReadData("current-read", currentReadBookData);
@@ -80,6 +84,8 @@ const BooksList = (props) => {
         description={props.description}
         language={props.language}
         pages={props.pages}
+        textSnippet={props.textSnippet}
+        previewLink={props.previewLink}
       />
       <section className={classes.buttons}>
         <button onClick={addToFavoriteHandler}>Add to Favorite</button>

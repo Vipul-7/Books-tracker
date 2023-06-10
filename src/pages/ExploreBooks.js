@@ -5,6 +5,8 @@ import classes from "./ExploreBooks.module.css";
 import { json } from "react-router";
 import Loading from "../components/Icons/Loading";
 
+const notAvailable = "Not available";
+
 const ExploreBooksPage = () => {
   const [searchedValue, setSearchedVal] = useState("");
   const [resData, setResData] = useState([]);
@@ -33,8 +35,6 @@ const ExploreBooksPage = () => {
     }
 
     const responseData = await response.json();
-    console.log(responseData);
-
     setResData(responseData.items);
     setIsLoading(false);
   };
@@ -77,7 +77,7 @@ const ExploreBooksPage = () => {
               }
               categories={
                 item.volumeInfo.categories == null
-                  ? ["Not provided"]
+                  ? [notAvailable]
                   : item.volumeInfo.categories
               }
               image={
@@ -87,18 +87,28 @@ const ExploreBooksPage = () => {
               }
               description={
                 item.volumeInfo.description == null
-                  ? "Not provided"
+                  ? notAvailable
                   : item.volumeInfo.description
               }
               language={
                 item.volumeInfo.language == null
-                  ? "Not provided"
+                  ? notAvailable
                   : item.volumeInfo.language
               }
               pages={
                 item.volumeInfo.pageCount == null
-                  ? "Not provided"
+                  ? notAvailable
                   : item.volumeInfo.pageCount
+              }
+              textSnippet={
+                item.searchInfo == null
+                  ? notAvailable
+                  : item.searchInfo.textSnippet
+              }
+              previewLink={
+                item.volumeInfo.previewLink == null
+                  ? notAvailable
+                  : item.volumeInfo.previewLink
               }
             />
           </li>

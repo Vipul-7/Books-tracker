@@ -8,11 +8,25 @@ html {
   /* variables */
   --color-primary: rgb(45, 44, 56);
 
+  --color-secondary-dark: #2c4fc3;
+  --color-secondary-light: #3763f4;
+
+  --color-third-light: #245167;
+  --color-third-dark: #2c5d7a;
+
   --color-green-light: #7ed56f;
   --color-green-dark: #09402e;
 
   --color-blue-light: #2998ff;
   --color-blue-dark: #5643fa;
+
+  --color-grey-light-1: #f8f9fa;
+  --color-grey-light-2: #e9ecef;
+  --color-grey-light-3: #ced4da;
+
+  --color-grey-dark-1: #adb5bd;
+  --color-grey-dark-2: #495057;
+  --color-grey-dark-3: #212529;
 
   font-family: inter, sans-serif;
   font-size: 62.5%;

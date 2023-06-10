@@ -24,6 +24,8 @@ const ToReadSlice = createSlice({
           language: newBook.language,
           pages: newBook.pages,
           description: newBook.description,
+          textSnippet: newBook.textSnippet,
+          previewLink: newBook.previewLink,
         });
       }
     },

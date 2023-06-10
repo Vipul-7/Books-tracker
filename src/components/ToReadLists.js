@@ -20,6 +20,8 @@ const ToReadLists = (props) => {
     description: props.description,
     language: props.language,
     pages: props.pages,
+    textSnippet: props.textSnippet,
+    previewLink: props.previewLink,
   };
 
   const [user] = useAuthState(auth);
@@ -40,7 +42,7 @@ const ToReadLists = (props) => {
   };
 
   const addToReadingNowHandler = () => {
-    sendDataToReadingNow("current-read", {...bookData, readPages: 0});
+    sendDataToReadingNow("current-read", { ...bookData, readPages: 0 });
   };
 
   const addToHaveReadHandler = () => {
@@ -59,6 +61,8 @@ const ToReadLists = (props) => {
         language={props.language}
         pages={props.pages}
         description={props.description}
+        textSnippet={props.textSnippet}
+        previewLink={props.previewLink}
       />
 
       <section className={classes.buttons}>
