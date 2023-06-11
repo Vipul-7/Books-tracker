@@ -7,6 +7,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import { useDispatch } from "react-redux";
 import { LoginActions } from "../store/login-slice";
+import Button from "./UI/Button";
 
 const BooksList = (props) => {
   const [user] = useAuthState(auth); // user, loading, error
@@ -88,10 +89,10 @@ const BooksList = (props) => {
         previewLink={props.previewLink}
       />
       <section className={classes.buttons}>
-        <button onClick={addToFavoriteHandler}>Add to Favorite</button>
-        <button onClick={addToCurrentReadHandler}>Reading Now</button>
-        <button onClick={addToToReadHandler}>To read</button>
-        <button onClick={addToCompletedHandler}>Have read</button>
+        <Button onClick={addToFavoriteHandler}>Favorite</Button>
+        <Button onClick={addToCurrentReadHandler}>Reading now</Button>
+        <Button onClick={addToToReadHandler}>To read</Button>
+        <Button onClick={addToCompletedHandler}>Have read</Button>
       </section>
     </div>
   );

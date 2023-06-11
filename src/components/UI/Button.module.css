@@ -1,0 +1,17 @@
+.ui-btn {
+  color: var(--color-grey-light-2);
+  background-color: var(--color-secondary-dark);
+  border: none;
+  border-radius: 2rem;
+  padding: 0.8rem 2.5rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  /* clip-path: polygon(3% 0, 100% 0, 97% 100%, 0 100%); */
+}
+
+.ui-btn:hover {
+  background-color: var(--color-secondary-light);
+  transform: skewX(2deg) skewY(2deg) scale(1.05);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}

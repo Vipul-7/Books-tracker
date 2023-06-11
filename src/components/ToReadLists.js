@@ -1,11 +1,12 @@
 import { useDispatch } from "react-redux";
 import Card from "../components/UI/Card";
-import classes from "./FavoriteBookLists.module.css";
+import classes from "./BooksListExplore.module.css";
 import { ToReadActions } from "../store/to-read-slice";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import { arrayRemove, doc, getDoc, updateDoc } from "firebase/firestore";
 import useSendData from "../hooks/use-send-data";
+import Button from "./UI/Button";
 
 const ToReadLists = (props) => {
   const { sendData: sendDataToReadingNow } = useSendData();
@@ -66,11 +67,9 @@ const ToReadLists = (props) => {
       />
 
       <section className={classes.buttons}>
-        <button onClick={removeFromToReadHandler} type="button">
-          Remove from To Read
-        </button>
-        <button onClick={addToReadingNowHandler}>Reading Now</button>
-        <button onClick={addToHaveReadHandler}>Have read</button>
+        <Button onClick={removeFromToReadHandler}>Remove from To Read</Button>
+        <Button onClick={addToReadingNowHandler}>Reading Now</Button>
+        <Button onClick={addToHaveReadHandler}>Have read</Button>
       </section>
     </div>
   );
