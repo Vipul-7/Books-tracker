@@ -28,9 +28,20 @@ html {
   --color-grey-dark-2: #495057;
   --color-grey-dark-3: #212529;
 
+  /* break points */
+  --bp-large: 1325px; /* 1200px */
+  --bp-medium: 1100px; /* 1000px */
+  --bp-small: 930px; /* 800px */
+  --bp-xsmall: 430px; /* 600px */
+
   font-family: inter, sans-serif;
   font-size: 62.5%;
   --icon-color: #aeabab;
+
+  ::selection {
+    background-color: var(--color-third-dark);
+    color: #fff;
+  }
 }
 
 body {
@@ -39,4 +50,10 @@ body {
   position: static;
   display: block;
   overflow: visible;
+}
+
+@media screen and (max-width: 1325px) {
+  html {
+    font-size: 50%;
+  }
 }

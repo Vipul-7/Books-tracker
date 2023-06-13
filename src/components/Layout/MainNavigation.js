@@ -34,10 +34,7 @@ const MainNavigation = () => {
   return (
     <header>
       <nav>
-        <ul
-          id={classes.list}
-          className={isClicked ? classes["active"] : classes["#list"]}
-        >
+        <ul className={isClicked ? classes["active"] : classes["list"]}>
           <Link to="/" className={classes["logo"]}>
             <BookLogo />
           </Link>
@@ -115,10 +112,7 @@ const MainNavigation = () => {
           )}
         </ul>
         <div className={classes.mobile} onClick={responsiveHandler}>
-          <i
-            id="bar"
-            className={isClicked ? "fas fa-times" : "fas fa-bars"}
-          ></i>
+          <span>&nbsp;</span>
         </div>
       </nav>
     </header>
