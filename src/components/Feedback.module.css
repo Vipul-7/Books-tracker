@@ -40,6 +40,9 @@
   text-align: center;
   font-size: 2.7rem;
   border-bottom: 1px solid black;
+  /* text-transform: uppercase; */
+  letter-spacing: -0.5px;
+  color: var(--color-grey-dark-2);
 }
 
 .form {

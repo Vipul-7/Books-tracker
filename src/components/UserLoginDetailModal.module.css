@@ -1,7 +1,9 @@
 .title {
   text-align: center;
   font-size: 2.9rem;
+  color: var(--color-grey-dark-2);
   border-bottom: 1px solid black;
+  text-transform: uppercase;
 }
 
 .details {
@@ -18,16 +20,20 @@
 
 .details h2 {
   color: #573120;
-  font-size: 2rem;
+  font-size: 2.4rem;
+  margin: 1.5rem 0 1rem 0;
 }
 
 .details h4 {
   font-size: 1.6rem;
+  font-weight: 500;
+  margin: 0;
 }
 
 .details span {
-  color: rgb(173, 105, 15);
-  font-size: 1.6rem;
+  color: var(--color-grey-dark-2);
+  font-size: 1.9rem;
+  font-weight: 300;
 }
 
 .actions {
@@ -63,4 +69,25 @@
 .actions .button {
   background-color: rgb(45, 44, 56);
   color: white;
+}
+
+.books-count {
+  /* border-top: 1px solid #ccc; */
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.books-count li {
+  font-size: 2rem;
+}
+
+.books-count .label {
+  color: var(--color-third-dark);
+  font-weight: 500;
+  line-height: 1.5;
+}
+.books-count .count {
+  color: var(--color-blue-dark);
+  font-weight: 200;
+  line-height: 1.5;
 }

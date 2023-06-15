@@ -22,7 +22,7 @@ const Feedback = () => {
           >
             <CloseIcon />
           </button>
-          <h3 className={classes.title}>Your Feedback Matters for me</h3>
+          <h3 className={classes.title}>Your Feedback Matters to me</h3>
           <section className={classes.form}>
             <FeedbackForm />
           </section>
