@@ -12,6 +12,8 @@ import { useDispatch } from "react-redux";
 import { auth, db } from "../firebase";
 import { CurrentReadActions } from "../store/current-read-slice";
 import classes from "./Current-read.module.css";
+import Card from "./UI/Card";
+import Button from "./UI/Button";
 
 const CurrentRead = (props) => {
   const dispatch = useDispatch();
@@ -71,76 +73,70 @@ const CurrentRead = (props) => {
   };
 
   return (
-    <div className={classes["book-card"]}>
-      <section className={classes.Info}>
-        <section className={classes.image_sec}>
-          <img src={props.image} alt={props.image_alt} />
-        </section>
-        <section className={classes.texts}>
-          <div className={classes.title}>
-            <h1>{props.title}</h1>
-          </div>
-          <div className={classes.author}>
-            <h4>
-              {" "}
-              <span>Written By </span>
-              {props.authors.map((author) => `${author}      `)}
-            </h4>
-          </div>
-          <div className={classes.extra}>
-            <section className={classes.cate}>
-              <h5>
-                Categorie(s) - {props.categories.map((cate) => `${cate}`)}
-              </h5>
-            </section>
-            <section className={classes.tp}>
-              <h5>Total Pages - {props.pages}</h5>
-            </section>
-          </div>
-        </section>
-      </section>
-      <section className={classes.progress}>
-        <section className={classes.progressBar}>
-          <ProgressBar
-            completed={props.readPages}
-            className={classes.wrapper}
+    <>
+      <div className={classes["book-card"]}>
+        <section className={classes.Info}>
+          <Card
+            id={props.id}
+            image={props.image}
+            image_alt={props.title}
+            title={props.title}
+            authors={props.authors}
+            categories={props.categories}
+            language={props.language}
+            pages={props.pages}
+            description={props.description}
+            textSnippet={props.textSnippet}
+            previewLink={props.previewLink}
           />
         </section>
-        <section className={classes.changes}>
-          <section className={classes["comp-pages"]}>
-            Read{" "}
-            {
-              <input
-                type="number"
-                ref={readPagesInput}
-                onBlur={addToProgessBarHandler}
-              />
-            }{" "}
-            pages
+        <section className={classes.progress}>
+          <section className={classes.progressBar}>
+            <ProgressBar
+              completed={props.readPages}
+              className={classes.wrapper}
+              baseBgColor="#2c5d7a"
+              bgColor="#09402e"
+              labelAlignment="outside"
+              labelColor="#adb5bd"
+            />
           </section>
-          <section className={classes.remove}>
-            <button onClick={removeFromCurrentReadHandler}>
-              <span>
-                <svg
-                  version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                >
-                  <title>trash</title>
-                  <path d="M6 2l2-2h4l2 2h4v2h-16v-2h4zM3 6h14l-1 14h-12l-1-14zM8 8v10h1v-10h-1zM11 8v10h1v-10h-1z"></path>
-                </svg>
-              </span>
-              Remove
-            </button>
+          <section className={classes.changes}>
+            <section className={classes["comp-pages"]}>
+              <span>Read&nbsp;</span>
+              {
+                <input
+                  type="text"
+                  ref={readPagesInput}
+                  onBlur={addToProgessBarHandler}
+                />
+              }{" "}
+              <span>Pages</span>
+            </section>
+            <p className={classes["instruction-text"]}>
+              <i>*Pages that you have been done</i>
+            </p>
           </section>
         </section>
-        <p className={classes["instruction-text"]}>
-          <i>*type the pages that you read in above input</i>
-        </p>
+      </div>
+      <section className={classes.remove}>
+        <Button onClick={removeFromCurrentReadHandler}>
+          <span>
+            <svg
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+            >
+              <title>trash</title>
+              <path d="M6 2l2-2h4l2 2h4v2h-16v-2h4zM3 6h14l-1 14h-12l-1-14zM8 8v10h1v-10h-1zM11 8v10h1v-10h-1z"></path>
+            </svg>
+          </span>
+          <span>&nbsp;Remove</span>
+        </Button>
       </section>
-    </div>
+    </>
   );
 };
 

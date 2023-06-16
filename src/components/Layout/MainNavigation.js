@@ -111,7 +111,7 @@ const MainNavigation = () => {
             </div>
           )}
         </ul>
-        <div className={classes.mobile} onClick={responsiveHandler}>
+        <div className={classes.small} onClick={responsiveHandler}>
           <span>&nbsp;</span>
         </div>
       </nav>

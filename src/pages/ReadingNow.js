@@ -29,12 +29,16 @@ const ReadingNowPage = () => {
           <li key={book.id}>
             <CurrentRead
               id={book.id}
-              title={book.title}
               image={book.image}
               image_alt={book.title}
+              title={book.title}
               authors={book.authors}
               categories={book.categories}
+              language={book.language}
               pages={book.pages}
+              description={book.description}
+              textSnippet={book.textSnippet}
+              previewLink={book.previewLink}
               readPages={book.readPages}
             />
           </li>

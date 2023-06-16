@@ -19,10 +19,14 @@ const currentReadSlice = createSlice({
           id: newBook.id,
           image: newBook.image,
           title: newBook.title,
-          authors: newBook.authors,
-          categories: newBook.categories,
+          authors: newBook.authors, //aray
+          categories: newBook.categories, //aray
+          language: newBook.language,
           pages: newBook.pages,
-          readPages : newBook.readPages
+          description: newBook.description,
+          textSnippet: newBook.textSnippet,
+          previewLink: newBook.previewLink,
+          readPages: newBook.readPages,
         });
       }
     },

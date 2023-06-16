@@ -1,206 +1,82 @@
-.book-card {
-  display: block;
-  margin-top: 2.5rem;
-  background-color: rgb(156, 127, 93);
-  margin-left: 18%;
-  margin-right: 18%;
-  border-radius: 6rem;
-  height: 46rem;
-  position: relative;
-}
-
-.Info {
-  display: inline-block;
-  position: relative;
-  width: 100%;
-  height: 76%;
-  border-bottom: 2px solid;
-  color: rgb(21, 52, 52);
-  font-size: 3.4rem;
-}
-
-.image_sec {
-  display: inline-block;
-  position: absolute;
-  left: 6%;
-  top: 7%;
-  bottom: 0.3%;
-  border-right: 2px solid black;
-  padding-right: 5%;
-}
-
-.image_sec img {
-  height: 40vh;
-  border-radius: 2rem;
-  border: 2px solid rgb(30, 60, 16);
-  width: 13.5rem;
-  box-shadow: 0px 2px 2px;
-}
-
-.texts {
-  position: absolute;
-  left: 36%;
-  bottom: 4%;
-  top: 6%;
-  right: 1.9%;
-}
-
-.title {
-  display: block;
-  text-shadow: 0px 2px 4px;
-  border-bottom: 2px dotted;
-  padding: 0;
-}
-
-.title h1 {
-  margin-top: 2%;
-  margin-bottom: 6%;
-}
-
-.author {
-  display: block;
-  border-bottom: 2px dotted;
-}
-
-.author h4 {
-  font-size: 1.7rem;
-}
-
-.extra {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1%;
-  /* background-color: red; */
-  margin-bottom: 1%;
-  font-size: 2rem;
-  margin-left: 0;
-  height: 6rem;
-}
-
-.cate {
-  display: block;
-  text-align: center;
-  margin-left: 2rem;
-  border-right: 2px dotted;
-  padding-right: 9%;
-}
-
-/*progress data*/
-
 .progress {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  background-color: var(--color-third-light);
+  /* height: 20vh; */
+  padding: 0 2rem;
+  width: 80%;
+  margin: 0 auto;
+  box-shadow: 0 0rem 2rem rgba(0, 0, 0, 0.2);
 
-.comp-pages {
-  display: inline-block;
-  /* background-color: red; */
-  padding: 1rem 4rem;
-  position: relative;
-  font-weight: bold;
-  border: 2px solid black;
-  font-size: 2.1rem;
-  letter-spacing: 1.5px;
-
-  box-shadow: 0.2rem 0.2rem 1.5rem rgb(99, 21, 21);
-}
-
-.comp-pages input {
-  height: 1.5rem;
-  width: 4.5rem;
-  overflow: hidden;
-  background-color: transparent;
-  border: 1.3px solid black;
-  font-weight: bold;
-  font-size: 1.7rem;
-}
-
-.comp-pages input:focus {
-  background-color: #fff;
-  color: indianred;
-  font-size: 1.7rem;
-}
-
-/* for hidding the input[type=='number'] up-down arrows */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  margin: 0;
+  margin-top: 1.4rem;
+  border-radius: 2rem;
+  padding: 1rem;
 }
 
 .progressBar {
-  display: inline;
-  width: 100%;
-}
-
-/* implicit progss bar css */
-.wrapper {
-  margin-top: 1.5%;
-  margin-bottom: 1%;
-}
-
-.container {
-  background-color: pink;
-}
-
-.barCompleted {
-  background-color: lightblue;
   width: 80%;
-}
-
-.label {
-  font-size: 2rem;
-  color: green;
+  margin: 0 auto;
 }
 
 .changes {
-  /* background-color: red; */
-  width: 90%;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  text-align: center;
   align-items: center;
+  margin: 1rem;
+  /* background-color: red; */
+}
+
+.comp-pages {
+  /* margin-bottom: 0.5rem; */
+}
+.comp-pages span {
+  color: var(--color-grey-dark-1);
+  font-weight: 400;
+  font-size: 1.6rem;
+}
+
+.comp-pages input {
+  background-color: var(--color-third-light);
+  border: 1px solid var(--color-grey-dark-1);
+  margin-bottom: 0.5rem;
+  width: 15%;
+  border-radius: 5px;
+
+  font-size: 1.6rem;
+  color: var(--color-grey-dark-1);
+  font-weight: 700;
+}
+
+.comp-pages input:focus {
+  outline: none;
+  /* border: 2px solid var(--color-grey-dark-1); */
+  border-radius: 3px;
 }
 
 .remove {
-  /* background-color: red; */
-  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
 }
 
 .remove button {
+  display: flex;
+  align-items: center;
   border: none;
-  padding: 0.5rem 1rem;
-  padding-left: 1.5rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: rgb(125, 112, 139);
-  background-color: #deb6b6;
+  padding: 0.5rem 1.5rem;
   border-radius: 1rem;
-  align-self: center;
-  cursor: pointer;
-}
-
-.remove span {
-  margin-right: 0.4rem;
-  margin-top: 0.2rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 .remove svg {
-  height: 1.1rem;
-  width: 1.2rem;
-  fill: rgb(131, 77, 6);
-}
-
-.remove button:hover {
-  scale: 1.02;
-  background-color: #d8c0c0;
+  fill: var(--color-grey-light-2);
 }
 
 .instruction-text {
-  color: #302f2f;
-  font-size: 1.3rem;
-  margin-top: -2px;
-  margin-left: -30%;
+  color: var(--color-grey-light-3);
+  text-align: center;
+  display: inline-block;
+  opacity: 0.3;
+  text-align: center;
+  margin: 0;
 }

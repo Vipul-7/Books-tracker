@@ -1,5 +1,8 @@
 nav {
   display: inline;
+  position: relative;
+  /* display: flex; */
+  width: 100%;
 }
 
 .logo {
@@ -114,14 +117,43 @@ nav {
   margin-top: -4px;
 }
 
-.mobile span {
+.small span,
+.small span::before,
+.small span::after {
+  display: none;
   position: absolute;
-  width: 2rem;
-  height: 1rem;
+  top: 1rem;
+  width: 3rem;
+  height: 1px;
+  background-color: var(--color-grey-light-2);
+}
+.small span::before {
+  content: " ";
+  margin-bottom: 1rem;
+}
+.small span::after {
+  content: " ";
+  margin-top: 1rem;
 }
 
-@media screen and (max-width: 1325px) {
-  .list{
-    /* display: none; */
+@media screen and (max-width: 1110px) {
+  .list li {
+    padding: 0 23px;
   }
+}
+
+@media screen and (max-width: 1010px) {
+  .list li {
+    padding: 0 17px;
+  }
+}
+
+@media screen and (max-width: 1010px) {
+  .list li {
+    padding: 0 17px;
+  }
+}
+
+@media screen and (max-width: 950px) {
+
 }

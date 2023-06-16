@@ -29,10 +29,9 @@ html {
   --color-grey-dark-3: #212529;
 
   /* break points */
-  --bp-large: 1325px; /* 1200px */
-  --bp-medium: 1100px; /* 1000px */
-  --bp-small: 930px; /* 800px */
-  --bp-xsmall: 430px; /* 600px */
+  --bp-large: 1110px;
+  --bp-medium-1: 1010px;
+  --bp-medium-2: 1010px;
 
   font-family: inter, sans-serif;
   font-size: 62.5%;
