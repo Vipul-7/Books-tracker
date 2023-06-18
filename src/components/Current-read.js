@@ -14,6 +14,7 @@ import { CurrentReadActions } from "../store/current-read-slice";
 import classes from "./Current-read.module.css";
 import Card from "./UI/Card";
 import Button from "./UI/Button";
+import { ModalsActions } from "../store/modals-slice";
 
 const CurrentRead = (props) => {
   const dispatch = useDispatch();
@@ -70,6 +71,8 @@ const CurrentRead = (props) => {
     await updateDoc(userRef, {
       currentRead: arrayRemove(data.currentRead[index]),
     });
+
+    dispatch(ModalsActions.showInteractionFeedbackRemovedModal(true));
   };
 
   return (

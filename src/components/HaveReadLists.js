@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import { arrayRemove, doc, getDoc, updateDoc } from "firebase/firestore";
 import CompletedBookCard from "./UI/CompletedBookCard";
+import { ModalsActions } from "../store/modals-slice";
 
 const HaveReadLists = (props) => {
   const [user] = useAuthState(auth);
@@ -21,6 +22,8 @@ const HaveReadLists = (props) => {
     await updateDoc(userRef, {
       haveRead: arrayRemove(data.haveRead[index]),
     });
+
+    dispatch(ModalsActions.showInteractionFeedbackRemovedModal(true));
   };
 
   return (

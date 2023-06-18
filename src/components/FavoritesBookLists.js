@@ -7,6 +7,8 @@ import { auth, db } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import useSendData from "../hooks/use-send-data";
 import Button from "./UI/Button";
+import { ModalsActions } from "../store/modals-slice";
+
 
 const FavoriteBooksList = (props) => {
   const { sendData: sendDataToToRead } = useSendData();
@@ -40,6 +42,8 @@ const FavoriteBooksList = (props) => {
     await updateDoc(userRef, {
       favorite: arrayRemove(data.favorite[index]),
     });
+
+    dispatch(ModalsActions.showInteractionFeedbackRemovedModal(true));
   };
 
   const addToToReadHandler = () => {

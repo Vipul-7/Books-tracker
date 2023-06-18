@@ -6,7 +6,7 @@ import useSendData from "../hooks/use-send-data";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import { useDispatch } from "react-redux";
-import { LoginActions } from "../store/login-slice";
+import { ModalsActions } from "../store/modals-slice";
 import Button from "./UI/Button";
 
 const BooksList = (props) => {
@@ -33,7 +33,7 @@ const BooksList = (props) => {
 
   const addToFavoriteHandler = async () => {
     if (!user) {
-      dispatch(LoginActions.changeShowLoginModal());
+      dispatch(ModalsActions.changeShowLoginModal());
       return;
     }
     sendFavoriteData("favorite", bookData);
@@ -41,7 +41,7 @@ const BooksList = (props) => {
 
   const addToToReadHandler = () => {
     if (!user) {
-      dispatch(LoginActions.changeShowLoginModal());
+      dispatch(ModalsActions.changeShowLoginModal());
       return;
     }
     sendToReadData("to-read", bookData);
@@ -49,7 +49,7 @@ const BooksList = (props) => {
 
   const addToCompletedHandler = () => {
     if (!user) {
-      dispatch(LoginActions.changeShowLoginModal());
+      dispatch(ModalsActions.changeShowLoginModal());
       return;
     }
     sendHaveReadData("have-read", bookData);
@@ -57,7 +57,7 @@ const BooksList = (props) => {
 
   const addToCurrentReadHandler = () => {
     if (!user) {
-      dispatch(LoginActions.changeShowLoginModal());
+      dispatch(ModalsActions.changeShowLoginModal());
       return;
     }
     const currentReadBookData = {

@@ -7,6 +7,7 @@ import { auth, db } from "../firebase";
 import { arrayRemove, doc, getDoc, updateDoc } from "firebase/firestore";
 import useSendData from "../hooks/use-send-data";
 import Button from "./UI/Button";
+import { ModalsActions } from "../store/modals-slice";
 
 const ToReadLists = (props) => {
   const { sendData: sendDataToReadingNow } = useSendData();
@@ -40,6 +41,8 @@ const ToReadLists = (props) => {
     await updateDoc(userRef, {
       toRead: arrayRemove(data.toRead[index]),
     });
+
+    dispatch(ModalsActions.showInteractionFeedbackRemovedModal(true));
   };
 
   const addToReadingNowHandler = () => {

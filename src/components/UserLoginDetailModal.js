@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import Modal from "./Layout/Modal";
 import classes from "./UserLoginDetailModal.module.css";
-import { LoginActions } from "../store/login-slice";
+import { ModalsActions } from "../store/modals-slice";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import { useEffect } from "react";
@@ -32,12 +32,12 @@ const UserLoginDetailModal = () => {
   }, []);
 
   const logoutHandler = async () => {
-    dispatch(LoginActions.showProfileModal());
+    dispatch(ModalsActions.showProfileModal());
     await auth.signOut();
   };
 
   const closeModalHandler = () => {
-    dispatch(LoginActions.showProfileModal());
+    dispatch(ModalsActions.showProfileModal());
   };
 
   return (

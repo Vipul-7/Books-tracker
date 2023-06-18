@@ -1,8 +1,11 @@
 import { auth, db } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { arrayUnion, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { ModalsActions } from "../store/modals-slice";
+import { useDispatch } from "react-redux";
 
 const useSendData = () => {
+  const dispatch = useDispatch();
   const [user] = useAuthState(auth);
 
   const sendData = async (fieldName, data) => {
@@ -44,6 +47,8 @@ const useSendData = () => {
         await setDoc(userRef, { haveRead: [data] });
       }
     }
+
+    dispatch(ModalsActions.showInteractionFeedbackAddedModal(true));
   };
 
   return {

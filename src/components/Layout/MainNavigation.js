@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 import { useState } from "react";
-import { LoginActions } from "../../store/login-slice";
+import { ModalsActions } from "../../store/modals-slice";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
@@ -21,11 +21,11 @@ const MainNavigation = () => {
   const [isClicked, setIsClicked] = useState(false);
 
   const showLoginModalHandler = () => {
-    dispatch(LoginActions.changeShowLoginModal());
+    dispatch(ModalsActions.changeShowLoginModal());
   };
 
   const showMyProfileHandler = () => {
-    dispatch(LoginActions.showProfileModal());
+    dispatch(ModalsActions.showProfileModal());
   };
 
   const responsiveHandler = () => {

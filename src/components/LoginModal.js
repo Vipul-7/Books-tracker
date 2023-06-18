@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { signInWithPopup } from "firebase/auth";
 import Modal from "./Layout/Modal";
-import { LoginActions } from "../store/login-slice";
+import { ModalsActions } from "../store/modals-slice";
 import classes from "./LoginModal.module.css";
 import { auth, provider } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -21,11 +21,11 @@ const LoginModal = () => {
 
   // close the modal while just logged in
   if (user) {
-    dispatch(LoginActions.changeShowLoginModal());
+    dispatch(ModalsActions.changeShowLoginModal());
   }
 
   const closeModalHandler = () => {
-    dispatch(LoginActions.changeShowLoginModal());
+    dispatch(ModalsActions.changeShowLoginModal());
   };
 
   return (
