@@ -76,7 +76,7 @@ const CurrentRead = (props) => {
   };
 
   return (
-    <>
+    <div className={classes.main}>
       <div className={classes["book-card"]}>
         <section className={classes.Info}>
           <Card
@@ -139,7 +139,7 @@ const CurrentRead = (props) => {
           <span>&nbsp;Remove</span>
         </Button>
       </section>
-    </>
+    </div>
   );
 };
 
