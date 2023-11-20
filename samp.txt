@@ -1,0 +1,14 @@
+mutation addBookToFavorite($image : String!,$title:String!,$author:[String!]!,$description:String!,$categories:[String!]!,$language:String!,$pages:Int!,$previewLink:String!,$readPages:Int!,$textSnippet:String!){
+    addToFavorite(bookData : {
+        image: $image,
+          title: $title,
+          author: $author,
+          description: $description,
+          categories: $categories,
+          language: $language,
+          pages: $pages,
+          previewLink: $previewLink,
+          readPages: $readPages,
+          textSnippet: $textSnippet,
+    })
+}
