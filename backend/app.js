@@ -3,21 +3,26 @@ const express = require("express");
 const app = express();
 
 // const { createHandler } = require("graphql-http");
-const { graphqlHTTP } = require("express-graphql")
+const { graphqlHTTP } = require("express-graphql");
 const graphqlSchema = require("./graphql/schema");
 const graphqlResolvers = require("./graphql/resolvers");
-const { formatError } = require("graphql");
+const authRoutes = require("./routes/auth")
+const auth = require("./middleware/auth");
 
 app.use(express.json());
 
 app.use((req, res, next) => {
-  req.user = {
-    id: 1,
-  };
-
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,DELETE,PATCH,PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type,Authorization");
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
   next();
 });
 
+app.use("/auth", authRoutes);
+app.use(auth);
 
 app.use(
   "/graphql",

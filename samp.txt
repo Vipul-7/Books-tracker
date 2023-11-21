@@ -1,3 +1,5 @@
+----- add book to favorite -----
+
 mutation addBookToFavorite($image : String!,$title:String!,$author:[String!]!,$description:String!,$categories:[String!]!,$language:String!,$pages:Int!,$previewLink:String!,$readPages:Int!,$textSnippet:String!){
     addToFavorite(bookData : {
         image: $image,
@@ -12,3 +14,19 @@ mutation addBookToFavorite($image : String!,$title:String!,$author:[String!]!,$d
           textSnippet: $textSnippet,
     })
 }
+
+~> variables : {
+    "image": "some string",
+          "title": "some string",
+          "author": ["some string"],
+          "description": "some string",
+          "categories": ["some string"],
+          "language": "some string",
+          "pages": 90,
+          "previewLink": "some string",
+          "readPages": 10,
+          "textSnippet": "some string"
+}
+
+---get book from favorite ----
+

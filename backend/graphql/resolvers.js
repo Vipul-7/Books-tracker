@@ -27,12 +27,20 @@ module.exports = {
 
         return true;
     },
-    favoriteBooks: () => {
-        return {
-            id: 1,
-            title: "vip",
-            author: "kl",
-        };
+    favoriteBooks: async(req) => {
+        const books = await prisma.user.findUnique({
+            where: {
+                id: 1
+            }
+        }).favorite();
+
+        if(!books){
+            const error = new Error("Error while fetching favorite books");
+            error.code = 500;
+            throw error;
+        }
+
+        return books;
     },
 };
 
