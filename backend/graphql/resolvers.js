@@ -3,15 +3,23 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 module.exports = {
+    // ----- Favorite ------
     addToFavorite: async ({ bookData }, req) => {
+        if (!req.isAuth) {
+            const error = new Error("Not authenticated");
+            error.code = 401;
+            throw error
+        }
+
+        // before adding to favorite first take a note of that book
         const book = await createBook(bookData);
 
         const updatedUser = await prisma.user.update({
             where: {
-                id: req.user.id
+                id: req.userId
             },
             data: {
-                favorite : {
+                favorite: {
                     connect: {
                         id: book.id
                     }
@@ -27,14 +35,20 @@ module.exports = {
 
         return true;
     },
-    favoriteBooks: async(req) => {
+    favoriteBooks: async ({},req) => {
+        if (!req.isAuth) {
+            const error = new Error("Not authenticated");
+            error.code = 401;
+            throw error
+        }
+
         const books = await prisma.user.findUnique({
             where: {
-                id: 1
+                id: req.userId
             }
         }).favorite();
 
-        if(!books){
+        if (!books) {
             const error = new Error("Error while fetching favorite books");
             error.code = 500;
             throw error;
@@ -42,6 +56,9 @@ module.exports = {
 
         return books;
     },
+    // -------- ToRead --------
+    // --------- HaveRead -------
+    // --------- CurrentRead --------
 };
 
 const createBook = async (bookData) => {

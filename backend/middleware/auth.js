@@ -5,6 +5,7 @@ module.exports = (req, res, next) => {
     const authHeader = req.get("Authorization");
 
     if (!authHeader) {
+        console.log("Invalid auth header");
         req.isAuth = false;
         return next();
     }
@@ -16,16 +17,19 @@ module.exports = (req, res, next) => {
         decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
     }
     catch (err) {
+        console.log("Could not verify token");
         req.isAuth = false;
         return next();
     }
 
     if (!decodedToken) {
+        console.log("Invalid token");
         req.isAuth = false;
         return next();
     }
 
     req.userId = decodedToken.userId;
     req.isAuth = true;
+    console.log("Valid token");
     next();
 }
