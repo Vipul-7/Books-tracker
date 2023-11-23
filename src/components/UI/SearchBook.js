@@ -13,7 +13,7 @@ const SearchBook = (props) => {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      console.log("Enter key pressed");
+      // console.log("Enter key pressed");
       searchClickHandler(e);
     }
   };

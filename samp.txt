@@ -1,8 +1,9 @@
 ----- add book to favorite -----
 
-mutation addBookToFavorite($image : String!,$title:String!,$author:[String!]!,$description:String!,$categories:[String!]!,$language:String!,$pages:Int!,$previewLink:String!,$readPages:Int!,$textSnippet:String!){
+mutation addBookToFavorite($image : String!,$bookId : String!,$title:String!,$author:[String!]!,$description:String!,$categories:[String!]!,$language:String!,$pages:Int!,$previewLink:String!,$readPages:Int!,$textSnippet:String!){
     addToFavorite(bookData : {
         image: $image,
+        bookId : $bookId,
           title: $title,
           author: $author,
           description: $description,
@@ -15,8 +16,11 @@ mutation addBookToFavorite($image : String!,$title:String!,$author:[String!]!,$d
     })
 }
 
-~> variables : {
+~> variables : 
+
+{
     "image": "some string",
+    "bookId" : "123",
           "title": "some string",
           "author": ["some string"],
           "description": "some string",
@@ -29,4 +33,4 @@ mutation addBookToFavorite($image : String!,$title:String!,$author:[String!]!,$d
 }
 
 ---get book from favorite ----
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZpcHNjaGF1ZGhhcnlAb3V0bG9vay5jb20iLCJ1c2VySWQiOiIyIiwiaWF0IjoxNzAwNTQyMDU2LCJleHAiOjE3MDA1NDU2NTZ9.ASP5zfGdio0Nn43dTjg9SLHam_d3OyK140GFxh75rHQ
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwidXNlcklkIjoxLCJpYXQiOjE3MDA3MTA2OTgsImV4cCI6MTcwMDcxNDI5OH0.VEGXhdtGXn62mGX3ITuc6wiowHmV2S1DJhDcanvLl9Q

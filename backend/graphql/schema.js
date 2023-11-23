@@ -3,6 +3,7 @@ const { buildSchema } = require("graphql");
 module.exports = buildSchema(`
     type Book {
         id : ID!
+        bookId : String!
         image : String!
         title : String!
         author : [String!]!
@@ -17,6 +18,7 @@ module.exports = buildSchema(`
 
     input BookInput {
         image : String!
+        bookId : String!
         title : String!
         author : [String!]!
         description : String
@@ -30,10 +32,14 @@ module.exports = buildSchema(`
 
     type RootMutation {
         addToFavorite(bookData: BookInput! ): Boolean!
+        addToToRead(bookData: BookInput! ): Boolean!
+        addToHaveRead(bookData: BookInput! ): Boolean!
     }
 
     type RootQuery {
         favoriteBooks: [Book!]!
+        toReadBooks: [Book!]!
+        haveReadBooks: [Book!]!
     }
 
     schema {
