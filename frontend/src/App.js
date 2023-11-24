@@ -16,6 +16,11 @@ import { CurrentReadActions } from "./store/current-read-slice";
 import { ToReadActions } from "./store/to-read-slice";
 import { haveReadActions } from "./store/have-read-slice";
 import { favActions } from "./store/favorite-slice";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./util/http";
+import Signup from "./pages/Signup";
+import SignupPage from "./pages/Signup";
+import LoginPage from "./pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +50,13 @@ const router = createBrowserRouter([
         element: <ExploreBooksPage />,
         // loader: booksLoader,
       },
+      {
+        path: "auth",
+        children: [
+          { path: "signup", element: <SignupPage /> },
+          { path: "login", element: <LoginPage /> },
+        ]
+      },
     ],
   },
 ]);
@@ -61,7 +73,9 @@ function App() {
     dispatch(favActions.replaceFavoriteBooks([]));
   }
 
-  return <RouterProvider router={router} />;
+  return <QueryClientProvider client={queryClient}>
+    <RouterProvider router={router} />
+  </QueryClientProvider>;
 }
 
 export default App;

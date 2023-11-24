@@ -73,7 +73,7 @@ const MainNavigation = () => {
           </li>
           <li>
             <HaveReadIcon />
-            <NavLink
+            <NavLink 
               to="have-read"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
@@ -95,8 +95,8 @@ const MainNavigation = () => {
           </li>
           {!user && (
             <div className={classes.login}>
-              <NavLink>
-                <button onClick={showLoginModalHandler}>Sign-In</button>
+              <NavLink to="auth/login">
+                <button>Sign-In</button>
               </NavLink>
             </div>
           )}

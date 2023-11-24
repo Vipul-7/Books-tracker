@@ -15,11 +15,27 @@ import classes from "./Current-read.module.css";
 import Card from "./UI/Card";
 import Button from "./UI/Button";
 import { ModalsActions } from "../store/modals-slice";
+import { useMutation } from "@tanstack/react-query";
+import { queryClient, removeFromCurrentRead, updateReadPages } from "../util/http";
 
 const CurrentRead = (props) => {
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const readPagesInput = useRef();
+
+  const { mutate: updateReadPagesMutate } = useMutation({
+    mutationFn: updateReadPages,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["currentRead"] })
+    }
+  })
+
+  const { mutate: removeFromCurrentReadMutate } = useMutation({
+    mutationFn: removeFromCurrentRead,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["currentRead"] });
+    }
+  })
 
   // send data to the firstore and update the porogress bar
   const addToProgessBarHandler = async () => {
@@ -35,42 +51,22 @@ const CurrentRead = (props) => {
       readPages = inputValuePercentage;
     }
 
-    dispatch(CurrentReadActions.removeFromCurrentRead(props.id)); // remove the old data from the redux store
-
-    dispatch(
-      CurrentReadActions.addToCurrentRead({
-        ...props,
-        readPages: readPages,
-      }) // update the redux store
-    );
-
-    const userRef = doc(db, "users", user.uid);
-    const userDoc = await getDoc(userRef);
-
-    const data = userDoc.data();
-    const index = data.currentRead.findIndex((item) => item.id === props.id);
-
-    await updateDoc(userRef, {
-      currentRead: arrayRemove(data.currentRead[index]), // remove the old data
-    });
-
-    await updateDoc(userRef, {
-      currentRead: arrayUnion({ ...props, readPages: readPages }), // add the new data
-    });
+    updateReadPagesMutate({ id: props.id, readPages });
   };
 
   const removeFromCurrentReadHandler = async () => {
-    dispatch(CurrentReadActions.removeFromCurrentRead(props.id));
+    // dispatch(CurrentReadActions.removeFromCurrentRead(props.id));
 
-    const userRef = doc(db, "users", user.uid);
-    const userDoc = await getDoc(userRef);
+    // const userRef = doc(db, "users", user.uid);
+    // const userDoc = await getDoc(userRef);
 
-    const data = userDoc.data();
-    const index = data.currentRead.findIndex((item) => item.id === props.id);
+    // const data = userDoc.data();
+    // const index = data.currentRead.findIndex((item) => item.id === props.id);
 
-    await updateDoc(userRef, {
-      currentRead: arrayRemove(data.currentRead[index]),
-    });
+    // await updateDoc(userRef, {
+    //   currentRead: arrayRemove(data.currentRead[index]),
+    // });
+    removeFromCurrentReadMutate(props.id);
 
     dispatch(ModalsActions.showInteractionFeedbackRemovedModal(true));
   };

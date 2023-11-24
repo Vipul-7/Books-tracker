@@ -2,26 +2,41 @@ import Card from "./UI/Card";
 import classes from "./BooksListExplore.module.css";
 // import { useSelector } from "react-redux";
 
-import useSendData from "../hooks/use-send-data";
+// import useSendData from "../hooks/use-send-data";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import { useDispatch } from "react-redux";
 import { ModalsActions } from "../store/modals-slice";
 import Button from "./UI/Button";
+import { useMutation } from "@tanstack/react-query";
+import { addToCurrentRead, addToFavorite, addToHaveRead, addToToRead } from "../util/http";
 
 const BooksList = (props) => {
   const [user] = useAuthState(auth); // user, loading, error
   const dispatch = useDispatch();
 
-  const { sendData: sendFavoriteData } = useSendData();
-  const { sendData: sendToReadData } = useSendData();
-  const { sendData: sendCurrentReadData } = useSendData();
-  const { sendData: sendHaveReadData } = useSendData();
+  const { mutate: favoriteMutate } = useMutation({
+    mutationFn: addToFavorite,
+  })
+  const { mutate: toReadMutate } = useMutation({
+    mutationFn: addToToRead,
+  })
+  const { mutate: haveReadMutate } = useMutation({
+    mutationFn: addToHaveRead,
+  })
+  const { mutate: currentReadMutate } = useMutation({
+    mutationFn: addToCurrentRead,
+  })
+
+  // const { sendData: sendFavoriteData } = useSendData();
+  // const { sendData: sendToReadData } = useSendData();
+  // const { sendData: sendCurrentReadData } = useSendData();
+  // const { sendData: sendHaveReadData } = useSendData();
 
   const bookData = {
-    id: props.id,
     title: props.title,
-    authors: props.authors,
+    author: props.authors,
+    bookId: props.bookId,
     categories: props.categories,
     image: props.image,
     description: props.description,
@@ -32,46 +47,39 @@ const BooksList = (props) => {
   };
 
   const addToFavoriteHandler = async () => {
-    if (!user) {
-      dispatch(ModalsActions.changeShowLoginModal());
-      return;
-    }
-    sendFavoriteData("favorite", bookData);
+    // if (!user) {
+    //   dispatch(ModalsActions.changeShowLoginModal());
+    //   return;
+    // }
+    // sendFavoriteData("favorite", bookData);
+    favoriteMutate(bookData);
   };
 
   const addToToReadHandler = () => {
-    if (!user) {
-      dispatch(ModalsActions.changeShowLoginModal());
-      return;
-    }
-    sendToReadData("to-read", bookData);
+    // if (!user) {
+    //   dispatch(ModalsActions.changeShowLoginModal());
+    //   return;
+    // }
+    // sendToReadData("to-read", bookData);
+    toReadMutate(bookData);
   };
 
   const addToCompletedHandler = () => {
-    if (!user) {
-      dispatch(ModalsActions.changeShowLoginModal());
-      return;
-    }
-    sendHaveReadData("have-read", bookData);
+    // if (!user) {
+    //   dispatch(ModalsActions.changeShowLoginModal());
+    //   return;
+    // }
+    // sendHaveReadData("have-read", bookData);
+    haveReadMutate(bookData);
   };
 
   const addToCurrentReadHandler = () => {
-    if (!user) {
-      dispatch(ModalsActions.changeShowLoginModal());
-      return;
-    }
-    const currentReadBookData = {
-      id: props.id,
-      title: props.title,
-      authors: props.authors,
-      categories: props.categories,
-      image: props.image,
-      pages: props.pages,
-      textSnippet: props.textSnippet,
-      previewLink: props.previewLink,
-      readPages: 0,
-    };
-    sendCurrentReadData("current-read", currentReadBookData);
+    // if (!user) {
+    //   dispatch(ModalsActions.changeShowLoginModal());
+    //   return;
+    // }
+    // sendCurrentReadData("current-read", currentReadBookData);
+    currentReadMutate(bookData);
   };
 
   return (

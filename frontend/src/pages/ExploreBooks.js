@@ -68,7 +68,7 @@ const ExploreBooksPage = () => {
         resData.slice(0, resData.length).map((item) => (
           <li key={item.id}>
             <BooksList
-              id={item.id}
+              bookId={item.id}
               title={item.volumeInfo.title}
               authors={
                 item.volumeInfo.authors == null
@@ -97,7 +97,7 @@ const ExploreBooksPage = () => {
               }
               pages={
                 item.volumeInfo.pageCount == null
-                  ? notAvailable
+                  ? -1
                   : item.volumeInfo.pageCount
               }
               textSnippet={

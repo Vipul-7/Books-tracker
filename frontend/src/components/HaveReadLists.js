@@ -5,23 +5,33 @@ import { auth, db } from "../firebase";
 import { arrayRemove, doc, getDoc, updateDoc } from "firebase/firestore";
 import CompletedBookCard from "./UI/CompletedBookCard";
 import { ModalsActions } from "../store/modals-slice";
+import { queryClient, removeFromHaveRead } from "../util/http";
+import { useMutation } from "@tanstack/react-query";
 
 const HaveReadLists = (props) => {
   const [user] = useAuthState(auth);
   const dispatch = useDispatch();
 
+  const { mutate: removeFromHaveReadMutate } = useMutation({
+    mutationFn: removeFromHaveRead,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["haveRead"] });
+    }
+  })
+
   const removeFromCompletedHandler = async () => {
-    dispatch(haveReadActions.removeFromCompleted(props.id));
+    // dispatch(haveReadActions.removeFromCompleted(props.id));
 
-    const userRef = doc(db, "users", user.uid);
-    const userDoc = await getDoc(userRef);
+    // const userRef = doc(db, "users", user.uid);
+    // const userDoc = await getDoc(userRef);
 
-    const data = userDoc.data();
-    const index = data.haveRead.findIndex((item) => item.id === props.id);
+    // const data = userDoc.data();
+    // const index = data.haveRead.findIndex((item) => item.id === props.id);
 
-    await updateDoc(userRef, {
-      haveRead: arrayRemove(data.haveRead[index]),
-    });
+    // await updateDoc(userRef, {
+    //   haveRead: arrayRemove(data.haveRead[index]),
+    // });
+    removeFromHaveReadMutate(props.id);
 
     dispatch(ModalsActions.showInteractionFeedbackRemovedModal(true));
   };

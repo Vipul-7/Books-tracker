@@ -8,19 +8,35 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import useSendData from "../hooks/use-send-data";
 import Button from "./UI/Button";
 import { ModalsActions } from "../store/modals-slice";
+import { useMutation } from "@tanstack/react-query";
+import { addToHaveRead, addToToRead, queryClient, removeFromFavorite } from "../util/http";
 
 
 const FavoriteBooksList = (props) => {
-  const { sendData: sendDataToToRead } = useSendData();
-  const { sendData: sendDataToHaveRead } = useSendData();
+  // const { sendData: sendDataToToRead } = useSendData();
+  // const { sendData: sendDataToHaveRead } = useSendData();
+
+  const { mutate: removeFromFavoriteMutate } = useMutation({
+    mutationFn: removeFromFavorite,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["favorite"] });
+    }
+  })
+
+  const { mutate: haveReadMutate } = useMutation({
+    mutationFn: addToHaveRead,
+  })
+  const { mutate: toReadMutate } = useMutation({
+    mutationFn: addToToRead,
+  })
 
   const [user] = useAuthState(auth);
   const dispatch = useDispatch();
 
   const bookData = {
-    id: props.id,
+    bookId: props.bookId,
     title: props.title,
-    authors: props.authors,
+    author: props.authors,
     categories: props.categories,
     image: props.image,
     description: props.description,
@@ -31,27 +47,21 @@ const FavoriteBooksList = (props) => {
   };
 
   const removeFromFavoriteHandler = async () => {
-    dispatch(favActions.removeFromFavorite(props.id));
+    // dispatch(favActions.removeFromFavorite(props.id));
 
-    const userRef = doc(db, "users", user.uid);
-    const userDoc = await getDoc(userRef);
-
-    const data = userDoc.data();
-    const index = data.favorite.findIndex((item) => item.id === props.id);
-
-    await updateDoc(userRef, {
-      favorite: arrayRemove(data.favorite[index]),
-    });
+    removeFromFavoriteMutate(props.id);
 
     dispatch(ModalsActions.showInteractionFeedbackRemovedModal(true));
   };
 
   const addToToReadHandler = () => {
-    sendDataToToRead("to-read", bookData);
+    // sendDataToToRead("to-read", bookData);
+    toReadMutate(bookData);
   };
 
   const addToHaveReadHandler = () => {
-    sendDataToHaveRead("have-read", bookData);
+    // sendDataToHaveRead("have-read", bookData);
+    haveReadMutate(bookData);
   };
 
   return (
