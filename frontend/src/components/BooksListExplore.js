@@ -10,8 +10,11 @@ import { ModalsActions } from "../store/modals-slice";
 import Button from "./UI/Button";
 import { useMutation } from "@tanstack/react-query";
 import { addToCurrentRead, addToFavorite, addToHaveRead, addToToRead } from "../util/http";
+import isValidToken from "../util/validateToken";
+import { useNavigate } from "react-router";
 
 const BooksList = (props) => {
+  const navigate = useNavigate();
   const [user] = useAuthState(auth); // user, loading, error
   const dispatch = useDispatch();
 
@@ -52,6 +55,10 @@ const BooksList = (props) => {
     //   return;
     // }
     // sendFavoriteData("favorite", bookData);
+    if (!isValidToken()) {
+      navigate("/auth/login");
+      return;
+    }
     favoriteMutate(bookData);
   };
 
@@ -61,6 +68,10 @@ const BooksList = (props) => {
     //   return;
     // }
     // sendToReadData("to-read", bookData);
+    if (!isValidToken()) {
+      navigate("/auth/login");
+      return;
+    }
     toReadMutate(bookData);
   };
 
@@ -70,6 +81,10 @@ const BooksList = (props) => {
     //   return;
     // }
     // sendHaveReadData("have-read", bookData);
+    if (!isValidToken()) {
+      navigate("/auth/login");
+      return;
+    }
     haveReadMutate(bookData);
   };
 
@@ -79,6 +94,10 @@ const BooksList = (props) => {
     //   return;
     // }
     // sendCurrentReadData("current-read", currentReadBookData);
+    if (!isValidToken()) {
+      navigate("/auth/login");
+      return;
+    }
     currentReadMutate(bookData);
   };
 

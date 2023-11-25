@@ -10,14 +10,25 @@ import useRetrieveData from "../hooks/use-retrieve-data";
 import NotLoggedIn from "../components/NotLoggedIn";
 import { fetchHaveReadBooks } from "../util/http";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router";
+import isValidToken from "../util/validateToken";
 
 const HaveReadPage = () => {
+  const navigate = useNavigate();
+
   const [user] = useAuthState(auth);
 
   const { data: books, isPending, isError, error } = useQuery({
     queryKey: ["haveRead"],
     queryFn: ({ signal }) => fetchHaveReadBooks({ signal })
   })
+
+  useEffect(() => {
+    if (!isValidToken()) {
+      console.log("Not authenticated");
+      navigate("/auth/login");
+    }
+  }, [])
 
   let content;
   if (books) {

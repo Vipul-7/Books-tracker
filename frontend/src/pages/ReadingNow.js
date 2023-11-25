@@ -4,14 +4,26 @@ import { auth } from "../firebase";
 import Loading from "../components/Icons/Loading";
 import { fetchCurrentReadBooks } from "../util/http";
 import { useQuery } from "@tanstack/react-query";
+import isValidToken from "../util/validateToken";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 const ReadingNowPage = () => {
+  const navigate = useNavigate();
+
   const [user] = useAuthState(auth);
 
   const { data: books, isPending, isError, error } = useQuery({
     queryKey: ["currentRead"],
     queryFn: ({ signal }) => fetchCurrentReadBooks({ signal })
   })
+
+  useEffect(() => {
+    if (!isValidToken()) {
+      console.log("Not authenticated");
+      navigate("/auth/login");
+    }
+  }, [])
 
   let content;
   if (books) {

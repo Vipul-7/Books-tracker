@@ -8,14 +8,24 @@ import NotLoggedIn from "../components/NotLoggedIn";
 import Loading from "../components/Icons/Loading";
 import { useQuery } from "@tanstack/react-query";
 import { fetchFavoriteBooks } from "../util/http";
+import { useNavigate } from "react-router";
+import isValidToken from "../util/validateToken";
 
 const FavoritesPage = () => {
+  const navigate = useNavigate();
   const [user] = useAuthState(auth);
 
   const { data: favBooks, isPending, isError, error } = useQuery({
     queryKey: ["favorite"],
     queryFn: ({ signal }) => fetchFavoriteBooks({ signal })
   })
+
+  useEffect(() => {
+    if (!isValidToken()) {
+      console.log("Not authenticated");
+      navigate("/auth/login");
+    }
+  }, [])
 
   let content;
   if (favBooks) {

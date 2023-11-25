@@ -17,6 +17,8 @@ import Button from "./UI/Button";
 import { ModalsActions } from "../store/modals-slice";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient, removeFromCurrentRead, updateReadPages } from "../util/http";
+import isValidToken from "../util/validateToken";
+import {useNavigate } from "react-router";
 
 const CurrentRead = (props) => {
   const dispatch = useDispatch();
@@ -70,6 +72,7 @@ const CurrentRead = (props) => {
 
     dispatch(ModalsActions.showInteractionFeedbackRemovedModal(true));
   };
+  // console.log(isValidToken());
 
   return (
     <div className={classes.main}>

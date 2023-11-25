@@ -8,14 +8,25 @@ import NotLoggedIn from "../components/NotLoggedIn";
 import Loading from "../components/Icons/Loading";
 import { fetchToReadBooks } from "../util/http";
 import { useQuery } from "@tanstack/react-query";
+import isValidToken from "../util/validateToken";
+import { useNavigate } from "react-router";
 
 const ToReadPage = () => {
+  const navigate = useNavigate();
+
   const [user] = useAuthState(auth);
 
   const { data: books, isPending, isError, error } = useQuery({
     queryKey: ["toRead"],
     queryFn: ({ signal }) => fetchToReadBooks({ signal })
   })
+
+  useEffect(() => {
+    if (!isValidToken()) {
+      console.log("Not authenticated");
+      navigate("/auth/login");
+    }
+  }, [])
 
   let content;
   if (books) {

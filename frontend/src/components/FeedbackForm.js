@@ -7,13 +7,16 @@ import { arrayUnion, doc } from "firebase/firestore";
 import { updateDoc } from "firebase/firestore";
 import { useMutation } from "@tanstack/react-query";
 import { sendFeedback } from "../util/http";
+import isValidToken from "../util/validateToken";
+import { useNavigate } from "react-router";
 
 const FeedbackForm = () => {
+  const navigate = useNavigate();
   const [user] = useAuthState(auth);
   const [rangeInput, setRangeInput] = useState(7);
   // const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const { mutate, isPending, isError, error, isSuccess } = useMutation({ 
+  const { mutate, isPending, isError, error, isSuccess } = useMutation({
     mutationFn: sendFeedback,
   })
 
@@ -36,6 +39,12 @@ const FeedbackForm = () => {
     // };
 
     // sendData();
+
+    if (!isValidToken()) {
+      navigate("/auth/login");
+      return;
+    }
+
     mutate({
       message: event.target.feature.value,
       rating: parseInt(event.target.rate.value),
