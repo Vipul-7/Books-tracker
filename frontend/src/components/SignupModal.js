@@ -49,7 +49,7 @@ const SignupModal = () => {
     // }
 
     const closeModalHandler = () => {
-        navigate(-1);
+        navigate("/");
         // dispatch(ModalsActions.changeShowLoginModal());
     };
 

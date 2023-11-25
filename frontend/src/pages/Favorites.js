@@ -19,7 +19,7 @@ const FavoritesPage = () => {
 
   let content;
   if (favBooks) {
-    content = favBooks.data.favoriteBooks.map((favb) => (
+    content = favBooks.data?.favoriteBooks.map((favb) => (
       <li key={favb.id}>
         <FavoriteBooksList
           id={favb.id}

@@ -13,9 +13,19 @@ import ToReadIcon from "../Icons/ToReadIcon";
 import HaveReadIcon from "../Icons/HaveReadIcon";
 import FavoritesIcon from "../Icons/FavoritesIcon";
 import BookLogo from "../Icons/BookLogo";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { fetchUser } from "../../util/http";
+import { query } from "firebase/firestore";
+import { jwtDecode } from "jwt-decode";
+import { getUserId } from "../../util/validateToken";
 
 const MainNavigation = () => {
-  const [user] = useAuthState(auth);
+  const { data: userData } = useQuery({
+    queryKey: ["user"],
+    queryFn: ({ signal }) => fetchUser({ signal })
+  })
+
+  // if (userData) console.log(userData);
 
   const dispatch = useDispatch();
   const [isClicked, setIsClicked] = useState(false);
@@ -73,7 +83,7 @@ const MainNavigation = () => {
           </li>
           <li>
             <HaveReadIcon />
-            <NavLink 
+            <NavLink
               to="have-read"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
@@ -93,19 +103,19 @@ const MainNavigation = () => {
               Favorites
             </NavLink>
           </li>
-          {!user && (
+          {!userData?.data && (
             <div className={classes.login}>
               <NavLink to="auth/login">
                 <button>Sign-In</button>
               </NavLink>
             </div>
           )}
-          {user && (
+          {userData?.data && (
             <div className={classes["login-photo"]}>
               <button onClick={showMyProfileHandler}>
                 <img
-                  src={user.photoURL ? user.photoURL : ""}
-                  alt={user.displayName}
+                  src={userData?.data.getUser.profilePic ? userData?.data.getUser.profilePic : ""}
+                  alt={userData?.data.getUser.name}
                 />
               </button>
             </div>

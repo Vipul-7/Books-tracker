@@ -11,17 +11,18 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  name      String?
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  currentRead Book[] @relation("currentReadBooks")
-  favorite Book[] @relation("favoriteBooks")
-  haveRead  Book[] @relation("haveReadBooks")
-  toRead    Book[] @relation("toReadBooks")
-  feedback  Feedback[]
+  id          Int        @id @default(autoincrement())
+  email       String     @unique
+  profilePic  String?    @default("https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg")
+  name        String?
+  password    String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  currentRead Book[]     @relation("currentReadBooks")
+  favorite    Book[]     @relation("favoriteBooks")
+  haveRead    Book[]     @relation("haveReadBooks")
+  toRead      Book[]     @relation("toReadBooks")
+  feedback    Feedback[]
 }
 
 model Book {

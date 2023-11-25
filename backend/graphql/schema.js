@@ -16,6 +16,17 @@ module.exports = buildSchema(`
         textSnippet : String!
     }
 
+    type User{
+        id : ID!
+        profilePic : String!
+        email : String!
+        name : String!
+        favoriteBooksCount : Int!
+        toReadBooksCount : Int!
+        haveReadBooksCount : Int!
+        currentReadBooksCount : Int!
+    }
+
     input BookInput {
         image : String!
         bookId : String!
@@ -52,6 +63,7 @@ module.exports = buildSchema(`
         toReadBooks: [Book!]!
         haveReadBooks: [Book!]!
         currentReadBooks: [Book!]!
+        getUser : User!
     }
 
     schema {

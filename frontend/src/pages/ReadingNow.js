@@ -15,7 +15,7 @@ const ReadingNowPage = () => {
 
   let content;
   if (books) {
-    content = books.data.currentReadBooks.map((book) => (
+    content = books.data?.currentReadBooks.map((book) => (
       <li key={book.id}>
         <CurrentRead
           id={book.id}

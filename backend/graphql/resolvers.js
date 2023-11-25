@@ -385,6 +385,38 @@ module.exports = {
         }
 
         return true;
+    },
+
+    // ------------------ User ------------------
+    getUser: async ({}, req) => {
+        if (!req.isAuth) {
+            const error = new Error("Not authenticated");
+            error.code = 401;
+            throw error;
+        }
+
+        const user = await prisma.user.findUnique({
+            where: {
+                id: parseInt(req.userId)
+            }
+        });
+
+        if (!user) {
+            const error = new Error("Error while fetching user");
+            error.code = 500;
+            throw error;
+        }
+
+        return {
+            id: user.id,
+            profilePic: user.profilePic,
+            name : user.name,
+            email: user.email,
+            favoriteBooksCount: 2,
+            toReadBooksCount: 2,
+            haveReadBooksCount: 2,
+            currentReadBooksCount: 2
+        }
     }
 };
 

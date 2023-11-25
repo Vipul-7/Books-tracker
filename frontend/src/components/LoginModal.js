@@ -8,7 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import GoogleIcon from "./Icons/GoogleIcon";
 import { useMutation } from "@tanstack/react-query";
 import { useRef } from "react";
-import { login } from "../util/http";
+import { login, queryClient } from "../util/http";
 import { Link, useNavigate } from "react-router-dom"
 
 const LoginModal = () => {
@@ -29,8 +29,9 @@ const LoginModal = () => {
       if (data.token) {
         localStorage.setItem("token", data.token);
         // dispatch(ModalsActions.changeShowLoginModal());
+        navigate("/");
       }
-      // navigate(-1);
+      queryClient.invalidateQueries({ queryKey: ["user"] });
     }
   })
 
@@ -55,7 +56,7 @@ const LoginModal = () => {
   // }
 
   const closeModalHandler = () => {
-    navigate(-1);
+    navigate("/");
     // dispatch(ModalsActions.changeShowLoginModal());
   };
 

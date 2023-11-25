@@ -445,3 +445,37 @@ export const sendFeedback = async ({ message, rating }) => {
     const data = await response.json();
     return data;
 }
+
+// ------------------ User --------------
+
+export const fetchUser = async ({ signal }) => {
+    const graphqlQuery = {
+        query: `
+            query {
+                getUser {
+                    id
+                    profilePic
+                    email
+                    name
+                    favoriteBooksCount
+                    toReadBooksCount
+                    haveReadBooksCount
+                    currentReadBooksCount
+                }
+            }
+        `
+    }
+
+    const response = await fetch("http://localhost:8080/graphql", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
+        body: JSON.stringify(graphqlQuery),
+        signal: signal
+    });
+
+    const data = await response.json();
+    return data;
+}

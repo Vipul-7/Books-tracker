@@ -21,7 +21,7 @@ const HaveReadPage = () => {
 
   let content;
   if (books) {
-    content = books.data.haveReadBooks.map((book) => (
+    content = books.data?.haveReadBooks.map((book) => (
       <li key={book.id}>
         <HaveReadLists
           id={book.id}

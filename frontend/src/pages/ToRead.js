@@ -19,7 +19,7 @@ const ToReadPage = () => {
 
   let content;
   if (books) {
-    content = books.data.toReadBooks.map((book) => (
+    content = books.data?.toReadBooks.map((book) => (
       <li key={book.id}>
         <ToReadLists
           id={book.id}

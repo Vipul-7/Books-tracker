@@ -120,7 +120,7 @@
   margin-right: .9rem;
 }
 
-.auth-transfer a {
+.auth-transfer a,a:visited,a:active,a:link {
   font-size: 1.6rem;
   color: #8a2b06;
   margin-bottom: .4rem;
