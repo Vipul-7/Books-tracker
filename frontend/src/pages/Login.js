@@ -1,4 +1,4 @@
-import LoginModal from "../components/LoginModal"
+import LoginModal from "../components/auth/LoginModal"
 
 const LoginPage = () => {
     return <LoginModal />

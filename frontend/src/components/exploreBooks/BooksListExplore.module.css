@@ -7,12 +7,6 @@
 .buttons :not(:last-child) {
   margin-right: 1rem;
 }
-/*
-
-.buttons button:hover {
-  scale: calc(1.05);
-  background-color: rgb(153, 153, 211);
-} */
 
 .description {
   display: block;

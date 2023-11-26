@@ -388,7 +388,7 @@ module.exports = {
     },
 
     // ------------------ User ------------------
-    getUser: async ({}, req) => {
+    getUser: async ({ }, req) => {
         if (!req.isAuth) {
             const error = new Error("Not authenticated");
             error.code = 401;
@@ -407,15 +407,45 @@ module.exports = {
             throw error;
         }
 
+        const favoriteBooks = await prisma.user.findUnique({
+            where: {
+                id: parseInt(req.userId)
+            }
+        }).favorite();
+
+        const toReadBooks = await prisma.user.findUnique({
+            where: {
+                id: parseInt(req.userId)
+            }
+        }).toRead();
+
+        const haveReadBooks = await prisma.user.findUnique({
+            where: {
+                id: parseInt(req.userId)
+            }
+        }).haveRead();
+
+        const currentReadBooks = await prisma.user.findUnique({
+            where: {
+                id: parseInt(req.userId)
+            }
+        }).currentRead();
+
+        if (favoriteBooks === null || toReadBooks === null || haveReadBooks === null || currentReadBooks === null) {
+            const error = new Error("Error while fetching user");
+            error.code = 500;
+            throw error;
+        }
+
         return {
             id: user.id,
             profilePic: user.profilePic,
-            name : user.name,
+            name: user.name,
             email: user.email,
-            favoriteBooksCount: 2,
-            toReadBooksCount: 2,
-            haveReadBooksCount: 2,
-            currentReadBooksCount: 2
+            favoriteBooksCount: favoriteBooks.length,
+            toReadBooksCount: toReadBooks.length,
+            haveReadBooksCount: haveReadBooks.length,
+            currentReadBooksCount: currentReadBooks.length
         }
     }
 };

@@ -1,5 +1,4 @@
-import React from 'react'
-import SignupModal from '../components/SignupModal'
+import SignupModal from '../components/auth/SignupModal'
 
 const SignupPage = () => {
   return (

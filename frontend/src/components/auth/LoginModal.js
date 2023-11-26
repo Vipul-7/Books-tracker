@@ -1,23 +1,14 @@
-import { useDispatch } from "react-redux";
-import { signInWithPopup } from "firebase/auth";
-import Modal from "./Layout/Modal";
-import { ModalsActions } from "../store/modals-slice";
+import Modal from "../Layout/Modal";
 import classes from "./AuthModal.module.css";
-import { auth, provider } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
-import GoogleIcon from "./Icons/GoogleIcon";
 import { useMutation } from "@tanstack/react-query";
 import { useRef } from "react";
-import { login, queryClient } from "../util/http";
+import { login, queryClient } from "../../util/http";
 import { Link, useNavigate } from "react-router-dom"
 
 const LoginModal = () => {
   const navigate = useNavigate();
   const emailRef = useRef();
   const passwordRef = useRef();
-
-  const [user] = useAuthState(auth);
-  const dispatch = useDispatch();
 
   const { mutate: loginMutate, isPending, isError, error } = useMutation({
     mutationFn: login,
@@ -28,20 +19,11 @@ const LoginModal = () => {
 
       if (data.token) {
         localStorage.setItem("token", data.token);
-        // dispatch(ModalsActions.changeShowLoginModal());
         navigate("/");
       }
       queryClient.invalidateQueries({ queryKey: ["user"] });
     }
   })
-
-  const signInHandler = async () => {
-    try {
-      await signInWithPopup(auth, provider);
-    } catch (error) {
-      window.alert(error.message);
-    }
-  };
 
   const loginHandler = () => {
     loginMutate({
@@ -50,14 +32,8 @@ const LoginModal = () => {
     })
   }
 
-  // // close the modal while just logged in
-  // if (user) {
-  //   dispatch(ModalsActions.changeShowLoginModal());
-  // }
-
   const closeModalHandler = () => {
     navigate("/");
-    // dispatch(ModalsActions.changeShowLoginModal());
   };
 
   return (

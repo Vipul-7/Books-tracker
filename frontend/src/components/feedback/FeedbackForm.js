@@ -1,20 +1,13 @@
 import classes from "./FeedbackForm.module.css";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase";
 import { useState } from "react";
-import { db } from "../firebase";
-import { arrayUnion, doc } from "firebase/firestore";
-import { updateDoc } from "firebase/firestore";
 import { useMutation } from "@tanstack/react-query";
-import { sendFeedback } from "../util/http";
-import isValidToken from "../util/validateToken";
+import { sendFeedback } from "../../util/http";
+import isValidToken from "../../util/validateToken";
 import { useNavigate } from "react-router";
 
 const FeedbackForm = () => {
   const navigate = useNavigate();
-  const [user] = useAuthState(auth);
   const [rangeInput, setRangeInput] = useState(7);
-  // const [isSubmitted, setIsSubmitted] = useState(false);
 
   const { mutate, isPending, isError, error, isSuccess } = useMutation({
     mutationFn: sendFeedback,
@@ -22,23 +15,6 @@ const FeedbackForm = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-
-    // const userRef = doc(db, "users", user.uid);
-
-    // const data = {
-    //   email: user.email,
-    //   rate: event.target.rate.value,
-    //   feature: event.target.feature.value,
-    //   name: event.target.name.value,
-    // };
-
-    // const sendData = async () => {
-    //   await updateDoc(userRef, {
-    //     feedback: arrayUnion(data),
-    //   });
-    // };
-
-    // sendData();
 
     if (!isValidToken()) {
       navigate("/auth/login");

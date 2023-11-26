@@ -1,22 +1,13 @@
-import Card from "./UI/Card";
+import Card from "../UI/Card";
 import classes from "./BooksListExplore.module.css";
-// import { useSelector } from "react-redux";
-
-// import useSendData from "../hooks/use-send-data";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase";
-import { useDispatch } from "react-redux";
-import { ModalsActions } from "../store/modals-slice";
-import Button from "./UI/Button";
+import Button from "../UI/Button";
 import { useMutation } from "@tanstack/react-query";
-import { addToCurrentRead, addToFavorite, addToHaveRead, addToToRead } from "../util/http";
-import isValidToken from "../util/validateToken";
+import { addToCurrentRead, addToFavorite, addToHaveRead, addToToRead } from "../../util/http";
+import isValidToken from "../../util/validateToken";
 import { useNavigate } from "react-router";
 
 const BooksList = (props) => {
   const navigate = useNavigate();
-  const [user] = useAuthState(auth); // user, loading, error
-  const dispatch = useDispatch();
 
   const { mutate: favoriteMutate } = useMutation({
     mutationFn: addToFavorite,
@@ -30,11 +21,6 @@ const BooksList = (props) => {
   const { mutate: currentReadMutate } = useMutation({
     mutationFn: addToCurrentRead,
   })
-
-  // const { sendData: sendFavoriteData } = useSendData();
-  // const { sendData: sendToReadData } = useSendData();
-  // const { sendData: sendCurrentReadData } = useSendData();
-  // const { sendData: sendHaveReadData } = useSendData();
 
   const bookData = {
     title: props.title,
@@ -50,11 +36,6 @@ const BooksList = (props) => {
   };
 
   const addToFavoriteHandler = async () => {
-    // if (!user) {
-    //   dispatch(ModalsActions.changeShowLoginModal());
-    //   return;
-    // }
-    // sendFavoriteData("favorite", bookData);
     if (!isValidToken()) {
       navigate("/auth/login");
       return;
@@ -63,11 +44,6 @@ const BooksList = (props) => {
   };
 
   const addToToReadHandler = () => {
-    // if (!user) {
-    //   dispatch(ModalsActions.changeShowLoginModal());
-    //   return;
-    // }
-    // sendToReadData("to-read", bookData);
     if (!isValidToken()) {
       navigate("/auth/login");
       return;
@@ -76,11 +52,6 @@ const BooksList = (props) => {
   };
 
   const addToCompletedHandler = () => {
-    // if (!user) {
-    //   dispatch(ModalsActions.changeShowLoginModal());
-    //   return;
-    // }
-    // sendHaveReadData("have-read", bookData);
     if (!isValidToken()) {
       navigate("/auth/login");
       return;
@@ -89,11 +60,6 @@ const BooksList = (props) => {
   };
 
   const addToCurrentReadHandler = () => {
-    // if (!user) {
-    //   dispatch(ModalsActions.changeShowLoginModal());
-    //   return;
-    // }
-    // sendCurrentReadData("current-read", currentReadBookData);
     if (!isValidToken()) {
       navigate("/auth/login");
       return;

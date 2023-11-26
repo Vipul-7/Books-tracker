@@ -1,19 +1,13 @@
 import { useDispatch } from "react-redux";
-import Card from "../components/UI/Card";
-import classes from "./BooksListExplore.module.css";
-import { ToReadActions } from "../store/to-read-slice";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, db } from "../firebase";
-import { arrayRemove, doc, getDoc, updateDoc } from "firebase/firestore";
-import useSendData from "../hooks/use-send-data";
-import Button from "./UI/Button";
-import { ModalsActions } from "../store/modals-slice";
-import { addToCurrentRead, addToHaveRead, queryClient, removeFromToRead } from "../util/http";
+import Card from "../UI/Card";
+import classes from "../exploreBooks/BooksListExplore.module.css";
+import Button from "../UI/Button";
+import { ModalsActions } from "../../store/modals-slice";
+import { addToCurrentRead, addToHaveRead, queryClient, removeFromToRead } from "../../util/http";
 import { useMutation } from "@tanstack/react-query";
 
 const ToReadLists = (props) => {
-  // const { sendData: sendDataToReadingNow } = useSendData();
-  // const { sendData: sendDataToHaveRead } = useSendData();
+  const dispatch = useDispatch();
 
   const { mutate: removeFromToReadMutate } = useMutation({
     mutationFn: removeFromToRead,
@@ -42,33 +36,17 @@ const ToReadLists = (props) => {
     previewLink: props.previewLink,
   };
 
-  const [user] = useAuthState(auth);
-  const dispatch = useDispatch();
 
   const removeFromToReadHandler = async () => {
-    // dispatch(ToReadActions.removeFromToRead(props.id));
-
-    // const userRef = doc(db, "users", user.uid);
-    // const userDoc = await getDoc(userRef);
-
-    // const data = userDoc.data();
-    // const index = data.toRead.findIndex((item) => item.id === props.id);
-
-    // await updateDoc(userRef, {
-    //   toRead: arrayRemove(data.toRead[index]),
-    // });
     removeFromToReadMutate(props.id);
-
     dispatch(ModalsActions.showInteractionFeedbackRemovedModal(true));
   };
 
   const addToReadingNowHandler = () => {
-    // sendDataToReadingNow("current-read", { ...bookData, readPages: 0 });
     currentReadMutate(bookData);
   };
 
   const addToHaveReadHandler = () => {
-    // sendDataToHaveRead("have-read", bookData);
     haveReadMutate(bookData);
   };
 

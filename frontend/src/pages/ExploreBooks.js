@@ -1,5 +1,5 @@
 import { useState } from "react";
-import BooksList from "../components/BooksListExplore";
+import BooksList from "../components/exploreBooks/BooksListExplore"
 import SearchBook from "../components/UI/SearchBook";
 import classes from "./ExploreBooks.module.css";
 import { json } from "react-router";

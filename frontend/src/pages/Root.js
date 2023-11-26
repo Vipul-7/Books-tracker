@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router";
-import LoginModal from "../components/LoginModal";
+import LoginModal from "../components/auth/LoginModal";
 import MainNavigation from "../components/Layout/MainNavigation";
-import UserLoginDetailModal from "../components/UserLoginDetailModal";
-import Feedback from "../components/Feedback";
+import UserLoginDetailModal from "../components/profile/UserLoginDetailModal";
+import Feedback from "../components/feedback/Feedback";
 import InteractionFeedback from "../components/UI/InteractionFeedback";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";

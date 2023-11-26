@@ -1,13 +1,6 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import HaveReadLists from "../components/HaveReadLists";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase";
-import classes from "./HaveRead.module.css";
+import HaveReadLists from "../components/haveRead/HaveReadLists";
 import Loading from "../components/Icons/Loading";
-
-import useRetrieveData from "../hooks/use-retrieve-data";
-import NotLoggedIn from "../components/NotLoggedIn";
 import { fetchHaveReadBooks } from "../util/http";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
@@ -15,8 +8,6 @@ import isValidToken from "../util/validateToken";
 
 const HaveReadPage = () => {
   const navigate = useNavigate();
-
-  const [user] = useAuthState(auth);
 
   const { data: books, isPending, isError, error } = useQuery({
     queryKey: ["haveRead"],

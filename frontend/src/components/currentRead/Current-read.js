@@ -1,28 +1,15 @@
 import ProgressBar from "@ramonak/react-progress-bar";
-import {
-  arrayRemove,
-  arrayUnion,
-  doc,
-  getDoc,
-  updateDoc,
-} from "firebase/firestore";
 import { useRef } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
-import { auth, db } from "../firebase";
-import { CurrentReadActions } from "../store/current-read-slice";
 import classes from "./Current-read.module.css";
-import Card from "./UI/Card";
-import Button from "./UI/Button";
-import { ModalsActions } from "../store/modals-slice";
+import Card from "../UI/Card";
+import Button from "../UI/Button";
+import { ModalsActions } from "../../store/modals-slice";
 import { useMutation } from "@tanstack/react-query";
-import { queryClient, removeFromCurrentRead, updateReadPages } from "../util/http";
-import isValidToken from "../util/validateToken";
-import {useNavigate } from "react-router";
+import { queryClient, removeFromCurrentRead, updateReadPages } from "../../util/http";
 
 const CurrentRead = (props) => {
   const dispatch = useDispatch();
-  const [user] = useAuthState(auth);
   const readPagesInput = useRef();
 
   const { mutate: updateReadPagesMutate } = useMutation({
@@ -39,7 +26,6 @@ const CurrentRead = (props) => {
     }
   })
 
-  // send data to the firstore and update the porogress bar
   const addToProgessBarHandler = async () => {
     const inputValue = readPagesInput.current.value;
     const inputValuePercentage = Math.floor((inputValue * 100) / props.pages);
@@ -57,22 +43,9 @@ const CurrentRead = (props) => {
   };
 
   const removeFromCurrentReadHandler = async () => {
-    // dispatch(CurrentReadActions.removeFromCurrentRead(props.id));
-
-    // const userRef = doc(db, "users", user.uid);
-    // const userDoc = await getDoc(userRef);
-
-    // const data = userDoc.data();
-    // const index = data.currentRead.findIndex((item) => item.id === props.id);
-
-    // await updateDoc(userRef, {
-    //   currentRead: arrayRemove(data.currentRead[index]),
-    // });
     removeFromCurrentReadMutate(props.id);
-
     dispatch(ModalsActions.showInteractionFeedbackRemovedModal(true));
   };
-  // console.log(isValidToken());
 
   return (
     <div className={classes.main}>

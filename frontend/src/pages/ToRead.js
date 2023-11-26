@@ -1,10 +1,5 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import ToReadLists from "../components/ToReadLists";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase";
-import useRetrieveData from "../hooks/use-retrieve-data";
-import NotLoggedIn from "../components/NotLoggedIn";
+import ToReadLists from "../components/toRead/ToReadLists";
 import Loading from "../components/Icons/Loading";
 import { fetchToReadBooks } from "../util/http";
 import { useQuery } from "@tanstack/react-query";
@@ -13,8 +8,6 @@ import { useNavigate } from "react-router";
 
 const ToReadPage = () => {
   const navigate = useNavigate();
-
-  const [user] = useAuthState(auth);
 
   const { data: books, isPending, isError, error } = useQuery({
     queryKey: ["toRead"],

@@ -3,29 +3,21 @@ import { Link, NavLink } from "react-router-dom";
 import classes from "./MainNavigation.module.css";
 import { useState } from "react";
 import { ModalsActions } from "../../store/modals-slice";
-
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../firebase";
-
 import ExploreIcon from "../Icons/ExploreIcon";
 import NowIcon from "../Icons/NowIcon";
 import ToReadIcon from "../Icons/ToReadIcon";
 import HaveReadIcon from "../Icons/HaveReadIcon";
 import FavoritesIcon from "../Icons/FavoritesIcon";
 import BookLogo from "../Icons/BookLogo";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { fetchUser } from "../../util/http";
-import { query } from "firebase/firestore";
-import { jwtDecode } from "jwt-decode";
-import { getUserId } from "../../util/validateToken";
+
 
 const MainNavigation = () => {
   const { data: userData } = useQuery({
     queryKey: ["user"],
     queryFn: ({ signal }) => fetchUser({ signal })
   })
-
-  // if (userData) console.log(userData);
 
   const dispatch = useDispatch();
   const [isClicked, setIsClicked] = useState(false);

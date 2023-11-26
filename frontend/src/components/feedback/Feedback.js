@@ -1,9 +1,9 @@
 import { useState } from "react";
 import classes from "./Feedback.module.css";
 import FeedbackForm from "./FeedbackForm";
-import CloseIcon from "./Icons/CloseIcon";
-import FeedbackIcon from "./Icons/FeedbackIcon";
-import Modal from "./Layout/Modal";
+import CloseIcon from "../Icons/CloseIcon";
+import FeedbackIcon from "../Icons/FeedbackIcon";
+import Modal from "../Layout/Modal";
 
 const Feedback = () => {
   const [isShowModal, setIsShowModal] = useState(false);

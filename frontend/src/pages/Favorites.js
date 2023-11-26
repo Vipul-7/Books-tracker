@@ -1,10 +1,5 @@
-import FavoriteBooksList from "../components/FavoritesBookLists";
-import { useSelector } from "react-redux";
-import useRetrieveData from "../hooks/use-retrieve-data";
+import FavoriteBooksList from "../components/favorite/FavoritesBookLists";
 import { useEffect } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase";
-import NotLoggedIn from "../components/NotLoggedIn";
 import Loading from "../components/Icons/Loading";
 import { useQuery } from "@tanstack/react-query";
 import { fetchFavoriteBooks } from "../util/http";
@@ -13,7 +8,6 @@ import isValidToken from "../util/validateToken";
 
 const FavoritesPage = () => {
   const navigate = useNavigate();
-  const [user] = useAuthState(auth);
 
   const { data: favBooks, isPending, isError, error } = useQuery({
     queryKey: ["favorite"],

@@ -1,6 +1,4 @@
-import CurrentRead from "../components/Current-read";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase";
+import CurrentRead from "../components/currentRead/Current-read";
 import Loading from "../components/Icons/Loading";
 import { fetchCurrentReadBooks } from "../util/http";
 import { useQuery } from "@tanstack/react-query";
@@ -10,8 +8,6 @@ import { useEffect } from "react";
 
 const ReadingNowPage = () => {
   const navigate = useNavigate();
-
-  const [user] = useAuthState(auth);
 
   const { data: books, isPending, isError, error } = useQuery({
     queryKey: ["currentRead"],

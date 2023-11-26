@@ -1,37 +1,12 @@
 import { useDispatch } from "react-redux";
-import Modal from "./Layout/Modal";
+import Modal from "../Layout/Modal";
 import classes from "./UserLoginDetailModal.module.css";
-import { ModalsActions } from "../store/modals-slice";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, db } from "../firebase";
-import { useEffect } from "react";
-import { doc, getDoc } from "firebase/firestore";
-import { useState } from "react";
+import { ModalsActions } from "../../store/modals-slice";
 import { useQuery } from "@tanstack/react-query";
-import { fetchUser } from "../util/http";
+import { fetchUser } from "../../util/http";
 
 const UserLoginDetailModal = () => {
-  // const [user] = useAuthState(auth);
-  // const [toReadCount, setToReadCount] = useState(0);
-  // const [readingCount, setReadingCount] = useState(0);
-  // const [readCount, setReadCount] = useState(0);
-  // const [favCount, setFavCount] = useState(0);
-
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const userRef = doc(db, "users", userData.data.getUser.uid);
-  //     const userDoc = await getDoc(userRef);
-  //     const data = userDoc.data();
-
-  //     setToReadCount(data.toRead.length);
-  //     setReadingCount(data.currentRead.length);
-  //     setReadCount(data.haveRead.length);
-  //     setFavCount(data.favourite.length);
-  //   };
-  //   fetchData();
-  // }, []);
 
   const { data: userData } = useQuery({
     queryKey: ["user"],
@@ -40,7 +15,6 @@ const UserLoginDetailModal = () => {
 
   const logoutHandler = async () => {
     dispatch(ModalsActions.showProfileModal());
-    // await auth.signOut();
     localStorage.removeItem("token");
   };
 
@@ -61,7 +35,7 @@ const UserLoginDetailModal = () => {
       <div className={classes["books-count"]}>
         <ul>
           <li>
-            <span className={classes.label}>Current read Books :- &nbsp;</span>
+            <span className={classes.label}>Current read Books count:- &nbsp;</span>
             <span className={classes.count}>{userData.data.getUser.currentReadBooksCount}</span>
           </li>
           <li>
@@ -75,8 +49,8 @@ const UserLoginDetailModal = () => {
             <span className={classes.count}>{userData.data.getUser.haveReadBooksCount}</span>
           </li>
           <li>
-            <span className={classes.label}>Fav-books count :- &nbsp;</span>
-            <span className={classes.count}>{userData.data.getUser.favoritesBooksCount}</span>
+            <span className={classes.label}>Favorite books count :- &nbsp;</span>
+            <span className={classes.count}>{userData.data.getUser.favoriteBooksCount}</span>
           </li>
         </ul>
       </div>

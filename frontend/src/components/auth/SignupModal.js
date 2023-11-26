@@ -1,14 +1,8 @@
-import { useDispatch } from "react-redux";
-import { signInWithPopup } from "firebase/auth";
-import Modal from "./Layout/Modal";
-import { ModalsActions } from "../store/modals-slice";
+import Modal from "../Layout/Modal";
 import classes from "./AuthModal.module.css";
-import { auth, provider } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
-import GoogleIcon from "./Icons/GoogleIcon";
 import { useMutation } from "@tanstack/react-query";
 import { useRef } from "react";
-import { login, signUp } from "../util/http";
+import {signUp } from "../../util/http"
 import { Link, useNavigate } from "react-router-dom"
 
 const SignupModal = () => {
@@ -17,23 +11,12 @@ const SignupModal = () => {
     const nameRef = useRef();
     const passwordRef = useRef();
 
-    //   const [user] = useAuthState(auth);
-    //   const dispatch = useDispatch();
-
     const { mutate: signupMutate, isPending, isError, error } = useMutation({
         mutationFn: signUp,
         onSuccess: (data) => {
             navigate("/auth/login");
         }
     })
-
-    //   const signInHandler = async () => {
-    //     try {
-    //       await signInWithPopup(auth, provider);
-    //     } catch (error) {
-    //       window.alert(error.message);
-    //     }
-    //   };
 
     const signupHandler = () => {
         signupMutate({
@@ -43,14 +26,8 @@ const SignupModal = () => {
         })
     }
 
-    // // close the modal while just logged in
-    // if (user) {
-    //   dispatch(ModalsActions.changeShowLoginModal());
-    // }
-
     const closeModalHandler = () => {
         navigate("/");
-        // dispatch(ModalsActions.changeShowLoginModal());
     };
 
     return (

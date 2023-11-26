@@ -1,20 +1,14 @@
 import { useDispatch } from "react-redux";
-import Card from "../components/UI/Card";
-import classes from "./BooksListExplore.module.css";
-import { favActions } from "../store/favorite-slice";
-import { updateDoc, doc, getDoc, arrayRemove } from "firebase/firestore";
-import { auth, db } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
-import useSendData from "../hooks/use-send-data";
-import Button from "./UI/Button";
-import { ModalsActions } from "../store/modals-slice";
+import Card from "../UI/Card";
+import classes from "../exploreBooks/BooksListExplore.module.css";
+import Button from "../UI/Button";
+import { ModalsActions } from "../../store/modals-slice";
 import { useMutation } from "@tanstack/react-query";
-import { addToHaveRead, addToToRead, queryClient, removeFromFavorite } from "../util/http";
+import { addToHaveRead, addToToRead, queryClient, removeFromFavorite } from "../../util/http";
 
 
 const FavoriteBooksList = (props) => {
-  // const { sendData: sendDataToToRead } = useSendData();
-  // const { sendData: sendDataToHaveRead } = useSendData();
+  const dispatch = useDispatch();
 
   const { mutate: removeFromFavoriteMutate } = useMutation({
     mutationFn: removeFromFavorite,
@@ -30,9 +24,6 @@ const FavoriteBooksList = (props) => {
     mutationFn: addToToRead,
   })
 
-  const [user] = useAuthState(auth);
-  const dispatch = useDispatch();
-
   const bookData = {
     bookId: props.bookId,
     title: props.title,
@@ -47,20 +38,15 @@ const FavoriteBooksList = (props) => {
   };
 
   const removeFromFavoriteHandler = async () => {
-    // dispatch(favActions.removeFromFavorite(props.id));
-
     removeFromFavoriteMutate(props.id);
-
     dispatch(ModalsActions.showInteractionFeedbackRemovedModal(true));
   };
 
   const addToToReadHandler = () => {
-    // sendDataToToRead("to-read", bookData);
     toReadMutate(bookData);
   };
 
   const addToHaveReadHandler = () => {
-    // sendDataToHaveRead("have-read", bookData);
     haveReadMutate(bookData);
   };
 
