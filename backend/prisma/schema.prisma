@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int        @id @default(autoincrement())
+  email       String     @unique
+  profilePic  String?    @default("https://static.vecteezy.com/system/resources/previews/020/765/399/non_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg")
+  name        String?
+  password    String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  currentRead Book[]     @relation("currentReadBooks")
+  favorite    Book[]     @relation("favoriteBooks")
+  haveRead    Book[]     @relation("haveReadBooks")
+  toRead      Book[]     @relation("toReadBooks")
+  feedback    Feedback[]
+}
+
+model Book {
+  id          Int      @id @default(autoincrement())
+  bookId      String   @unique
+  image       String
+  title       String
+  author      String[]
+  description String
+  categories  String[]
+  language    String
+  pages       Int
+  previewLink String
+  readPages   Int
+  textSnippet String
+  createdAt   DateTime @default(now())
+  currentRead User[]   @relation("currentReadBooks")
+  favorite    User[]   @relation("favoriteBooks")
+  haveRead    User[]   @relation("haveReadBooks")
+  toRead      User[]   @relation("toReadBooks")
+}
+
+model Feedback {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  message   String
+  rating    Int
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+}

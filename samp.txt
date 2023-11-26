@@ -1,0 +1,36 @@
+----- add book to favorite -----
+
+mutation addBookToFavorite($image : String!,$bookId : String!,$title:String!,$author:[String!]!,$description:String!,$categories:[String!]!,$language:String!,$pages:Int!,$previewLink:String!,$readPages:Int!,$textSnippet:String!){
+    addToFavorite(bookData : {
+        image: $image,
+        bookId : $bookId,
+          title: $title,
+          author: $author,
+          description: $description,
+          categories: $categories,
+          language: $language,
+          pages: $pages,
+          previewLink: $previewLink,
+          readPages: $readPages,
+          textSnippet: $textSnippet,
+    })
+}
+
+~> variables : 
+
+{
+    "image": "some string",
+    "bookId" : "123",
+          "title": "some string",
+          "author": ["some string"],
+          "description": "some string",
+          "categories": ["some string"],
+          "language": "some string",
+          "pages": 90,
+          "previewLink": "some string",
+          "readPages": 10,
+          "textSnippet": "some string"
+}
+
+---get book from favorite ----
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwidXNlcklkIjoxLCJpYXQiOjE3MDA3MTU4NTIsImV4cCI6MTcwMDcxOTQ1Mn0.MthJ2syZj9wZmvwg3JPgFin7NuqoNfva0BO2rf-8LoA

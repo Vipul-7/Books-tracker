@@ -1,0 +1,30 @@
+{
+  "name": "book-tracker-backend",
+  "version": "1.0.0",
+  "description": "a backend of book-tracker app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "Vipul chaudhary",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.5.2",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-graphql": "^0.12.0",
+    "express-validator": "^7.0.1",
+    "graphql": "^15.3.0",
+    "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.0.1"
+  },
+  "devDependencies": {
+    "prisma": "^5.5.2"
+  },
+  "engines": {
+    "node": ">=18.16.0 <19.0.0"
+  }
+}

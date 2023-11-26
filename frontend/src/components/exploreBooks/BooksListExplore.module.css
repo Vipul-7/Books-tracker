@@ -1,0 +1,18 @@
+.buttons {
+  display: block;
+  text-align: center;
+  margin: 1rem 0 2.5rem 0;
+}
+
+.buttons :not(:last-child) {
+  margin-right: 1rem;
+}
+
+.description {
+  display: block;
+  background-color: azure;
+}
+
+li {
+  list-style: none;
+}

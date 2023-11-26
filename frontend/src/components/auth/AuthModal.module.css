@@ -1,0 +1,127 @@
+.title {
+  text-align: center;
+  font-size: 3.5rem;
+  border-bottom: 1px solid black;
+}
+
+.actions {
+  text-align: right;
+  display: flex;
+  font-size: 1.6rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.actions button {
+  margin-top: 2rem;
+  font: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #8a2b06;
+  padding: 1rem 3rem;
+  border-radius: 2.5rem;
+  margin-left: 1.9rem;
+}
+
+.actions button:hover,
+.actions button:active {
+  /* background-color: #5a1a01; */
+  background-color: rgb(45, 44, 56);
+  border-color: rgb(45, 44, 56);
+  color: white;
+}
+
+.actions .button--alt {
+  color: rgb(45, 44, 56);
+}
+
+.actions .button {
+  background-color: #8a2b06;
+  color: white;
+}
+
+.provider-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.9rem 0;
+}
+
+.provider-button button {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  border: 1px solid #8a2b06;
+  padding: 0.9rem 2.9rem;
+  margin-left: 1.8rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.provider-button button:hover {
+  background-color: rgb(93, 91, 114);
+  border-color: rgb(45, 44, 56);
+  color: white;
+}
+
+.provider-button svg {
+  margin-right: 0.7rem;
+}
+
+.auth-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1.9rem 0;
+}
+
+.auth-input label {
+  font-size: 2rem;
+  color: #8a2b06;
+  margin-bottom: .4rem;
+}
+
+.auth-input input {
+  font-size: 1.6rem;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  width: 60%;
+  margin-bottom: 1.5rem;
+}
+
+.auth-input button {
+  background-color: #8a2b06;
+  color: white;
+  font-size: 1.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  width: 60%;
+  margin-top: 1.5rem;
+  cursor: pointer;
+}
+
+.auth-transfer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.9rem 0;
+}
+
+.auth-transfer span {
+  font-size: 1.6rem;
+  color: #8a2b06;
+  margin-bottom: .4rem;
+  margin-right: .9rem;
+}
+
+.auth-transfer a,a:visited,a:active,a:link {
+  font-size: 1.6rem;
+  color: #8a2b06;
+  margin-bottom: .4rem;
+}
