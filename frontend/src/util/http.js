@@ -3,6 +3,7 @@ import { QueryClient } from "@tanstack/react-query";
 export const queryClient = new QueryClient();
 
 // ------------------ Favorite --------------------
+// https://books-tracker-api.onrender.com
 
 export const addToFavorite = async (bookData) => {
     const graphqlQuery = {
