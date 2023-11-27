@@ -3,6 +3,7 @@ import { QueryClient } from "@tanstack/react-query";
 export const queryClient = new QueryClient();
 
 // ------------------ Favorite --------------------
+// https://books-tracker-api.onrender.com
 
 export const addToFavorite = async (bookData) => {
     const graphqlQuery = {
@@ -16,7 +17,7 @@ export const addToFavorite = async (bookData) => {
         }
     }
 
-    const reponse = await fetch("https://books-tracker-api.onrender.com/graphql", {
+    const reponse = await fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -51,7 +52,7 @@ export const fetchFavoriteBooks = async ({ signal }) => {
         `
     }
 
-    const response = await fetch("https://books-tracker-api.onrender.com/graphql", {
+    const response = await fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -77,7 +78,7 @@ export const removeFromFavorite = async (id) => {
             id: id
         }
     }
-    const response = await fetch("https://books-tracker-api.onrender.com/graphql", {
+    const response = await fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -106,7 +107,7 @@ export const addToToRead = async (bookData) => {
         }
     }
 
-    const reponse = await fetch("https://books-tracker-api.onrender.com/graphql", {
+    const reponse = await fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -141,7 +142,7 @@ export const fetchToReadBooks = async ({ signal }) => {
         `
     }
 
-    const response = await fetch("https://books-tracker-api.onrender.com/graphql", {
+    const response = await fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -167,7 +168,7 @@ export const removeFromToRead = async (id) => {
             id: id
         }
     }
-    const response = await fetch("https://books-tracker-api.onrender.com/graphql", {
+    const response = await fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -195,7 +196,7 @@ export const addToHaveRead = async (bookData) => {
         }
     }
 
-    const reponse = await fetch("https://books-tracker-api.onrender.com/graphql", {
+    const reponse = await fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -230,7 +231,7 @@ export const fetchHaveReadBooks = async ({ signal }) => {
         `
     }
 
-    const response = await fetch("https://books-tracker-api.onrender.com/graphql", {
+    const response = await fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -256,7 +257,7 @@ export const removeFromHaveRead = async (id) => {
             id: id
         }
     }
-    const response = await fetch("https://books-tracker-api.onrender.com/graphql", {
+    const response = await fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -284,7 +285,7 @@ export const addToCurrentRead = async (bookData) => {
         }
     }
 
-    const reponse = await fetch("https://books-tracker-api.onrender.com/graphql", {
+    const reponse = await fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -320,7 +321,7 @@ export const fetchCurrentReadBooks = async ({ signal }) => {
         `
     }
 
-    const response = await fetch("https://books-tracker-api.onrender.com/graphql", {
+    const response = await fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -347,7 +348,7 @@ export const updateReadPages = async ({ id, readPages }) => {
             id: id, readPages: readPages
         }
     }
-    const response = await fetch("https://books-tracker-api.onrender.com/graphql", {
+    const response = await fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -372,7 +373,7 @@ export const removeFromCurrentRead = async (id) => {
             id: id
         }
     }
-    const response = await fetch("https://books-tracker-api.onrender.com/graphql", {
+    const response = await fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -389,7 +390,7 @@ export const removeFromCurrentRead = async (id) => {
 // ------------------- Authentication ------------------
 
 export const signUp = async ({ email, password, name }) => {
-    const reponse = await fetch("https://books-tracker-api.onrender.com/auth/signup", {
+    const reponse = await fetch("http://localhost:8080/auth/signup", {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -403,7 +404,7 @@ export const signUp = async ({ email, password, name }) => {
 }
 
 export const login = async ({ email, password }) => {
-    const reponse = await fetch("https://books-tracker-api.onrender.com/auth/login", {
+    const reponse = await fetch("http://localhost:8080/auth/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -433,7 +434,7 @@ export const sendFeedback = async ({ message, rating }) => {
         }
     }
 
-    const response = await fetch("https://books-tracker-api.onrender.com/graphql", {
+    const response = await fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -466,7 +467,7 @@ export const fetchUser = async ({ signal }) => {
         `
     }
 
-    const response = await fetch("https://books-tracker-api.onrender.com/graphql", {
+    const response = await fetch("http://localhost:8080/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

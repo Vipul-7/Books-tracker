@@ -1,6 +1,6 @@
-const { buildSchema } = require("graphql");
+// const { buildSchema } = require("graphql");
 
-module.exports = buildSchema(`
+module.exports = `
     type Book {
         id : ID!
         bookId : String!
@@ -45,7 +45,7 @@ module.exports = buildSchema(`
         rating: Int!
     }
 
-    type RootMutation {
+    type Mutation {
         addToFavorite(bookData: BookInput! ): Boolean!
         removeFromFavorite(id: ID!): Boolean!
         addToToRead(bookData: BookInput! ): Boolean!
@@ -58,16 +58,13 @@ module.exports = buildSchema(`
         createFeedback(feedbackData : FeedbackInput!): Boolean!
     }
 
-    type RootQuery {
+    type Query {
         favoriteBooks: [Book!]!
         toReadBooks: [Book!]!
         haveReadBooks: [Book!]!
         currentReadBooks: [Book!]!
         getUser : User!
     }
+`;
 
-    schema {
-        mutation: RootMutation
-        query: RootQuery
-    }
-`);
+// module.exports = { typeDefs }
