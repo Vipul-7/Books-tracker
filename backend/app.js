@@ -34,6 +34,12 @@ const graphqlApi = async () => {
     typeDefs,
     resolvers: graphqlResolvers,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    formatError(err) {
+      const data = err.data;
+      const message = err.message || "An error occurred";
+      const code = err.extensions.code || 500;
+      return { message, status: code, data };
+    }
   });
 
   await server.start();

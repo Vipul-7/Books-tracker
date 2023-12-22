@@ -4,6 +4,7 @@ export const queryClient = new QueryClient();
 
 // ------------------ Favorite --------------------
 // https://books-tracker-api.onrender.com
+// https://localhost:8080
 
 export const addToFavorite = async (bookData) => {
     const graphqlQuery = {

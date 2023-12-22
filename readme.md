@@ -6,9 +6,16 @@ This is the project where anyone can track their books (means read, reading, wan
 
 For fetching any book details, I am using [Google Books API](https://developers.google.com/books/).
 
-Authenticaton is done using [Firebase](https://firebase.google.com/) Authentication where google the only provider is used.
+# Tech Stack
 
-For storing users's books data, I am using [Firebase Firestore](https://firebase.google.com/docs/firestore).
+- React
+- React Router
+- Redux
+- Tanstack React query
+- ExpressJS
+- PostgreSQL
+- PrismaORM
+
 
 # Installation
 

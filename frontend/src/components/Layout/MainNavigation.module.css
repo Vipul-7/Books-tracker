@@ -136,6 +136,14 @@ nav {
   margin-top: 1rem;
 }
 
+.loading{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+}
+
 @media screen and (max-width: 1110px) {
   .list li {
     padding: 0 23px;

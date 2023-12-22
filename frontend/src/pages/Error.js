@@ -1,4 +1,4 @@
-import { useRouteError } from "react-router";
+import { useRouteError } from "react-router-dom";
 import MainNavigation from "../components/Layout/MainNavigation";
 
 const ErrorPage = () => {
@@ -6,7 +6,9 @@ const ErrorPage = () => {
   let title = "Error Occurred";
   let message = "something went wrong";
 
-  if (error.status === 500) {
+  // console.log(error);
+
+  if (error.status) {
     message = error.data.message;
   }
 
