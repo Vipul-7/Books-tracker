@@ -6,7 +6,7 @@ const ErrorPage = () => {
   let title = "Error Occurred";
   let message = "something went wrong";
 
-  console.log(error);
+  // console.log(error);
 
   if (error.status) {
     message = error.data.message;
