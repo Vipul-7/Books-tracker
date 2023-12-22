@@ -11,10 +11,11 @@ import FavoritesIcon from "../Icons/FavoritesIcon";
 import BookLogo from "../Icons/BookLogo";
 import { useQuery } from "@tanstack/react-query";
 import { fetchUser } from "../../util/http";
+import Loading from "../Icons/Loading";
 
 
 const MainNavigation = () => {
-  const { data: userData } = useQuery({
+  const { data: userData, isPending, isError, error } = useQuery({
     queryKey: ["user"],
     queryFn: ({ signal }) => fetchUser({ signal })
   })
@@ -97,11 +98,14 @@ const MainNavigation = () => {
           </li>
           {!userData?.data && (
             <div className={classes.login}>
-              <NavLink to="auth/login">
+              {!isPending && <NavLink to="auth/login">
                 <button>Sign-In</button>
-              </NavLink>
+              </NavLink>}
+              {isPending && <div className={classes.loading}><Loading /></div>}
             </div>
           )}
+          {/* {isPending && <div className={classes.loading}><Loading /></div>} */}
+          {isError && <p>{error}</p>}
           {userData?.data && (
             <div className={classes["login-photo"]}>
               <button onClick={showMyProfileHandler}>
